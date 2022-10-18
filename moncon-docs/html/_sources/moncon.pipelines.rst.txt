@@ -1,0 +1,29 @@
+moncon.pipelines package
+========================
+
+Submodules
+----------
+
+moncon.pipelines.rawdata\_process module
+----------------------------------------
+
+.. automodule:: moncon.pipelines.rawdata_process
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.pipelines.train\_test\_funcs module
+------------------------------------------
+
+.. automodule:: moncon.pipelines.train_test_funcs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: moncon.pipelines
+   :members:
+   :undoc-members:
+   :show-inheritance:

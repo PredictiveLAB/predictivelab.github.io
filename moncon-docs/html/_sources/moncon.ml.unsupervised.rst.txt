@@ -1,0 +1,29 @@
+moncon.ml.unsupervised package
+==============================
+
+Submodules
+----------
+
+moncon.ml.unsupervised.anomaly\_detection module
+------------------------------------------------
+
+.. automodule:: moncon.ml.unsupervised.anomaly_detection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.ml.unsupervised.autoencoder module
+-----------------------------------------
+
+.. automodule:: moncon.ml.unsupervised.autoencoder
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: moncon.ml.unsupervised
+   :members:
+   :undoc-members:
+   :show-inheritance:
