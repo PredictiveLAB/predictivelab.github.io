@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.preprocessing package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.preprocessing package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.base_preprocess">moncon.preprocessing.base_preprocess module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess"><code class="docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.analyze"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.apply_cols_mask"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.apply_cols_mask()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.columns_to_drop"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.columns_to_drop()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.fit"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.fit_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.merge_X_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.merge_X_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.merge_y_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.merge_y_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.output_procesable"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.output_procesable()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.set_n_components"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.set_n_components()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess.transform_xy"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.transform_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.filters">moncon.preprocessing.filters module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteInterpolated"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteInterpolated.fit"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteInterpolated.fit_transform"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteInterpolated.transform"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteTransient"><code class="docutils literal notranslate"><span class="pre">DeleteTransient</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteTransient.fit"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteTransient.fit_transform"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.DeleteTransient.transform"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.OutlierRemoval"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.OutlierRemoval.analyze"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.OutlierRemoval.fit"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.OutlierRemoval.fit_transform"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.filters.OutlierRemoval.transform"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.methods">moncon.preprocessing.methods module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.Correlation"><code class="docutils literal notranslate"><span class="pre">Correlation</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.Correlation.analyze"><code class="docutils literal notranslate"><span class="pre">Correlation.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.Correlation.fit"><code class="docutils literal notranslate"><span class="pre">Correlation.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.Correlation.fit_transform"><code class="docutils literal notranslate"><span class="pre">Correlation.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.Correlation.transform"><code class="docutils literal notranslate"><span class="pre">Correlation.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.HeatMap"><code class="docutils literal notranslate"><span class="pre">HeatMap</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.HeatMap.analyze"><code class="docutils literal notranslate"><span class="pre">HeatMap.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.HeatMap.fit"><code class="docutils literal notranslate"><span class="pre">HeatMap.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.HeatMap.fit_transform"><code class="docutils literal notranslate"><span class="pre">HeatMap.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.HeatMap.transform"><code class="docutils literal notranslate"><span class="pre">HeatMap.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.MovingAverage"><code class="docutils literal notranslate"><span class="pre">MovingAverage</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.MovingAverage.fit"><code class="docutils literal notranslate"><span class="pre">MovingAverage.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.MovingAverage.fit_transform"><code class="docutils literal notranslate"><span class="pre">MovingAverage.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.MovingAverage.transform"><code class="docutils literal notranslate"><span class="pre">MovingAverage.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.StopFilterMov"><code class="docutils literal notranslate"><span class="pre">StopFilterMov</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.StopFilterMov.fit"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.StopFilterMov.fit_transform"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.methods.StopFilterMov.transform"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_reduction">moncon.preprocessing.parameter_reduction module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.analyze"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit_transform"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.output_procesable"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.output_procesable()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.transform"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA"><code class="docutils literal notranslate"><span class="pre">AutoPCA</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA.analyze"><code class="docutils literal notranslate"><span class="pre">AutoPCA.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA.fit"><code class="docutils literal notranslate"><span class="pre">AutoPCA.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA.fit_transform"><code class="docutils literal notranslate"><span class="pre">AutoPCA.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA.output_procesable"><code class="docutils literal notranslate"><span class="pre">AutoPCA.output_procesable()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_reduction.AutoPCA.transform"><code class="docutils literal notranslate"><span class="pre">AutoPCA.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.scaling">moncon.preprocessing.scaling module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.MinMaxScaling"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.MinMaxScaling.analyze"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.MinMaxScaling.fit"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.MinMaxScaling.fit_transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.MinMaxScaling.transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.StandardScaling"><code class="docutils literal notranslate"><span class="pre">StandardScaling</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.StandardScaling.analyze"><code class="docutils literal notranslate"><span class="pre">StandardScaling.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.StandardScaling.fit"><code class="docutils literal notranslate"><span class="pre">StandardScaling.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.StandardScaling.fit_transform"><code class="docutils literal notranslate"><span class="pre">StandardScaling.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.scaling.StandardScaling.transform"><code class="docutils literal notranslate"><span class="pre">StandardScaling.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.preprocessing package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.preprocessing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-preprocessing-package">
+<h1>moncon.preprocessing package<a class="headerlink" href="#moncon-preprocessing-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="moncon.preprocessing.nan.html">moncon.preprocessing.nan package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.nan.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.drop_nan">moncon.preprocessing.nan.drop_nan module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.drop_nan.DropNan"><code class="docutils literal notranslate"><span class="pre">DropNan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.drop_nan.DropNan.analyze"><code class="docutils literal notranslate"><span class="pre">DropNan.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.drop_nan.DropNan.fit"><code class="docutils literal notranslate"><span class="pre">DropNan.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.drop_nan.DropNan.fit_transform"><code class="docutils literal notranslate"><span class="pre">DropNan.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.drop_nan.DropNan.transform"><code class="docutils literal notranslate"><span class="pre">DropNan.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.fill_nan">moncon.preprocessing.nan.fill_nan module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.fill_nan.FillNan"><code class="docutils literal notranslate"><span class="pre">FillNan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.fill_nan.FillNan.analyze"><code class="docutils literal notranslate"><span class="pre">FillNan.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.fill_nan.FillNan.fit"><code class="docutils literal notranslate"><span class="pre">FillNan.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.fill_nan.FillNan.fit_transform"><code class="docutils literal notranslate"><span class="pre">FillNan.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.fill_nan.FillNan.transform"><code class="docutils literal notranslate"><span class="pre">FillNan.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.smooth_tools">moncon.preprocessing.nan.smooth_tools module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.InitialGuess"><code class="docutils literal notranslate"><span class="pre">InitialGuess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.RobustWeights"><code class="docutils literal notranslate"><span class="pre">RobustWeights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.beta"><code class="docutils literal notranslate"><span class="pre">beta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.binomial"><code class="docutils literal notranslate"><span class="pre">binomial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.chisquare"><code class="docutils literal notranslate"><span class="pre">chisquare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.choice"><code class="docutils literal notranslate"><span class="pre">choice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.dctND"><code class="docutils literal notranslate"><span class="pre">dctND()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.df2matrix"><code class="docutils literal notranslate"><span class="pre">df2matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.dirichlet"><code class="docutils literal notranslate"><span class="pre">dirichlet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.exponential"><code class="docutils literal notranslate"><span class="pre">exponential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.f"><code class="docutils literal notranslate"><span class="pre">f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.gamma"><code class="docutils literal notranslate"><span class="pre">gamma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.gcv"><code class="docutils literal notranslate"><span class="pre">gcv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.geometric"><code class="docutils literal notranslate"><span class="pre">geometric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.get_state"><code class="docutils literal notranslate"><span class="pre">get_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.gumbel"><code class="docutils literal notranslate"><span class="pre">gumbel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.hypergeometric"><code class="docutils literal notranslate"><span class="pre">hypergeometric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.laplace"><code class="docutils literal notranslate"><span class="pre">laplace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.logistic"><code class="docutils literal notranslate"><span class="pre">logistic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.lognormal"><code class="docutils literal notranslate"><span class="pre">lognormal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.logseries"><code class="docutils literal notranslate"><span class="pre">logseries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.multinomial"><code class="docutils literal notranslate"><span class="pre">multinomial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.multivariate_normal"><code class="docutils literal notranslate"><span class="pre">multivariate_normal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.negative_binomial"><code class="docutils literal notranslate"><span class="pre">negative_binomial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.noncentral_chisquare"><code class="docutils literal notranslate"><span class="pre">noncentral_chisquare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.noncentral_f"><code class="docutils literal notranslate"><span class="pre">noncentral_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.normal"><code class="docutils literal notranslate"><span class="pre">normal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.pareto"><code class="docutils literal notranslate"><span class="pre">pareto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.peaks"><code class="docutils literal notranslate"><span class="pre">peaks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.permutation"><code class="docutils literal notranslate"><span class="pre">permutation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.poisson"><code class="docutils literal notranslate"><span class="pre">poisson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.rand"><code class="docutils literal notranslate"><span class="pre">rand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.randint"><code class="docutils literal notranslate"><span class="pre">randint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.randn"><code class="docutils literal notranslate"><span class="pre">randn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.random_integers"><code class="docutils literal notranslate"><span class="pre">random_integers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.random_sample"><code class="docutils literal notranslate"><span class="pre">random_sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.rayleigh"><code class="docutils literal notranslate"><span class="pre">rayleigh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.seed"><code class="docutils literal notranslate"><span class="pre">seed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.set_state"><code class="docutils literal notranslate"><span class="pre">set_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.smooth_df"><code class="docutils literal notranslate"><span class="pre">smooth_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.smoothn"><code class="docutils literal notranslate"><span class="pre">smoothn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.standard_cauchy"><code class="docutils literal notranslate"><span class="pre">standard_cauchy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.standard_exponential"><code class="docutils literal notranslate"><span class="pre">standard_exponential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.standard_gamma"><code class="docutils literal notranslate"><span class="pre">standard_gamma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.standard_normal"><code class="docutils literal notranslate"><span class="pre">standard_normal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.standard_t"><code class="docutils literal notranslate"><span class="pre">standard_t()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.triangular"><code class="docutils literal notranslate"><span class="pre">triangular()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.uniform"><code class="docutils literal notranslate"><span class="pre">uniform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.vonmises"><code class="docutils literal notranslate"><span class="pre">vonmises()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.wald"><code class="docutils literal notranslate"><span class="pre">wald()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.warning"><code class="docutils literal notranslate"><span class="pre">warning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.weibull"><code class="docutils literal notranslate"><span class="pre">weibull()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.zipf"><code class="docutils literal notranslate"><span class="pre">zipf()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html">moncon.preprocessing.parameter_extraction package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.combined_extraction">moncon.preprocessing.parameter_extraction.combined_extraction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.analyze"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit_transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.fourier_transform">moncon.preprocessing.parameter_extraction.fourier_transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier"><code class="docutils literal notranslate"><span class="pre">BandFourier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.analyze"><code class="docutils literal notranslate"><span class="pre">BandFourier.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands"><code class="docutils literal notranslate"><span class="pre">Fourierbands</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.analyze"><code class="docutils literal notranslate"><span class="pre">Fourierbands.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit_transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.analyze"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit_transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier"><code class="docutils literal notranslate"><span class="pre">SimpleFourier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.analyze"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.temporary_domain">moncon.preprocessing.parameter_extraction.temporary_domain module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.analyze"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit_transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.get_box_plot_data"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.get_box_plot_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.output_procesable"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.output_procesable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.time_features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.time_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.preprocessing.base_preprocess">
+<span id="moncon-preprocessing-base-preprocess-module"></span><h2>moncon.preprocessing.base_preprocess module<a class="headerlink" href="#module-moncon.preprocessing.base_preprocess" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.base_preprocess.</span></span><span class="sig-name descname"><span class="pre">BasePreprocess</span></span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.apply_cols_mask">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply_cols_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_to_drop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.apply_cols_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.apply_cols_mask" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.columns_to_drop">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">columns_to_drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.columns_to_drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.columns_to_drop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.fit">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.fit_transform">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.merge_X_transform">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">merge_X_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform_masked_X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_to_drop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.merge_X_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.merge_X_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.merge_y_transform">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">merge_y_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform_X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.merge_y_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.merge_y_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.output_procesable">
+<span class="sig-name descname"><span class="pre">output_procesable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.output_procesable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.output_procesable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.set_n_components">
+<span class="sig-name descname"><span class="pre">set_n_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.set_n_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.set_n_components" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.transform">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.base_preprocess.BasePreprocess.transform_xy">
+<span class="sig-name descname"><span class="pre">transform_xy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/base_preprocess.html#BasePreprocess.transform_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.base_preprocess.BasePreprocess.transform_xy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.filters">
+<span id="moncon-preprocessing-filters-module"></span><h2>moncon.preprocessing.filters module<a class="headerlink" href="#module-moncon.preprocessing.filters" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteInterpolated">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.filters.</span></span><span class="sig-name descname"><span class="pre">DeleteInterpolated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteInterpolated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteInterpolated" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Filter out interpolated values, by calculating the signal second derivative
+and filtering out null values;
+i.e. filters out values that have an almost constant slope.
+Args:</p>
+<blockquote>
+<div><p>data (pd.Dataframe): Dataframe with the data to be filtered.</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteInterpolated.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteInterpolated.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteInterpolated.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteInterpolated.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteInterpolated.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteInterpolated.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteInterpolated.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteInterpolated.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteInterpolated.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteTransient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.filters.</span></span><span class="sig-name descname"><span class="pre">DeleteTransient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteTransient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteTransient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>It finds every time the equipment is shut down and deletes that information.
+If the value of a sensor in a specific column called ‘filter_col’ is lower than a value
+‘min_value’, delete it. It also deletes ‘n_values’ after and before the range of values deleted.
+Args:</p>
+<blockquote>
+<div><p>min_value (float): Minimum value of ‘filter_col’ to consider the machine as turned on.
+n_values (int): Number of values to be eliminated before and after the shutdown, considered transient.
+filter_col (str): Column to be used to find the shut downs.
+drop_filter_col (bool): If True, the column ‘filter_col’ is deleted after the preprocessing.</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteTransient.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteTransient.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteTransient.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteTransient.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteTransient.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteTransient.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.DeleteTransient.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#DeleteTransient.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.DeleteTransient.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.OutlierRemoval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.filters.</span></span><span class="sig-name descname"><span class="pre">OutlierRemoval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#OutlierRemoval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.OutlierRemoval" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Preprocessing for deleting outliers in a dataset with one class
+(like healthy machine behavior). Outliers are detected using the
+IQR method for each column, using Q25 - 3*IQR as the lower limit, and 
+Q75 + 3*IQR as the upper limit; then outliers and are deleted.</p>
+<p>Outlier removal is only supposed to be used for cleaning a training 
+dataset of one class, if that wheren’t the case it could delete data from 
+another class; which also means, that it is not supposed to be used on 
+testing data for outlier detection or classification. Therefore, it only
+removes outliers using fit_transform method, as it doesn’t make sense to 
+fit it and use it for transforming a different dataset (like a testing one).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.OutlierRemoval.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#OutlierRemoval.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.OutlierRemoval.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.OutlierRemoval.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#OutlierRemoval.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.OutlierRemoval.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.OutlierRemoval.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#OutlierRemoval.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.OutlierRemoval.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.filters.OutlierRemoval.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/filters.html#OutlierRemoval.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.filters.OutlierRemoval.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.methods">
+<span id="moncon-preprocessing-methods-module"></span><h2>moncon.preprocessing.methods module<a class="headerlink" href="#module-moncon.preprocessing.methods" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.Correlation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.methods.</span></span><span class="sig-name descname"><span class="pre">Correlation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#Correlation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.Correlation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.Correlation.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#Correlation.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.Correlation.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.Correlation.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#Correlation.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.Correlation.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.Correlation.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#Correlation.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.Correlation.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.Correlation.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#Correlation.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.Correlation.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.HeatMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.methods.</span></span><span class="sig-name descname"><span class="pre">HeatMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#HeatMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.HeatMap" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.HeatMap.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#HeatMap.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.HeatMap.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.HeatMap.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#HeatMap.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.HeatMap.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.HeatMap.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#HeatMap.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.HeatMap.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.HeatMap.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#HeatMap.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.HeatMap.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.MovingAverage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.methods.</span></span><span class="sig-name descname"><span class="pre">MovingAverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#MovingAverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.MovingAverage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Calculates the moving average of a dataframe and substracts it to the data.
+Args:</p>
+<blockquote>
+<div><p>data (pd.DataFrame): Dataframe with the data.
+n_ventana (int): Number of values to calculate the moving average with.</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.MovingAverage.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#MovingAverage.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.MovingAverage.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.MovingAverage.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#MovingAverage.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.MovingAverage.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.MovingAverage.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#MovingAverage.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.MovingAverage.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.StopFilterMov">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.methods.</span></span><span class="sig-name descname"><span class="pre">StopFilterMov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#StopFilterMov"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.StopFilterMov" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Finds every time the machine is shut down, based on ‘filter_col’ values,
+separates those sections together with ‘n_values’ before and after, considered transient operation;
+then calculates the moving average on each section where the machine is turned on,
+and substracts it to that section. Finally, it returns all turned on sections together as a Dataframe.
+Args:</p>
+<blockquote>
+<div><p>datos (pd.DataFrame): Dataframe with the data to be filtered.
+n_average (int): Number of values to calculate the moving average with.
+min_value (float): Minimum value of ‘filter_col’ to consider the machine as turned on.
+n_transient (int): Number of values to be eliminated before and after the shutdown, considered transient.
+filter_col (str): Column to be used to find the shut downs.
+drop_filter_col (bool): If True, the column ‘filter_col’ is deleted after the filter.</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.StopFilterMov.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#StopFilterMov.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.StopFilterMov.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.StopFilterMov.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#StopFilterMov.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.StopFilterMov.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.methods.StopFilterMov.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/methods.html#StopFilterMov.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.methods.StopFilterMov.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.parameter_reduction">
+<span id="moncon-preprocessing-parameter-reduction-module"></span><h2>moncon.preprocessing.parameter_reduction module<a class="headerlink" href="#module-moncon.preprocessing.parameter_reduction" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_reduction.</span></span><span class="sig-name descname"><span class="pre">AutoKernelPCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA.output_procesable">
+<span class="sig-name descname"><span class="pre">output_procesable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA.output_procesable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.output_procesable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoKernelPCA.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoKernelPCA.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoKernelPCA.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_reduction.</span></span><span class="sig-name descname"><span class="pre">AutoPCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA.output_procesable">
+<span class="sig-name descname"><span class="pre">output_procesable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA.output_procesable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA.output_procesable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_reduction.AutoPCA.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_reduction.html#AutoPCA.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_reduction.AutoPCA.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.scaling">
+<span id="moncon-preprocessing-scaling-module"></span><h2>moncon.preprocessing.scaling module<a class="headerlink" href="#module-moncon.preprocessing.scaling" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.MinMaxScaling">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.scaling.</span></span><span class="sig-name descname"><span class="pre">MinMaxScaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#MinMaxScaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.MinMaxScaling" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.MinMaxScaling.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#MinMaxScaling.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.MinMaxScaling.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.MinMaxScaling.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#MinMaxScaling.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.MinMaxScaling.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.MinMaxScaling.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#MinMaxScaling.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.MinMaxScaling.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.MinMaxScaling.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#MinMaxScaling.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.MinMaxScaling.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.StandardScaling">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.scaling.</span></span><span class="sig-name descname"><span class="pre">StandardScaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#StandardScaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.StandardScaling" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.StandardScaling.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#StandardScaling.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.StandardScaling.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.StandardScaling.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#StandardScaling.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.StandardScaling.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.StandardScaling.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#StandardScaling.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.StandardScaling.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.scaling.StandardScaling.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/scaling.html#StandardScaling.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.scaling.StandardScaling.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.preprocessing" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

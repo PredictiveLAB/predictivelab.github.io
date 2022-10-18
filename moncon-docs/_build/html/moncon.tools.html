@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.tools package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.tools package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.tools.arch_ops">moncon.tools.arch_ops module</a><ul>
+<li><a class="reference internal" href="#moncon.tools.arch_ops.arch_class"><code class="docutils literal notranslate"><span class="pre">arch_class()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.arch_ops.init_arch_class"><code class="docutils literal notranslate"><span class="pre">init_arch_class()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.tools.evaluation_ops">moncon.tools.evaluation_ops module</a><ul>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.evaluate_report_from_csv"><code class="docutils literal notranslate"><span class="pre">evaluate_report_from_csv()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_end_message"><code class="docutils literal notranslate"><span class="pre">get_end_message()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_end_message_thread"><code class="docutils literal notranslate"><span class="pre">get_end_message_thread()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_eval_id"><code class="docutils literal notranslate"><span class="pre">get_eval_id()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_log_filepath"><code class="docutils literal notranslate"><span class="pre">get_log_filepath()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_start_message"><code class="docutils literal notranslate"><span class="pre">get_start_message()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.get_start_message_thread"><code class="docutils literal notranslate"><span class="pre">get_start_message_thread()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.initialize_online_report_evaluation"><code class="docutils literal notranslate"><span class="pre">initialize_online_report_evaluation()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.evaluation_ops.parse_logging_file"><code class="docutils literal notranslate"><span class="pre">parse_logging_file()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.tools.preprocessing_ops">moncon.tools.preprocessing_ops module</a><ul>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.analyze"><code class="docutils literal notranslate"><span class="pre">analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.analyze_tsreport"><code class="docutils literal notranslate"><span class="pre">analyze_tsreport()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.fit_transform"><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.get_prerprocess_path"><code class="docutils literal notranslate"><span class="pre">get_prerprocess_path()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.init_preprocess"><code class="docutils literal notranslate"><span class="pre">init_preprocess()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.test_transform"><code class="docutils literal notranslate"><span class="pre">test_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.preprocessing_ops.valid_transform"><code class="docutils literal notranslate"><span class="pre">valid_transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.tools.training_ops">moncon.tools.training_ops module</a><ul>
+<li><a class="reference internal" href="#moncon.tools.training_ops.get_checkpoint_filepath"><code class="docutils literal notranslate"><span class="pre">get_checkpoint_filepath()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.get_end_message"><code class="docutils literal notranslate"><span class="pre">get_end_message()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.get_exp_id"><code class="docutils literal notranslate"><span class="pre">get_exp_id()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.get_log_filepath"><code class="docutils literal notranslate"><span class="pre">get_log_filepath()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.get_start_message"><code class="docutils literal notranslate"><span class="pre">get_start_message()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.parse_logging_file"><code class="docutils literal notranslate"><span class="pre">parse_logging_file()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.tools.training_ops.train_model"><code class="docutils literal notranslate"><span class="pre">train_model()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.tools package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-tools-package">
+<h1>moncon.tools package<a class="headerlink" href="#moncon-tools-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.tools.arch_ops">
+<span id="moncon-tools-arch-ops-module"></span><h2>moncon.tools.arch_ops module<a class="headerlink" href="#module-moncon.tools.arch_ops" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.arch_ops.arch_class">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.arch_ops.</span></span><span class="sig-name descname"><span class="pre">arch_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/arch_ops.html#arch_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.arch_ops.arch_class" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.arch_ops.init_arch_class">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.arch_ops.</span></span><span class="sig-name descname"><span class="pre">init_arch_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/arch_ops.html#init_arch_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.arch_ops.init_arch_class" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon.tools.evaluation_ops">
+<span id="moncon-tools-evaluation-ops-module"></span><h2>moncon.tools.evaluation_ops module<a class="headerlink" href="#module-moncon.tools.evaluation_ops" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.evaluate_report_from_csv">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">evaluate_report_from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#evaluate_report_from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.evaluate_report_from_csv" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_end_message">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_end_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_end_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_end_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_end_message_thread">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_end_message_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_end_message_thread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_end_message_thread" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_eval_id">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_eval_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_eval_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_eval_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_log_filepath">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_log_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logs_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_log_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_log_filepath" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_start_message">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_start_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_start_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_start_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.get_start_message_thread">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">get_start_message_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#get_start_message_thread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.get_start_message_thread" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.initialize_online_report_evaluation">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">initialize_online_report_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equipment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trained_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">online_report_producer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">online_report_consummer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#initialize_online_report_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.initialize_online_report_evaluation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.evaluation_ops.parse_logging_file">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.evaluation_ops.</span></span><span class="sig-name descname"><span class="pre">parse_logging_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/evaluation_ops.html#parse_logging_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.evaluation_ops.parse_logging_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon.tools.preprocessing_ops">
+<span id="moncon-tools-preprocessing-ops-module"></span><h2>moncon.tools.preprocessing_ops module<a class="headerlink" href="#module-moncon.tools.preprocessing_ops" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.analyze">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.analyze_tsreport">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">analyze_tsreport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datareport</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#analyze_tsreport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.analyze_tsreport" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.fit_transform">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prep_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_chckpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt_log</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.get_prerprocess_path">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">get_prerprocess_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_chckpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#get_prerprocess_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.get_prerprocess_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.init_preprocess">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">init_preprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#init_preprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.init_preprocess" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.test_transform">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">test_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#test_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.test_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.preprocessing_ops.valid_transform">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.preprocessing_ops.</span></span><span class="sig-name descname"><span class="pre">valid_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/preprocessing_ops.html#valid_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.preprocessing_ops.valid_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon.tools.training_ops">
+<span id="moncon-tools-training-ops-module"></span><h2>moncon.tools.training_ops module<a class="headerlink" href="#module-moncon.tools.training_ops" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.get_checkpoint_filepath">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">get_checkpoint_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chckpts_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#get_checkpoint_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.get_checkpoint_filepath" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.get_end_message">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">get_end_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#get_end_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.get_end_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.get_exp_id">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">get_exp_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#get_exp_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.get_exp_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.get_log_filepath">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">get_log_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logs_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#get_log_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.get_log_filepath" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.get_start_message">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">get_start_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#get_start_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.get_start_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.parse_logging_file">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">parse_logging_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#parse_logging_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.parse_logging_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.tools.training_ops.train_model">
+<span class="sig-prename descclassname"><span class="pre">moncon.tools.training_ops.</span></span><span class="sig-name descname"><span class="pre">train_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_periods</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basemodel_chkpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpts_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/tools/training_ops.html#train_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.tools.training_ops.train_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.tools" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

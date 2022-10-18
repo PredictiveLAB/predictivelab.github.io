@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.preprocessing.filters &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>moncon.preprocessing.filters</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.preprocessing.filters</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.base_preprocess</span> <span class="kn">import</span> <span class="n">BasePreprocess</span>
+
+
+<div class="viewcode-block" id="DeleteTransient"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient">[docs]</a><span class="k">class</span> <span class="nc">DeleteTransient</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;It finds every time the equipment is shut down and deletes that information.</span>
+<span class="sd">    If the value of a sensor in a specific column called &#39;filter_col&#39; is lower than a value</span>
+<span class="sd">    &#39;min_value&#39;, delete it. It also deletes &#39;n_values&#39; after and before the range of values deleted.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        min_value (float): Minimum value of &#39;filter_col&#39; to consider the machine as turned on.</span>
+<span class="sd">        n_values (int): Number of values to be eliminated before and after the shutdown, considered transient.</span>
+<span class="sd">        filter_col (str): Column to be used to find the shut downs.</span>
+<span class="sd">        drop_filter_col (bool): If True, the column &#39;filter_col&#39; is deleted after the preprocessing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeleteTransient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sensors_mask</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sensors_mask&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min_value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_values</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_values&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filter_col</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;filter_col&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop_filter_col</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;drop_filter_col&quot;</span><span class="p">)</span>
+
+        <span class="c1"># default params</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_filter_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">drop_filter_col</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_is_on_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="c1"># Return the DataFrame with filtered shutdowns and deleting the transient values</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">is_on</span> <span class="o">=</span> <span class="p">(</span><span class="n">datos</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_col</span><span class="p">])</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span>
+
+        <span class="c1"># Find the moments when the machine is turned on and off</span>
+        <span class="c1"># And move idx to delete the values before the first shutdown (transient)</span>
+        <span class="n">is_on_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">is_on</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">turn_off_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_on_grad</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># index of turn off events</span>
+        <span class="n">turn_on_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_on_grad</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="c1"># index of turn on events</span>
+
+        <span class="c1"># Eliminate the values before and after the shutdown</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">turn_off_idx</span><span class="p">)):</span>
+            <span class="n">is_on</span><span class="p">[</span><span class="n">turn_off_idx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_values</span> <span class="p">:</span> <span class="n">turn_off_idx</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">turn_on_idx</span><span class="p">)):</span>
+            <span class="n">is_on</span><span class="p">[</span><span class="n">turn_on_idx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">turn_on_idx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_values</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">is_on</span>
+
+<div class="viewcode-block" id="DeleteTransient.fit"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="DeleteTransient.fit_transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="n">is_on</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_on_mask</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">is_on</span><span class="p">]</span>
+        <span class="n">y_out</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">is_on</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_filter_col</span><span class="p">:</span>
+            <span class="n">X_out</span> <span class="o">=</span> <span class="n">X_out</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_n_components</span><span class="p">(</span><span class="n">X_out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_out</span><span class="p">,</span> <span class="n">y_out</span></div>
+
+<div class="viewcode-block" id="DeleteTransient.transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">is_on</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_on_mask</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">is_on</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_filter_col</span><span class="p">:</span>
+            <span class="n">X_out</span> <span class="o">=</span> <span class="n">X_out</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_n_components</span><span class="p">(</span><span class="n">X_out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_out</span></div></div>
+
+
+<div class="viewcode-block" id="DeleteInterpolated"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated">[docs]</a><span class="k">class</span> <span class="nc">DeleteInterpolated</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter out interpolated values, by calculating the signal second derivative</span>
+<span class="sd">    and filtering out null values;</span>
+<span class="sd">    i.e. filters out values that have an almost constant slope.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data (pd.Dataframe): Dataframe with the data to be filtered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeleteInterpolated</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sensors_mask</span> <span class="o">=</span> <span class="n">preprocess_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sensors_mask&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_filter_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="c1"># calculate second derivative</span>
+        <span class="n">sec_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># transform to dataframe</span>
+        <span class="n">grad_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sec_grad</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="c1"># get mask of values that have a second derivative near zero</span>
+        <span class="n">mask_grad</span> <span class="o">=</span> <span class="n">grad_df</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+
+        <span class="c1"># only keep lines that don&#39;t have a second derivative near zero</span>
+        <span class="n">filter_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">mask_grad</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filter_mask</span>
+
+<div class="viewcode-block" id="DeleteInterpolated.fit"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="DeleteInterpolated.fit_transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="n">filter_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_mask</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">filter_mask</span><span class="p">]</span>
+        <span class="n">y_out</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">filter_mask</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_n_components</span><span class="p">(</span><span class="n">X_out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_out</span><span class="p">,</span> <span class="n">y_out</span></div>
+
+<div class="viewcode-block" id="DeleteInterpolated.transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">filter_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_mask</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">filter_mask</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_n_components</span><span class="p">(</span><span class="n">X_out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_out</span></div></div>
+
+
+<div class="viewcode-block" id="OutlierRemoval"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval">[docs]</a><span class="k">class</span> <span class="nc">OutlierRemoval</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Preprocessing for deleting outliers in a dataset with one class</span>
+<span class="sd">    (like healthy machine behavior). Outliers are detected using the</span>
+<span class="sd">    IQR method for each column, using Q25 - 3*IQR as the lower limit, and </span>
+<span class="sd">    Q75 + 3*IQR as the upper limit; then outliers and are deleted.</span>
+
+<span class="sd">    Outlier removal is only supposed to be used for cleaning a training </span>
+<span class="sd">    dataset of one class, if that wheren&#39;t the case it could delete data from </span>
+<span class="sd">    another class; which also means, that it is not supposed to be used on </span>
+<span class="sd">    testing data for outlier detection or classification. Therefore, it only</span>
+<span class="sd">    removes outliers using fit_transform method, as it doesn&#39;t make sense to </span>
+<span class="sd">    fit it and use it for transforming a different dataset (like a testing one).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="OutlierRemoval.fit"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="OutlierRemoval.fit_transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out_chckpt_filepath</span><span class="p">):</span>
+        <span class="c1"># IQR method for detecting outliers</span>
+        <span class="n">q75</span><span class="p">,</span> <span class="n">q25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">iqr</span> <span class="o">=</span> <span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span>
+        <span class="n">low_limit</span> <span class="o">=</span> <span class="n">q25</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">iqr</span>
+        <span class="n">up_limit</span> <span class="o">=</span> <span class="n">q75</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">iqr</span>
+        <span class="n">is_outlier</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">&lt;</span> <span class="n">low_limit</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X</span> <span class="o">&gt;</span> <span class="n">up_limit</span><span class="p">)</span>
+
+        <span class="c1"># delete outliers</span>
+        <span class="n">inlier_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">is_outlier</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">X_inlier</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inlier_mask</span><span class="p">]</span>
+        <span class="n">y_inlier</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">inlier_mask</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_n_components</span><span class="p">(</span><span class="n">X_inlier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_inlier</span><span class="p">,</span> <span class="n">y_inlier</span></div>
+
+<div class="viewcode-block" id="OutlierRemoval.transform"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="c1"># return the same data, since we don&#39;t want to remove any data on the test set</span>
+        <span class="k">return</span> <span class="n">X</span></div>
+
+<div class="viewcode-block" id="OutlierRemoval.analyze"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

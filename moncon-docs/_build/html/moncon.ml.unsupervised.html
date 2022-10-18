@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml.unsupervised package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.ml.unsupervised package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.ml.unsupervised.anomaly_detection">moncon.ml.unsupervised.anomaly_detection module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.model_score()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.model_score()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.model_score()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml.unsupervised.autoencoder">moncon.ml.unsupervised.autoencoder module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoCNN"><code class="docutils literal notranslate"><span class="pre">AutoCNN</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoCNN.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoCNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoCNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoMLP"><code class="docutils literal notranslate"><span class="pre">AutoMLP</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoMLP.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoMLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoMLP.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoRNN"><code class="docutils literal notranslate"><span class="pre">AutoRNN</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoRNN.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.unsupervised.autoencoder.AutoRNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoRNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml.unsupervised">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.ml.unsupervised package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.ml.unsupervised.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-ml-unsupervised-package">
+<h1>moncon.ml.unsupervised package<a class="headerlink" href="#moncon-ml-unsupervised-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.ml.unsupervised.anomaly_detection">
+<span id="moncon-ml-unsupervised-anomaly-detection-module"></span><h2>moncon.ml.unsupervised.anomaly_detection module<a class="headerlink" href="#module-moncon.ml.unsupervised.anomaly_detection" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.anomaly_detection.</span></span><span class="sig-name descname"><span class="pre">EllipticEnvelopeAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#EllipticEnvelopeAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel" title="moncon.ml.base_arch.SklearnAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a></p>
+<p>Anomaly detection model based on Sklearn’s implementation of EllipticEnvelope()
+Inherits from SklearnAnomalyModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows. Range is (0, inf).</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“assume_centered”] (bool): Whether to assume the data is centered.</p></li>
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“support_fraction”] (float): The proportion of points to be included in</dt><dd><p>the support of the ellipsoid. Range is (0, 1).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#EllipticEnvelopeAnomalyModel.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the Elliptic Envelope model.</p>
+<dl class="simple">
+<dt>Introduces the following values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“assume_centered”] (bool): Whether to assume the data is centered.</p></li>
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“support_fraction”] (float): The proportion of points to be included in</dt><dd><p>the support of the ellipsoid. Range is (0, 1).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#EllipticEnvelopeAnomalyModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.anomaly_detection.</span></span><span class="sig-name descname"><span class="pre">IsolationForestAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#IsolationForestAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel" title="moncon.ml.base_arch.SklearnAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a></p>
+<p>Anomaly (novelty) detection model based on the Isolation Forest algorithm.
+Inherits from SklearnAnomalyModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows. Range is (0, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“n_estimators”] (int): The number of trees in the forest.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#IsolationForestAnomalyModel.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the Isolation Forest model.</p>
+<dl class="simple">
+<dt>Introduces the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“n_estimators”] (int): The number of trees in the forest.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.model_score">
+<span class="sig-name descname"><span class="pre">model_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#IsolationForestAnomalyModel.model_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.model_score" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#IsolationForestAnomalyModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.anomaly_detection.</span></span><span class="sig-name descname"><span class="pre">LocalOutlierFactorAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#LocalOutlierFactorAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel" title="moncon.ml.base_arch.SklearnAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a></p>
+<p>Anomaly detection model based on the Local Outlier Factor algorithm.
+Inherits from SklearnAnomalyModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows. Range is (0, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“n_neighbors”] (int): The number of neighbors to use by default for</dt><dd><p>k-nearest neighbors queries. Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“algorithm”] (str): The algorithm to use for k-nearest neighbors queries.</dt><dd><p>Options are ‘auto’, ‘ball_tree’, ‘kd_tree’ or ‘brute’.</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“p”] (int): The power of the Minkowski metric to use. Recomended 1 or 2.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#LocalOutlierFactorAnomalyModel.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the Local Outlier Factor model.</p>
+<dl class="simple">
+<dt>Introduces the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“contamination”] (float): The proportion of outliers in the data set.</dt><dd><p>Range is (0, 0.5].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“n_neighbors”] (int): The number of neighbors to use by default for</dt><dd><p>k-nearest neighbors queries. Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“algorithm”] (str): The algorithm to use for k-nearest neighbors queries.</dt><dd><p>Options are ‘auto’, ‘ball_tree’, ‘kd_tree’ or ‘brute’.</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“p”] (int): The power of the Minkowski metric to use. Recomended 1 or 2.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.model_score">
+<span class="sig-name descname"><span class="pre">model_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#LocalOutlierFactorAnomalyModel.model_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.model_score" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#LocalOutlierFactorAnomalyModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.anomaly_detection.</span></span><span class="sig-name descname"><span class="pre">OneClassSVMAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#OneClassSVMAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel" title="moncon.ml.base_arch.SklearnAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a></p>
+<p>Anomaly detection model based on the One Class SVM algorithm.
+Inherits from SklearnAnomalyModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“gamma”] (str): The kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.</dt><dd><p>Options are ‘auto’ or ‘scale’</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“nu”] (float): The degree of the kernel, only for ‘poly’ and ‘sigmoid’.</dt><dd><p>Range is (0, 1].</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“kernel”]: The kernel to use. Options are ‘linear’, ‘rbf’, ‘poly’ and ‘sigmoid’.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#OneClassSVMAnomalyModel.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the One Class SVM model.</p>
+<dl class="simple">
+<dt>Introduces the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“gamma”] (str): The kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.</dt><dd><p>Options are ‘auto’ or ‘scale’</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“nu”] (float): The degree of the kernel, only for ‘poly’ and ‘sigmoid’.</dt><dd><p>Range is (0, 1].</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“kernel”]: The kernel to use. Options are ‘linear’, ‘rbf’, ‘poly’ and ‘sigmoid’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.model_score">
+<span class="sig-name descname"><span class="pre">model_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#OneClassSVMAnomalyModel.model_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.model_score" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/anomaly_detection.html#OneClassSVMAnomalyModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml.unsupervised.autoencoder">
+<span id="moncon-ml-unsupervised-autoencoder-module"></span><h2>moncon.ml.unsupervised.autoencoder module<a class="headerlink" href="#module-moncon.ml.unsupervised.autoencoder" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Defines 3 classes of unsupervised AutoEncoder models based on base_arch.AutoEncoderModel:</dt><dd><ol class="arabic simple">
+<li><p>AutoMLP</p></li>
+<li><p>AutoCNN</p></li>
+<li><p>AutoRNN</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoCNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.autoencoder.</span></span><span class="sig-name descname"><span class="pre">AutoCNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoCNN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoCNN" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel" title="moncon.ml.base_arch.AutoEncoderModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AutoEncoderModel</span></code></a></p>
+<p>Autoencoder model based on a CNN architecture.
+Inherits from base_arch.AutoEncoderModel.</p>
+<p>AutoCNN is a model that uses a convolutional neural network (CNN) architecture to encode
+and decode data, using the reconstruction error to output a KPI between 0 and 1,
+indicating how anomalous the data is. Transforms the input data into a batch of matrices (windows),
+where each matrix is time-window with features, and feeds it to Convolutional layers.</p>
+<dl class="simple">
+<dt>Defines the method:</dt><dd><ul class="simple">
+<li><p>init_arch: initializes the model architecture</p></li>
+<li><p>parse_fit_logging:</p></li>
+<li><p>parse_predict_logging:</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“contamination”] (float): Proportion of outliers in the data set.</p></li>
+<li><p>arch_params[“time_size”] (int): Number of time steps in the input to use in each window.</p></li>
+<li><p>arch_params[“overlap”] (int): Number of time steps to overlap between windows.</p></li>
+<li><p>arch_params[“feature_size”] (int): Number of features in the input.</p></li>
+<li><p>arch_params[“block_num”] (int): number of hidden CNN blocks in encoder and decoder</p></li>
+<li><p>arch_params[“filter_num”] (int): number of filters in the first CNN block (it is doubled in each block)</p></li>
+<li><p>arch_params[“kernel_v”] (int): vertical size of the convolution kernel</p></li>
+<li><p>arch_params[“kernel_h”] (int): horizontal size of the convolution kernel</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“epochs”] (int): Number of epochs to train the model</p></li>
+<li><p>train_params[“batch_size”] (int): Batch size for training the model</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoCNN.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the AutoCNN model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>time_size (int): vertical size of the input data</p></li>
+<li><p>feature_size (int): horizontal size of the input data</p></li>
+<li><p>block_num (int): number of hidden CNN blocks in encoder and decoder</p></li>
+<li><p>filter_num (int): number of filters in the first CNN block (it is doubled in each block)</p></li>
+<li><p>kernel_v (int): vertical size of the convolution kernel</p></li>
+<li><p>kernel_h (int): horizontal size of the convolution kernel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoCNN.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoCNN.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoCNN.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoMLP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.autoencoder.</span></span><span class="sig-name descname"><span class="pre">AutoMLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoMLP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoMLP" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel" title="moncon.ml.base_arch.AutoEncoderModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AutoEncoderModel</span></code></a></p>
+<p>Autoencoder model based on a MLP architecture.
+Inherits from base_arch.AutoEncoderModel.</p>
+<p>AutoMLP is a model that uses a multilayer perceptron (MLP) architecture to encode
+and decode data, using the reconstruction error to output a KPI between 0 and 1,
+indicating how anomalous the data is. Uses the input data as a batch of vectors,
+where each vector is an instant of time with features, and feeds it to Dense layers.</p>
+<dl class="simple">
+<dt>Redefines the methods:</dt><dd><ul class="simple">
+<li><p>init_arch: initializes the model architecture</p></li>
+<li><p>parse_fit_logging:</p></li>
+<li><p>parse_predict_logging:</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“contamination”] (float): Proportion of outliers in the data set.</p></li>
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“lat_size”] (int): The number of units in the latent layer</p></li>
+<li><p>arch_params[“h_num”] (int): Number of hidden layers</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“epochs”] (int): Number of epochs to train the model</p></li>
+<li><p>train_params[“batch_size”] (int): Batch size for training the model</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoMLP.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the AutoMLP model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>feature_size (int): The number of input features.</p></li>
+<li><p>lat_size (int): The number of units in the latent layer</p></li>
+<li><p>h_num (int): number of hidden layers</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoMLP.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoMLP.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoMLP.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoRNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.unsupervised.autoencoder.</span></span><span class="sig-name descname"><span class="pre">AutoRNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoRNN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoRNN" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel" title="moncon.ml.base_arch.AutoEncoderModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AutoEncoderModel</span></code></a></p>
+<p>Autoencoder model based on a RNN architecture.
+Inherits from base_arch.AutoEncoderModel.</p>
+<p>AutoRNN is a model that uses a recurrent neural network (RNN) architecture to encode and
+decode the input data, using the reconstruction error to output a KPI between 0 and 1,
+indicating how anomalous the data is. Transforms the input data into a batch of matrices (windows),
+where each matrix is time-window with features, and feeds it to RNN layers.</p>
+<dl class="simple">
+<dt>Defines the method:</dt><dd><ul class="simple">
+<li><p>init_arch: initializes the model architecture</p></li>
+<li><p>parse_fit_logging:</p></li>
+<li><p>parse_predict_logging:</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”] (float): Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows</p>
+</dd>
+</dl>
+</li>
+<li><p>arch_params[“contamination”] (float): Proportion of outliers in the data set.</p></li>
+<li><p>arch_params[“time_size”] (int): Number of time steps in the input to use in each window.</p></li>
+<li><p>arch_params[“overlap”] (int): Number of time steps to overlap between windows.</p></li>
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“lat_size”] (int): The number of units in the latent layer</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“epochs”] (int): Number of epochs to train the model</p></li>
+<li><p>train_params[“batch_size”] (int): Batch size for training the model</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoRNN.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the AutoRNN model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>feature_size (int): The number of input features.</p></li>
+<li><p>lat_size (int): The number of units in the latent layer</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.unsupervised.autoencoder.AutoRNN.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/unsupervised/autoencoder.html#AutoRNN.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.unsupervised.autoencoder.AutoRNN.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml.unsupervised">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.ml.unsupervised" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

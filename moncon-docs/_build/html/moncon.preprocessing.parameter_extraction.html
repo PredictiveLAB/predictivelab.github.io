@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.preprocessing.parameter_extraction package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.preprocessing.parameter_extraction package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.combined_extraction">moncon.preprocessing.parameter_extraction.combined_extraction module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.analyze"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit_transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.fourier_transform">moncon.preprocessing.parameter_extraction.fourier_transform module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier"><code class="docutils literal notranslate"><span class="pre">BandFourier</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.analyze"><code class="docutils literal notranslate"><span class="pre">BandFourier.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands"><code class="docutils literal notranslate"><span class="pre">Fourierbands</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.analyze"><code class="docutils literal notranslate"><span class="pre">Fourierbands.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit_transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.analyze"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit_transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier"><code class="docutils literal notranslate"><span class="pre">SimpleFourier</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.analyze"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.temporary_domain">moncon.preprocessing.parameter_extraction.temporary_domain module</a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.analyze"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.analyze()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.features()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit_transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.get_box_plot_data"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.get_box_plot_data()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.output_procesable"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.output_procesable()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.time_features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.time_features()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.preprocessing.parameter_extraction package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.preprocessing.parameter_extraction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-preprocessing-parameter-extraction-package">
+<h1>moncon.preprocessing.parameter_extraction package<a class="headerlink" href="#moncon-preprocessing-parameter-extraction-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.preprocessing.parameter_extraction.combined_extraction">
+<span id="moncon-preprocessing-parameter-extraction-combined-extraction-module"></span><h2>moncon.preprocessing.parameter_extraction.combined_extraction module<a class="headerlink" href="#module-moncon.preprocessing.parameter_extraction.combined_extraction" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.combined_extraction.</span></span><span class="sig-name descname"><span class="pre">CombinedExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Preprocessing method that combines TemporaryDomain and BandFourier 
+by using different columns for each, and using the same parameters 
+“segment” and “overlap” for both. Input data is divided into two 
+by using “temporary_sensors_mask” parameter, which defines which
+columns are to be processed by TemporaryDomain and which are to 
+be processed by BandFourier; they are preprocessed separately,
+and then merged.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.parameter_extraction.fourier_transform">
+<span id="moncon-preprocessing-parameter-extraction-fourier-transform-module"></span><h2>moncon.preprocessing.parameter_extraction.fourier_transform module<a class="headerlink" href="#module-moncon.preprocessing.parameter_extraction.fourier_transform" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.fourier_transform.</span></span><span class="sig-name descname"><span class="pre">BandFourier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#BandFourier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#BandFourier.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#BandFourier.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#BandFourier.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#BandFourier.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.fourier_transform.</span></span><span class="sig-name descname"><span class="pre">Fourierbands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#Fourierbands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<p>Calculates the fourier bands:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#Fourierbands.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#Fourierbands.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#Fourierbands.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#Fourierbands.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.fourier_transform.</span></span><span class="sig-name descname"><span class="pre">HilbertEnvelope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#HilbertEnvelope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#HilbertEnvelope.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#HilbertEnvelope.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#HilbertEnvelope.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#HilbertEnvelope.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.fourier_transform.</span></span><span class="sig-name descname"><span class="pre">SimpleFourier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#SimpleFourier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#SimpleFourier.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#SimpleFourier.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#SimpleFourier.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/fourier_transform.html#SimpleFourier.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.parameter_extraction.temporary_domain">
+<span id="moncon-preprocessing-parameter-extraction-temporary-domain-module"></span><h2>moncon.preprocessing.parameter_extraction.temporary_domain module<a class="headerlink" href="#module-moncon.preprocessing.parameter_extraction.temporary_domain" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.temporary_domain.</span></span><span class="sig-name descname"><span class="pre">TemporaryDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.analyze" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.features">
+<span class="sig-name descname"><span class="pre">features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.features" title="Permalink to this definition"></a></dt>
+<dd><p>Extract features</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.get_box_plot_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_box_plot_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.get_box_plot_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.get_box_plot_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.output_procesable">
+<span class="sig-name descname"><span class="pre">output_procesable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.output_procesable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.output_procesable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.time_features">
+<span class="sig-name descname"><span class="pre">time_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.time_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.time_features" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the features for each column, its integral and its derivatitive</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/temporary_domain.html#TemporaryDomain.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.preprocessing.parameter_extraction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.preprocessing.parameter_extraction" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

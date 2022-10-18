@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml.unsupervised.autoencoder &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>moncon.ml.unsupervised.autoencoder</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.ml.unsupervised.autoencoder</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Defines 3 classes of unsupervised AutoEncoder models based on base_arch.AutoEncoderModel:</span>
+<span class="sd">    1) AutoMLP</span>
+<span class="sd">    2) AutoCNN</span>
+<span class="sd">    3) AutoRNN   </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">moncon.ml</span> <span class="kn">import</span> <span class="n">keras_wrapper</span>
+<span class="kn">from</span> <span class="nn">moncon.ml.base_arch</span> <span class="kn">import</span> <span class="n">AutoEncoderModel</span>
+
+
+<div class="viewcode-block" id="AutoMLP"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP">[docs]</a><span class="k">class</span> <span class="nc">AutoMLP</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a MLP architecture.</span>
+<span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
+
+<span class="sd">    AutoMLP is a model that uses a multilayer perceptron (MLP) architecture to encode</span>
+<span class="sd">    and decode data, using the reconstruction error to output a KPI between 0 and 1,</span>
+<span class="sd">    indicating how anomalous the data is. Uses the input data as a batch of vectors,</span>
+<span class="sd">    where each vector is an instant of time with features, and feeds it to Dense layers.</span>
+
+<span class="sd">    Redefines the methods:</span>
+<span class="sd">        - init_arch: initializes the model architecture</span>
+<span class="sd">        - parse_fit_logging:</span>
+<span class="sd">        - parse_predict_logging:</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): Proportion of outliers in the data set.</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">        - arch_params[&quot;lat_size&quot;] (int): The number of units in the latent layer</span>
+<span class="sd">        - arch_params[&quot;h_num&quot;] (int): Number of hidden layers</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs to train the model</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training the model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="AutoMLP.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the AutoMLP model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - feature_size (int): The number of input features.</span>
+<span class="sd">            - lat_size (int): The number of units in the latent layer</span>
+<span class="sd">            - h_num (int): number of hidden layers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">lat_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;lat_size&quot;</span><span class="p">]</span>
+        <span class="n">h_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;h_num&quot;</span><span class="p">]</span>
+
+        <span class="n">mid_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">feature_size</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">lat_size</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">h_num</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mid_sizes</span> <span class="o">=</span> <span class="n">mid_sizes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># input</span>
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">feature_size</span><span class="p">,),</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="c1"># encoder without latent layer</span>
+        <span class="k">for</span> <span class="n">layer_size</span> <span class="ow">in</span> <span class="n">mid_sizes</span><span class="p">:</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">layer_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+        <span class="c1"># latent layer</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">lat_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+        <span class="c1"># decoder without output</span>
+        <span class="k">for</span> <span class="n">layer_size</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mid_sizes</span><span class="p">):</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">layer_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+        <span class="c1"># output</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">feature_size</span><span class="p">})</span>
+
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_load_scale_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLP.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AutoMLP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="AutoCNN"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN">[docs]</a><span class="k">class</span> <span class="nc">AutoCNN</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a CNN architecture.</span>
+<span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
+
+<span class="sd">    AutoCNN is a model that uses a convolutional neural network (CNN) architecture to encode</span>
+<span class="sd">    and decode data, using the reconstruction error to output a KPI between 0 and 1,</span>
+<span class="sd">    indicating how anomalous the data is. Transforms the input data into a batch of matrices (windows),</span>
+<span class="sd">    where each matrix is time-window with features, and feeds it to Convolutional layers.</span>
+
+<span class="sd">    Defines the method:</span>
+<span class="sd">        - init_arch: initializes the model architecture</span>
+<span class="sd">        - parse_fit_logging:</span>
+<span class="sd">        - parse_predict_logging:</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): Proportion of outliers in the data set.</span>
+<span class="sd">        - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
+<span class="sd">        - arch_params[&quot;overlap&quot;] (int): Number of time steps to overlap between windows.</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): Number of features in the input.</span>
+<span class="sd">        - arch_params[&quot;block_num&quot;] (int): number of hidden CNN blocks in encoder and decoder</span>
+<span class="sd">        - arch_params[&quot;filter_num&quot;] (int): number of filters in the first CNN block (it is doubled in each block)</span>
+<span class="sd">        - arch_params[&quot;kernel_v&quot;] (int): vertical size of the convolution kernel</span>
+<span class="sd">        - arch_params[&quot;kernel_h&quot;] (int): horizontal size of the convolution kernel</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs to train the model</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training the model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="AutoCNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the AutoCNN model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - time_size (int): vertical size of the input data</span>
+<span class="sd">            - feature_size (int): horizontal size of the input data</span>
+<span class="sd">            - block_num (int): number of hidden CNN blocks in encoder and decoder</span>
+<span class="sd">            - filter_num (int): number of filters in the first CNN block (it is doubled in each block)</span>
+<span class="sd">            - kernel_v (int): vertical size of the convolution kernel</span>
+<span class="sd">            - kernel_h (int): horizontal size of the convolution kernel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="n">h_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">block_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;block_num&quot;</span><span class="p">]</span>
+        <span class="n">filter_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;filter_num&quot;</span><span class="p">]</span>
+        <span class="n">kernel_v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;kernel_v&quot;</span><span class="p">]</span>
+        <span class="n">kernel_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;kernel_h&quot;</span><span class="p">]</span>
+
+        <span class="c1"># power of 2 closer to h_size</span>
+        <span class="n">inter_h_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">h_size</span><span class="p">)))</span>
+
+        <span class="c1"># change h size to power of 2 (bool)</span>
+        <span class="n">change_h_size</span> <span class="o">=</span> <span class="n">h_size</span> <span class="o">!=</span> <span class="n">inter_h_size</span>
+
+        <span class="c1"># input</span>
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">v_size</span><span class="p">,</span> <span class="n">h_size</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">change_h_size</span><span class="p">:</span>
+            <span class="c1"># transform h_size to a power of 2</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">inter_h_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+
+        <span class="c1"># reshape to image format (3 axis)</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reshape&quot;</span><span class="p">,</span> <span class="s2">&quot;target_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">v_size</span><span class="p">,</span> <span class="n">inter_h_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)})</span>
+
+        <span class="c1"># encoder without latent layer</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">block_num</span><span class="p">):</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;conv_block&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="n">filter_num</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">,</span>
+                    <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                    <span class="s2">&quot;downsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="c1"># latent layer</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;conv_block&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="n">filter_num</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">block_num</span><span class="p">,</span>
+                <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                <span class="s2">&quot;downsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="c1"># decoder without output</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">block_num</span><span class="p">):</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;rev_conv_block&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="n">filter_num</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">block_num</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                    <span class="s2">&quot;upsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">change_h_size</span><span class="p">:</span>
+            <span class="c1"># last conv before output</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;rev_conv_block&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                    <span class="s2">&quot;upsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="c1"># reshape to original format (2 axis)</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reshape&quot;</span><span class="p">,</span> <span class="s2">&quot;target_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">v_size</span><span class="p">,</span> <span class="n">inter_h_size</span><span class="p">)})</span>
+
+            <span class="c1"># transform power of 2 to h_size (output)</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">h_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;linear&quot;</span><span class="p">})</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># last conv which is the output</span>
+            <span class="c1"># add last_layer argument to the last conv block</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;rev_conv_block&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                    <span class="s2">&quot;upsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="s2">&quot;last_layer&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="c1"># reshape to original format (2 axis)</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reshape&quot;</span><span class="p">,</span> <span class="s2">&quot;target_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">v_size</span><span class="p">,</span> <span class="n">h_size</span><span class="p">)})</span>
+
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_load_scale_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoCNN.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AutoCNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="AutoRNN"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN">[docs]</a><span class="k">class</span> <span class="nc">AutoRNN</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a RNN architecture.</span>
+<span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
+
+<span class="sd">    AutoRNN is a model that uses a recurrent neural network (RNN) architecture to encode and</span>
+<span class="sd">    decode the input data, using the reconstruction error to output a KPI between 0 and 1,</span>
+<span class="sd">    indicating how anomalous the data is. Transforms the input data into a batch of matrices (windows),</span>
+<span class="sd">    where each matrix is time-window with features, and feeds it to RNN layers.</span>
+
+<span class="sd">    Defines the method:</span>
+<span class="sd">        - init_arch: initializes the model architecture</span>
+<span class="sd">        - parse_fit_logging:</span>
+<span class="sd">        - parse_predict_logging:</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): Proportion of outliers in the data set.</span>
+<span class="sd">        - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
+<span class="sd">        - arch_params[&quot;overlap&quot;] (int): Number of time steps to overlap between windows.</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">        - arch_params[&quot;lat_size&quot;] (int): The number of units in the latent layer</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs to train the model</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training the model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="AutoRNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the AutoRNN model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - feature_size (int): The number of input features.</span>
+<span class="sd">            - lat_size (int): The number of units in the latent layer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">lat_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;lat_size&quot;</span><span class="p">]</span>
+
+        <span class="c1"># input</span>
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span> <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">feature_size</span><span class="p">)}]</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">feature_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+        <span class="c1"># latent layer</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;lstm&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">lat_size</span><span class="p">,</span> <span class="s2">&quot;return_sequences&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+        <span class="c1"># output</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;lstm&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">feature_size</span><span class="p">,</span> <span class="s2">&quot;return_sequences&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">feature_size</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_load_scale_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoRNN.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AutoRNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

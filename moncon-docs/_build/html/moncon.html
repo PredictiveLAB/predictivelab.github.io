@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.errors">moncon.errors module</a><ul>
+<li><a class="reference internal" href="#moncon.errors.Errors"><code class="docutils literal notranslate"><span class="pre">Errors</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.errors.Errors.ANALYZE_EXCEPTION"><code class="docutils literal notranslate"><span class="pre">Errors.ANALYZE_EXCEPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.ANALYZE_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.ANALYZE_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.FIT_EXCETPTION"><code class="docutils literal notranslate"><span class="pre">Errors.FIT_EXCETPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.FIT_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.FIT_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.FIT_TRANSFORM_EXCETPTION"><code class="docutils literal notranslate"><span class="pre">Errors.FIT_TRANSFORM_EXCETPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.FIT_TRANSFORM_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.FIT_TRANSFORM_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.INIT_ARCH_EXCEPTION"><code class="docutils literal notranslate"><span class="pre">Errors.INIT_ARCH_EXCEPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.INIT_ARCH_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.INIT_ARCH_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.INIT_PREPROCESS_EXCEPTION"><code class="docutils literal notranslate"><span class="pre">Errors.INIT_PREPROCESS_EXCEPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.INIT_PREPROCESS_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.INIT_PREPROCESS_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.INVALID_INPUT"><code class="docutils literal notranslate"><span class="pre">Errors.INVALID_INPUT</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.PREDICT_EXCEPTION"><code class="docutils literal notranslate"><span class="pre">Errors.PREDICT_EXCEPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.PREDICT_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.PREDICT_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.TRANSFORM_EXCEPTION"><code class="docutils literal notranslate"><span class="pre">Errors.TRANSFORM_EXCEPTION</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.TRANSFORM_NOT_IMPLEMENTED"><code class="docutils literal notranslate"><span class="pre">Errors.TRANSFORM_NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.WRONG_ARCH"><code class="docutils literal notranslate"><span class="pre">Errors.WRONG_ARCH</span></code></a></li>
+<li><a class="reference internal" href="#moncon.errors.Errors.WRONG_PREPROCESS"><code class="docutils literal notranslate"><span class="pre">Errors.WRONG_PREPROCESS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.plots">moncon.plots module</a><ul>
+<li><a class="reference internal" href="#moncon.plots.get_dataplot_dict"><code class="docutils literal notranslate"><span class="pre">get_dataplot_dict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.plots.plot_data"><code class="docutils literal notranslate"><span class="pre">plot_data()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.plots.plt_kpi_sensors"><code class="docutils literal notranslate"><span class="pre">plt_kpi_sensors()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-package">
+<h1>moncon package<a class="headerlink" href="#moncon-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="moncon.ml.html">moncon.ml package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html">moncon.ml.supervised package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised.mlp">moncon.ml.supervised.mlp module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised.models">moncon.ml.supervised.models module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html">moncon.ml.unsupervised package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised.anomaly_detection">moncon.ml.unsupervised.anomaly_detection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised.autoencoder">moncon.ml.unsupervised.autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.html#module-moncon.ml.base_arch">moncon.ml.base_arch module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.fit"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.mean_squared_error"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.mean_squared_error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.predict"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel.predict_kpi"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.predict_kpi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseAnomalyModel"><code class="docutils literal notranslate"><span class="pre">BaseAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseAnomalyModel.KPI_DIST_0"><code class="docutils literal notranslate"><span class="pre">BaseAnomalyModel.KPI_DIST_0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch"><code class="docutils literal notranslate"><span class="pre">BaseArch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.aggregate"><code class="docutils literal notranslate"><span class="pre">BaseArch.aggregate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.apply_cols_mask"><code class="docutils literal notranslate"><span class="pre">BaseArch.apply_cols_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.clean_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.clean_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.fit"><code class="docutils literal notranslate"><span class="pre">BaseArch.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.init_arch"><code class="docutils literal notranslate"><span class="pre">BaseArch.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.init_preprocess"><code class="docutils literal notranslate"><span class="pre">BaseArch.init_preprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.parse_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.predict"><code class="docutils literal notranslate"><span class="pre">BaseArch.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.preprocess_from_csv"><code class="docutils literal notranslate"><span class="pre">BaseArch.preprocess_from_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.preprocess_from_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.preprocess_from_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch.split_windows"><code class="docutils literal notranslate"><span class="pre">BaseArch.split_windows()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel.fit"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel.predict"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.predict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.fit"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.load_model"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.load_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.plot_validation"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.plot_validation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.predict"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.predict_kpi"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.predict_kpi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel.save_model"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.save_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.fit"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.load_model"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.load_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.predict"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.random_search_opt"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.random_search_opt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel.save_model"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.save_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.html#module-moncon.ml.keras_wrapper">moncon.ml.keras_wrapper module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.CnnBlock"><code class="docutils literal notranslate"><span class="pre">CnnBlock</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.CnnBlock.call"><code class="docutils literal notranslate"><span class="pre">CnnBlock.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet"><code class="docutils literal notranslate"><span class="pre">KerasNet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet.fit"><code class="docutils literal notranslate"><span class="pre">KerasNet.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet.keras_compile_options"><code class="docutils literal notranslate"><span class="pre">KerasNet.keras_compile_options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet.keras_layer_map"><code class="docutils literal notranslate"><span class="pre">KerasNet.keras_layer_map</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet.predict"><code class="docutils literal notranslate"><span class="pre">KerasNet.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.KerasNet.sequential_model_creator"><code class="docutils literal notranslate"><span class="pre">KerasNet.sequential_model_creator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.ReverseCnnBlock"><code class="docutils literal notranslate"><span class="pre">ReverseCnnBlock</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.html#moncon.ml.keras_wrapper.ReverseCnnBlock.call"><code class="docutils literal notranslate"><span class="pre">ReverseCnnBlock.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.html#module-moncon.ml">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moncon.pipelines.html">moncon.pipelines package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.pipelines.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.pipelines.html#module-moncon.pipelines.rawdata_process">moncon.pipelines.rawdata_process module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.clean_data"><code class="docutils literal notranslate"><span class="pre">clean_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.drop_empty_cols"><code class="docutils literal notranslate"><span class="pre">drop_empty_cols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.file_name"><code class="docutils literal notranslate"><span class="pre">file_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.get_tags"><code class="docutils literal notranslate"><span class="pre">get_tags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.save_data"><code class="docutils literal notranslate"><span class="pre">save_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.rawdata_process.set_sensor_names"><code class="docutils literal notranslate"><span class="pre">set_sensor_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.pipelines.html#module-moncon.pipelines.train_test_funcs">moncon.pipelines.train_test_funcs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.train_test_funcs.make_save_path"><code class="docutils literal notranslate"><span class="pre">make_save_path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.train_test_funcs.make_sensors_comb_code"><code class="docutils literal notranslate"><span class="pre">make_sensors_comb_code()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html#moncon.pipelines.train_test_funcs.train_test_pipeline"><code class="docutils literal notranslate"><span class="pre">train_test_pipeline()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.pipelines.html#module-moncon.pipelines">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moncon.preprocessing.html">moncon.preprocessing package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.nan.html">moncon.preprocessing.nan package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.drop_nan">moncon.preprocessing.nan.drop_nan module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.fill_nan">moncon.preprocessing.nan.fill_nan module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan.smooth_tools">moncon.preprocessing.nan.smooth_tools module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.nan.html#module-moncon.preprocessing.nan">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html">moncon.preprocessing.parameter_extraction package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.combined_extraction">moncon.preprocessing.parameter_extraction.combined_extraction module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.fourier_transform">moncon.preprocessing.parameter_extraction.fourier_transform module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction.temporary_domain">moncon.preprocessing.parameter_extraction.temporary_domain module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.parameter_extraction.html#module-moncon.preprocessing.parameter_extraction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.base_preprocess">moncon.preprocessing.base_preprocess module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess"><code class="docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.analyze"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.apply_cols_mask"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.apply_cols_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.columns_to_drop"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.columns_to_drop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.fit"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.fit_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.merge_X_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.merge_X_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.merge_y_transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.merge_y_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.output_procesable"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.output_procesable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.set_n_components"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.set_n_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.transform"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess.transform_xy"><code class="docutils literal notranslate"><span class="pre">BasePreprocess.transform_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.filters">moncon.preprocessing.filters module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.fit"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.fit_transform"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated.transform"><code class="docutils literal notranslate"><span class="pre">DeleteInterpolated.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient"><code class="docutils literal notranslate"><span class="pre">DeleteTransient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.fit"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.fit_transform"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient.transform"><code class="docutils literal notranslate"><span class="pre">DeleteTransient.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.analyze"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.fit"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.fit_transform"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval.transform"><code class="docutils literal notranslate"><span class="pre">OutlierRemoval.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.methods">moncon.preprocessing.methods module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.Correlation"><code class="docutils literal notranslate"><span class="pre">Correlation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.Correlation.analyze"><code class="docutils literal notranslate"><span class="pre">Correlation.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.Correlation.fit"><code class="docutils literal notranslate"><span class="pre">Correlation.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.Correlation.fit_transform"><code class="docutils literal notranslate"><span class="pre">Correlation.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.Correlation.transform"><code class="docutils literal notranslate"><span class="pre">Correlation.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.HeatMap"><code class="docutils literal notranslate"><span class="pre">HeatMap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.HeatMap.analyze"><code class="docutils literal notranslate"><span class="pre">HeatMap.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.HeatMap.fit"><code class="docutils literal notranslate"><span class="pre">HeatMap.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.HeatMap.fit_transform"><code class="docutils literal notranslate"><span class="pre">HeatMap.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.HeatMap.transform"><code class="docutils literal notranslate"><span class="pre">HeatMap.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.MovingAverage"><code class="docutils literal notranslate"><span class="pre">MovingAverage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.MovingAverage.fit"><code class="docutils literal notranslate"><span class="pre">MovingAverage.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.MovingAverage.fit_transform"><code class="docutils literal notranslate"><span class="pre">MovingAverage.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.MovingAverage.transform"><code class="docutils literal notranslate"><span class="pre">MovingAverage.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.StopFilterMov"><code class="docutils literal notranslate"><span class="pre">StopFilterMov</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.StopFilterMov.fit"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.StopFilterMov.fit_transform"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.methods.StopFilterMov.transform"><code class="docutils literal notranslate"><span class="pre">StopFilterMov.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.parameter_reduction">moncon.preprocessing.parameter_reduction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA.analyze"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA.fit_transform"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA.output_procesable"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.output_procesable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoKernelPCA.transform"><code class="docutils literal notranslate"><span class="pre">AutoKernelPCA.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA"><code class="docutils literal notranslate"><span class="pre">AutoPCA</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA.analyze"><code class="docutils literal notranslate"><span class="pre">AutoPCA.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA.fit"><code class="docutils literal notranslate"><span class="pre">AutoPCA.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA.fit_transform"><code class="docutils literal notranslate"><span class="pre">AutoPCA.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA.output_procesable"><code class="docutils literal notranslate"><span class="pre">AutoPCA.output_procesable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.parameter_reduction.AutoPCA.transform"><code class="docutils literal notranslate"><span class="pre">AutoPCA.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.scaling">moncon.preprocessing.scaling module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.MinMaxScaling"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.MinMaxScaling.analyze"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.MinMaxScaling.fit"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.MinMaxScaling.fit_transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.MinMaxScaling.transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaling.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.StandardScaling"><code class="docutils literal notranslate"><span class="pre">StandardScaling</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.StandardScaling.analyze"><code class="docutils literal notranslate"><span class="pre">StandardScaling.analyze()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.StandardScaling.fit"><code class="docutils literal notranslate"><span class="pre">StandardScaling.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.StandardScaling.fit_transform"><code class="docutils literal notranslate"><span class="pre">StandardScaling.fit_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.scaling.StandardScaling.transform"><code class="docutils literal notranslate"><span class="pre">StandardScaling.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moncon.tools.html">moncon.tools package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#module-moncon.tools.arch_ops">moncon.tools.arch_ops module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.arch_ops.arch_class"><code class="docutils literal notranslate"><span class="pre">arch_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.arch_ops.init_arch_class"><code class="docutils literal notranslate"><span class="pre">init_arch_class()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#module-moncon.tools.evaluation_ops">moncon.tools.evaluation_ops module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.evaluate_report_from_csv"><code class="docutils literal notranslate"><span class="pre">evaluate_report_from_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_end_message"><code class="docutils literal notranslate"><span class="pre">get_end_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_end_message_thread"><code class="docutils literal notranslate"><span class="pre">get_end_message_thread()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_eval_id"><code class="docutils literal notranslate"><span class="pre">get_eval_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_log_filepath"><code class="docutils literal notranslate"><span class="pre">get_log_filepath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_start_message"><code class="docutils literal notranslate"><span class="pre">get_start_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.get_start_message_thread"><code class="docutils literal notranslate"><span class="pre">get_start_message_thread()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.initialize_online_report_evaluation"><code class="docutils literal notranslate"><span class="pre">initialize_online_report_evaluation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.evaluation_ops.parse_logging_file"><code class="docutils literal notranslate"><span class="pre">parse_logging_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#module-moncon.tools.preprocessing_ops">moncon.tools.preprocessing_ops module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.analyze"><code class="docutils literal notranslate"><span class="pre">analyze()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.analyze_tsreport"><code class="docutils literal notranslate"><span class="pre">analyze_tsreport()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.fit_transform"><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.get_prerprocess_path"><code class="docutils literal notranslate"><span class="pre">get_prerprocess_path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.init_preprocess"><code class="docutils literal notranslate"><span class="pre">init_preprocess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.test_transform"><code class="docutils literal notranslate"><span class="pre">test_transform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.preprocessing_ops.valid_transform"><code class="docutils literal notranslate"><span class="pre">valid_transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#module-moncon.tools.training_ops">moncon.tools.training_ops module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.get_checkpoint_filepath"><code class="docutils literal notranslate"><span class="pre">get_checkpoint_filepath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.get_end_message"><code class="docutils literal notranslate"><span class="pre">get_end_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.get_exp_id"><code class="docutils literal notranslate"><span class="pre">get_exp_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.get_log_filepath"><code class="docutils literal notranslate"><span class="pre">get_log_filepath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.get_start_message"><code class="docutils literal notranslate"><span class="pre">get_start_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.parse_logging_file"><code class="docutils literal notranslate"><span class="pre">parse_logging_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html#moncon.tools.training_ops.train_model"><code class="docutils literal notranslate"><span class="pre">train_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.tools.html#module-moncon.tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.errors">
+<span id="moncon-errors-module"></span><h2>moncon.errors module<a class="headerlink" href="#module-moncon.errors" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.errors.Errors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.errors.</span></span><span class="sig-name descname"><span class="pre">Errors</span></span><a class="reference internal" href="_modules/moncon/errors.html#Errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.errors.Errors" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.ANALYZE_EXCEPTION">
+<span class="sig-name descname"><span class="pre">ANALYZE_EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Analyze</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.ANALYZE_EXCEPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.ANALYZE_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">ANALYZE_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Anayze</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.ANALYZE_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.FIT_EXCETPTION">
+<span class="sig-name descname"><span class="pre">FIT_EXCETPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Fit</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.FIT_EXCETPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.FIT_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">FIT_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Fit</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.FIT_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.FIT_TRANSFORM_EXCETPTION">
+<span class="sig-name descname"><span class="pre">FIT_TRANSFORM_EXCETPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Fit-Transform</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.FIT_TRANSFORM_EXCETPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.FIT_TRANSFORM_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">FIT_TRANSFORM_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Fit-Transform</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.FIT_TRANSFORM_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.INIT_ARCH_EXCEPTION">
+<span class="sig-name descname"><span class="pre">INIT_ARCH_EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Arch</span> <span class="pre">Initialization</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.INIT_ARCH_EXCEPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.INIT_ARCH_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">INIT_ARCH_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Arch</span> <span class="pre">Initialization</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.INIT_ARCH_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.INIT_PREPROCESS_EXCEPTION">
+<span class="sig-name descname"><span class="pre">INIT_PREPROCESS_EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Preprocess</span> <span class="pre">Initialization</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.INIT_PREPROCESS_EXCEPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.INIT_PREPROCESS_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">INIT_PREPROCESS_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Preprocess</span> <span class="pre">Initialization</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.INIT_PREPROCESS_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.INVALID_INPUT">
+<span class="sig-name descname"><span class="pre">INVALID_INPUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Invalid</span> <span class="pre">input</span> <span class="pre">contents.'</span></em><a class="headerlink" href="#moncon.errors.Errors.INVALID_INPUT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.PREDICT_EXCEPTION">
+<span class="sig-name descname"><span class="pre">PREDICT_EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Predict</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.PREDICT_EXCEPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.PREDICT_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">PREDICT_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Predict</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.PREDICT_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.TRANSFORM_EXCEPTION">
+<span class="sig-name descname"><span class="pre">TRANSFORM_EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Transform</span> <span class="pre">Exception.'</span></em><a class="headerlink" href="#moncon.errors.Errors.TRANSFORM_EXCEPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.TRANSFORM_NOT_IMPLEMENTED">
+<span class="sig-name descname"><span class="pre">TRANSFORM_NOT_IMPLEMENTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Transform</span> <span class="pre">not</span> <span class="pre">implemented.'</span></em><a class="headerlink" href="#moncon.errors.Errors.TRANSFORM_NOT_IMPLEMENTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.WRONG_ARCH">
+<span class="sig-name descname"><span class="pre">WRONG_ARCH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Wrong</span> <span class="pre">Architecture</span> <span class="pre">name.'</span></em><a class="headerlink" href="#moncon.errors.Errors.WRONG_ARCH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.errors.Errors.WRONG_PREPROCESS">
+<span class="sig-name descname"><span class="pre">WRONG_PREPROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Wrong</span> <span class="pre">Preprocess</span> <span class="pre">name.'</span></em><a class="headerlink" href="#moncon.errors.Errors.WRONG_PREPROCESS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.plots">
+<span id="moncon-plots-module"></span><h2>moncon.plots module<a class="headerlink" href="#module-moncon.plots" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.plots.get_dataplot_dict">
+<span class="sig-prename descclassname"><span class="pre">moncon.plots.</span></span><span class="sig-name descname"><span class="pre">get_dataplot_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_kpi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/plots.html#get_dataplot_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.plots.get_dataplot_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.plots.plot_data">
+<span class="sig-prename descclassname"><span class="pre">moncon.plots.</span></span><span class="sig-name descname"><span class="pre">plot_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suptit_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/plots.html#plot_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.plots.plot_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.plots.plt_kpi_sensors">
+<span class="sig-prename descclassname"><span class="pre">moncon.plots.</span></span><span class="sig-name descname"><span class="pre">plt_kpi_sensors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_kpi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fail_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Timestamp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fail_label_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_fail_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_fail_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'end'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fail_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cols_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suptit_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/plots.html#plt_kpi_sensors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.plots.plt_kpi_sensors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.plots &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>moncon.plots</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.plots</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<div class="viewcode-block" id="plot_data"><a class="viewcode-back" href="../../moncon.html#moncon.plots.plot_data">[docs]</a><span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">sensors_list</span><span class="p">,</span>
+        <span class="n">n_cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">suptit_sz</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">ylabel_sz</span><span class="o">=</span><span class="mf">9.5</span>   
+<span class="p">):</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">sensors_list</span><span class="p">)</span><span class="o">/</span><span class="n">n_cols</span>
+    <span class="p">)</span>
+    <span class="c1"># Set plot figure dimensions</span>
+    <span class="n">heigth</span> <span class="o">=</span> <span class="mf">5.5</span><span class="o">*</span><span class="n">n_rows</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">n_cols</span>
+    <span class="n">fig_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">heigth</span><span class="p">)</span>
+    <span class="c1"># Create figure and axes</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="n">n_cols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">,</span>
+                             <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Set figure title</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">suptit_sz</span><span class="p">)</span>
+    <span class="c1"># Iter over each sensor data</span>
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">sensor_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">sensors_list</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">sensor_name</span><span class="p">],</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span>
+        <span class="p">)</span>
+        <span class="c1"># Figure text</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">sensor_name</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ylabel_sz</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="plt_kpi_sensors"><a class="viewcode-back" href="../../moncon.html#moncon.plots.plt_kpi_sensors">[docs]</a><span class="k">def</span> <span class="nf">plt_kpi_sensors</span><span class="p">(</span>
+    <span class="n">data_kpi</span><span class="p">,</span>
+    <span class="n">sensors_list</span><span class="p">,</span>
+    <span class="n">fail_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">time_col</span><span class="o">=</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span>
+    <span class="n">fail_label_col</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="n">start_fail_col</span><span class="o">=</span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+    <span class="n">end_fail_col</span><span class="o">=</span><span class="s2">&quot;end&quot;</span><span class="p">,</span>
+    <span class="n">fail_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">n_cols_legend</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">suptit_sz</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span>
+    <span class="n">xlabel_sz</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+    <span class="n">ylabel_sz</span><span class="o">=</span><span class="mi">15</span>    
+<span class="p">):</span>
+
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">sensors_list</span><span class="p">)</span><span class="o">/</span><span class="n">n_cols</span>
+    <span class="p">)</span>
+    
+    <span class="n">data_plot</span> <span class="o">=</span> <span class="n">get_dataplot_dict</span><span class="p">(</span><span class="n">data_kpi</span><span class="p">)</span>
+    
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Normal&quot;</span> <span class="p">:</span> <span class="s2">&quot;#2e7813&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Alerta 1&quot;</span> <span class="p">:</span><span class="s2">&quot;#edc421&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Alerta 2&quot;</span> <span class="p">:</span> <span class="s2">&quot;#c9671c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Peligro&quot;</span> <span class="p">:</span> <span class="s2">&quot;#ff1100&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Falla registrada&quot;</span> <span class="p">:</span> <span class="s2">&quot;#6e514f&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Detencion programada&quot;</span> <span class="p">:</span> <span class="s2">&quot;#25d9e6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Detencion NO registrada&quot;</span> <span class="p">:</span> <span class="s2">&quot;#e87bdb&quot;</span>
+    <span class="p">}</span>
+    
+    <span class="n">heigth</span> <span class="o">=</span> <span class="mf">5.5</span><span class="o">*</span><span class="n">n_rows</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">n_cols</span>
+    <span class="n">fig_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">heigth</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="n">n_cols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">,</span>
+                             <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">suptit_sz</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">sensor_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">sensors_list</span><span class="p">):</span>
+        
+        <span class="c1"># ITER OVER EACH HEALTH CLASS</span>
+        <span class="k">for</span> <span class="n">health_class</span> <span class="ow">in</span> <span class="n">data_plot</span><span class="p">:</span>
+            
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                <span class="n">data_plot</span><span class="p">[</span><span class="n">health_class</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                <span class="n">data_plot</span><span class="p">[</span><span class="n">health_class</span><span class="p">][</span><span class="n">sensor_name</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">health_class</span><span class="p">],</span>
+                <span class="n">edgecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">health_class</span><span class="p">],</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span>
+            <span class="p">)</span>
+            
+
+
+        <span class="c1"># ITER OVER EACH FAIL EVENT</span>
+        <span class="k">if</span> <span class="n">fail_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            
+            <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">data_kpi</span><span class="p">[</span><span class="n">sensor_name</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="n">data_kpi</span><span class="p">[</span><span class="n">sensor_name</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+            <span class="p">]</span>
+            
+            <span class="k">for</span> <span class="n">fail_idx</span> <span class="ow">in</span> <span class="n">fail_data</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+                <span class="n">dates_linspace</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">fail_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fail_idx</span><span class="p">,</span> <span class="n">start_fail_col</span><span class="p">],</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">fail_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fail_idx</span><span class="p">,</span> <span class="n">end_fail_col</span><span class="p">],</span>
+                    <span class="n">periods</span><span class="o">=</span><span class="n">density</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+                
+                <span class="k">if</span> <span class="n">fail_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fail_idx</span><span class="p">,</span> <span class="n">fail_label_col</span><span class="p">]</span> <span class="o">==</span> <span class="n">fail_label</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;Falla registrada&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;Detencion programada&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates_linspace</span><span class="p">:</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                        <span class="p">[</span><span class="n">date</span><span class="p">,</span> <span class="n">date</span><span class="p">],</span>
+                        <span class="n">y</span><span class="p">,</span>
+                        <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                        <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+                        <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span> <span class="c1">#Plot &quot;behind&quot; the scatter</span>
+                    <span class="p">)</span>    
+
+        
+        <span class="c1"># FIGURE TEXT    </span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">sensor_name</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ylabel_sz</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="o">==</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+                <span class="n">labels</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+                <span class="n">ncol</span><span class="o">=</span><span class="n">n_cols_legend</span>
+            <span class="p">)</span>
+            <span class="c1"># Change handle colors</span>
+            <span class="k">for</span> <span class="n">handle_name</span><span class="p">,</span> <span class="n">handle</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="n">colors</span><span class="p">,</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">legendHandles</span>
+            <span class="p">):</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">handle_name</span><span class="p">])</span>
+        
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_dataplot_dict"><a class="viewcode-back" href="../../moncon.html#moncon.plots.get_dataplot_dict">[docs]</a><span class="k">def</span> <span class="nf">get_dataplot_dict</span><span class="p">(</span><span class="n">data_kpi</span><span class="p">):</span>
+    <span class="n">data_plot</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Normal&quot;</span> <span class="p">:</span> <span class="n">data_kpi</span><span class="p">[</span>
+            <span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.1</span>
+        <span class="p">],</span>
+        
+        <span class="s2">&quot;Alerta 1&quot;</span> <span class="p">:</span> <span class="n">data_kpi</span><span class="p">[</span>
+            <span class="p">(</span><span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">&amp;</span>
+            <span class="p">(</span><span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.35</span><span class="p">)</span>
+        <span class="p">],</span>
+        
+        <span class="s2">&quot;Alerta 2&quot;</span> <span class="p">:</span> <span class="n">data_kpi</span><span class="p">[</span>
+            <span class="p">(</span><span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.35</span><span class="p">)</span> <span class="o">&amp;</span>
+            <span class="p">(</span><span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.65</span><span class="p">)</span>
+        <span class="p">],</span>
+        
+        <span class="s2">&quot;Peligro&quot;</span> <span class="p">:</span> <span class="n">data_kpi</span><span class="p">[</span>
+            <span class="n">data_kpi</span><span class="p">[</span><span class="s2">&quot;kpi_pred&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.65</span>
+        <span class="p">]</span>    
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data_plot</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

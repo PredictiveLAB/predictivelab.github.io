@@ -1,0 +1,45 @@
+moncon.tools package
+====================
+
+Submodules
+----------
+
+moncon.tools.arch\_ops module
+-----------------------------
+
+.. automodule:: moncon.tools.arch_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.tools.evaluation\_ops module
+-----------------------------------
+
+.. automodule:: moncon.tools.evaluation_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.tools.preprocessing\_ops module
+--------------------------------------
+
+.. automodule:: moncon.tools.preprocessing_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.tools.training\_ops module
+---------------------------------
+
+.. automodule:: moncon.tools.training_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: moncon.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:

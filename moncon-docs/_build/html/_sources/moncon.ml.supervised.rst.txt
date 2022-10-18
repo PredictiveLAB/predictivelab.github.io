@@ -1,0 +1,29 @@
+moncon.ml.supervised package
+============================
+
+Submodules
+----------
+
+moncon.ml.supervised.mlp module
+-------------------------------
+
+.. automodule:: moncon.ml.supervised.mlp
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.ml.supervised.models module
+----------------------------------
+
+.. automodule:: moncon.ml.supervised.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: moncon.ml.supervised
+   :members:
+   :undoc-members:
+   :show-inheritance:

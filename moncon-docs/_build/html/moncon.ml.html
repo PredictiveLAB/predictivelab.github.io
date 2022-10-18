@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.ml package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.ml.base_arch">moncon.ml.base_arch module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.fit"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.mean_squared_error"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.mean_squared_error()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.predict"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.predict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.AutoEncoderModel.predict_kpi"><code class="docutils literal notranslate"><span class="pre">AutoEncoderModel.predict_kpi()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseAnomalyModel"><code class="docutils literal notranslate"><span class="pre">BaseAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseAnomalyModel.KPI_DIST_0"><code class="docutils literal notranslate"><span class="pre">BaseAnomalyModel.KPI_DIST_0</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch"><code class="docutils literal notranslate"><span class="pre">BaseArch</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.aggregate"><code class="docutils literal notranslate"><span class="pre">BaseArch.aggregate()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.apply_cols_mask"><code class="docutils literal notranslate"><span class="pre">BaseArch.apply_cols_mask()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.clean_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.clean_dataset()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.fit"><code class="docutils literal notranslate"><span class="pre">BaseArch.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.init_arch"><code class="docutils literal notranslate"><span class="pre">BaseArch.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.init_preprocess"><code class="docutils literal notranslate"><span class="pre">BaseArch.init_preprocess()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.parse_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_dataset()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">BaseArch.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.predict"><code class="docutils literal notranslate"><span class="pre">BaseArch.predict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.preprocess_from_csv"><code class="docutils literal notranslate"><span class="pre">BaseArch.preprocess_from_csv()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.preprocess_from_dataset"><code class="docutils literal notranslate"><span class="pre">BaseArch.preprocess_from_dataset()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.BaseArch.split_windows"><code class="docutils literal notranslate"><span class="pre">BaseArch.split_windows()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.DLSupervisedModel"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.DLSupervisedModel.fit"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.DLSupervisedModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.DLSupervisedModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.DLSupervisedModel.predict"><code class="docutils literal notranslate"><span class="pre">DLSupervisedModel.predict()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.fit"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.load_model"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.load_model()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.plot_validation"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.plot_validation()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.predict"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.predict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.predict_kpi"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.predict_kpi()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnAnomalyModel.save_model"><code class="docutils literal notranslate"><span class="pre">SklearnAnomalyModel.save_model()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.fit"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.load_model"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.load_model()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.predict"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.predict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.random_search_opt"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.random_search_opt()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.base_arch.SklearnSupervisedModel.save_model"><code class="docutils literal notranslate"><span class="pre">SklearnSupervisedModel.save_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml.keras_wrapper">moncon.ml.keras_wrapper module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.CnnBlock"><code class="docutils literal notranslate"><span class="pre">CnnBlock</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.CnnBlock.call"><code class="docutils literal notranslate"><span class="pre">CnnBlock.call()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet"><code class="docutils literal notranslate"><span class="pre">KerasNet</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet.fit"><code class="docutils literal notranslate"><span class="pre">KerasNet.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet.keras_compile_options"><code class="docutils literal notranslate"><span class="pre">KerasNet.keras_compile_options</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet.keras_layer_map"><code class="docutils literal notranslate"><span class="pre">KerasNet.keras_layer_map</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet.predict"><code class="docutils literal notranslate"><span class="pre">KerasNet.predict()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.KerasNet.sequential_model_creator"><code class="docutils literal notranslate"><span class="pre">KerasNet.sequential_model_creator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.ReverseCnnBlock"><code class="docutils literal notranslate"><span class="pre">ReverseCnnBlock</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.keras_wrapper.ReverseCnnBlock.call"><code class="docutils literal notranslate"><span class="pre">ReverseCnnBlock.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.ml package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.ml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-ml-package">
+<h1>moncon.ml package<a class="headerlink" href="#moncon-ml-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="moncon.ml.supervised.html">moncon.ml.supervised package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.supervised.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised.mlp">moncon.ml.supervised.mlp module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP.fit"><code class="docutils literal notranslate"><span class="pre">MLP.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP.init_arch"><code class="docutils literal notranslate"><span class="pre">MLP.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_fit_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_predict_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.mlp.MLP.predict"><code class="docutils literal notranslate"><span class="pre">MLP.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised.models">moncon.ml.supervised.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.CNN"><code class="docutils literal notranslate"><span class="pre">CNN</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.CNN.init_arch"><code class="docutils literal notranslate"><span class="pre">CNN.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.CNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">CNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.init_arch"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.model_score"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.model_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.MLP.init_arch"><code class="docutils literal notranslate"><span class="pre">MLP.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.MLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RNN"><code class="docutils literal notranslate"><span class="pre">RNN</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RNN.init_arch"><code class="docutils literal notranslate"><span class="pre">RNN.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">RNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls"><code class="docutils literal notranslate"><span class="pre">RandomForestCls</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.init_arch"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.model_score"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.model_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.supervised.html#module-moncon.ml.supervised">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moncon.ml.unsupervised.html">moncon.ml.unsupervised package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.unsupervised.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised.anomaly_detection">moncon.ml.unsupervised.anomaly_detection module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">EllipticEnvelopeAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.model_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">IsolationForestAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.model_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">LocalOutlierFactorAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.model_score"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.model_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">OneClassSVMAnomalyModel.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised.autoencoder">moncon.ml.unsupervised.autoencoder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN"><code class="docutils literal notranslate"><span class="pre">AutoCNN</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoCNN.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoCNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP"><code class="docutils literal notranslate"><span class="pre">AutoMLP</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoMLP.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoMLP.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN"><code class="docutils literal notranslate"><span class="pre">AutoRNN</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch"><code class="docutils literal notranslate"><span class="pre">AutoRNN.init_arch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">AutoRNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.ml.unsupervised.html#module-moncon.ml.unsupervised">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.ml.base_arch">
+<span id="moncon-ml-base-arch-module"></span><h2>moncon.ml.base_arch module<a class="headerlink" href="#module-moncon.ml.base_arch" title="Permalink to this heading"></a></h2>
+<p>Defines the base classes for all ML models.</p>
+<dl class="simple">
+<dt>Classes defined:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>BaseArch: Base class for all ML architectures</dt><dd><ul>
+<li><p>SklearnSupervisedModel: Base class for all supervised ML Sklearn models</p></li>
+<li><p>DLSupervisedModel (BaseArch): Base class for all supervised Deep Learning models</p></li>
+<li><dl class="simple">
+<dt>BaseAnomalyModel (BaseArch): Base class for all anomaly (or novelty) detection models</dt><dd><ul>
+<li><p>AutoEncoderModel (BaseAnomalyModel): Base class for all AutoEncoder models</p></li>
+<li><p>SklearnAnomalyModel (BaseAnomalyModel): Base class for all sklearn anomaly models</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">AutoEncoderModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.ml.base_arch.BaseAnomalyModel" title="moncon.ml.base_arch.BaseAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAnomalyModel</span></code></a></p>
+<p>Base class for all AutoEncoder Deep Learning architectures.
+Inherits from BaseAnomalyModel. Classes that inherit from this class are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AutoMLP</p></li>
+<li><p>AutoCNN</p></li>
+<li><p>AutoRNN</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Defines the methods that are common to all AutoEncoder DL architectures, which are:</dt><dd><ul class="simple">
+<li><p>mean_squared_error (static method)</p></li>
+<li><p>fit</p></li>
+<li><p>predict</p></li>
+</ul>
+</dd>
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“contamination”] (float): Proportion of outliers in the data set</p></li>
+</ul>
+</dd>
+<dt>Introduces the following necessary values in train_params:</dt><dd><ul class="simple">
+<li><p>train_params[“epochs”] (int): Number of epochs to train the model</p></li>
+<li><p>train_params[“batch_size”] (int): Batch size for training the model</p></li>
+</ul>
+</dd>
+<dt>Introduces the following instance attributes to be filled by the child classes:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>self.use_split_windows (bool): Whether to use the method split windows or not,</dt><dd><p>used to split the data set into an array of windows (matrices) before entering
+the model; used by the child classes AutoCNN and AutoRNN</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>self.windows_size (int): Size of the windows to be split into</dt><dd><p>(only used if use_split_windows is True)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>self.overlap (int): Overlap size to use when splitting the data set into windows</dt><dd><p>(only used if use_split_windows is True)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit method for AutoEncoder models.
+Fits the internal model with the given data, by using the same input as the output; and
+saves the model on the defined checkpoint file.</p>
+<dl class="simple">
+<dt>train_params must contain the following values:</dt><dd><ul class="simple">
+<li><p>train_params[“epochs”] (int): Number of epochs to train the model</p></li>
+<li><p>train_params[“batch_size”] (int): Batch size for training the model</p></li>
+</ul>
+</dd>
+<dt>Args:</dt><dd><p>X_train (pd.DataFrame): Input data
+y_train (pd.Series): Ignored for autoencoders, as the model is trained with the same input
+X_valid (pd.DataFrame): Ignored for unsupervised models
+y_valid (pd.Series): Ignored for unsupervised models
+train_params (Dict[str, Any]): Dictionary with parameters necessary for training
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>Note: Right now the metrics are not used for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.mean_squared_error">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mean_squared_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.mean_squared_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.mean_squared_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.parse_predict_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict method for AutoEncoder models.
+Uses the internal model reconstruct the input data, calculate the error between the
+original and the reconstructed data, and returns a KPI between 0 and 1 using this error.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (pd.DataFrame): Input data
+timestamps (pd.Series): Timestamps for the input data. Deprecated, not used
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log training progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted KPI values and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.AutoEncoderModel.predict_kpi">
+<span class="sig-name descname"><span class="pre">predict_kpi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_hat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#AutoEncoderModel.predict_kpi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.AutoEncoderModel.predict_kpi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">BaseAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.ml.base_arch.BaseArch" title="moncon.ml.base_arch.BaseArch"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArch</span></code></a></p>
+<p>Base class for all anomaly detection (or novelty detection) ML architectures.
+Inherits from BaseArch. Classes that inherit from this class are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>AutoEncoderModel</p></li>
+<li><p>SklearnAnomalyModel</p></li>
+</ul>
+</div></blockquote>
+<p>Anomaly detection models output a KPI from 0 to 1 similar to a
+probability of a sample being an anomaly, this is determined by a
+sigmoid function after a linear transformation of the decision_function
+(distance metric) of the anomaly model.   1/(1 + exp(-(a * dist + b)))</p>
+<p>Currently, the KPI is set to be KPI_DIST_0 or more for anomalies, which can be
+used to calculate the “b” constant for the lineal transformation.</p>
+<dl class="simple">
+<dt>Defines the methods that are common to all anomaly detection ML architectures, which are:</dt><dd><ul class="simple">
+<li><p>output_kpi</p></li>
+<li><p>set_save_min_max_train_dist</p></li>
+<li><p>scale_distance</p></li>
+<li><p>save_scale_params</p></li>
+<li><p>load_scale_params</p></li>
+</ul>
+</dd>
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“slope_coef”]: Slope (or scale) factor for KPI calculation,</dt><dd><p>defines how quickly the KPI grows</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Introduces the following class constants:</dt><dd><ul class="simple">
+<li><p>KPI_DIST_0 (float): Maximum KPI for a training sample to be considered as normal</p></li>
+</ul>
+</dd>
+<dt>Introduces the following instance attributes:</dt><dd><ul class="simple">
+<li><p>self.slope_coef (float): Slope (or scale) factor for KPI calculation</p></li>
+<li><p>self.max_train_dist (float): Maximum model’s distance metric value for training data</p></li>
+<li><p>self.min_train_dist (float): Minimum model’s distance metric value for training data</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseAnomalyModel.KPI_DIST_0">
+<span class="sig-name descname"><span class="pre">KPI_DIST_0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#moncon.ml.base_arch.BaseAnomalyModel.KPI_DIST_0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">BaseArch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Basic architecture and methods for all ML architectures, which are mainly composed of
+the following functionalities:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>preprocessing input data</p></li>
+<li><p>model training and prediction</p></li>
+<li><p>save and load learned parameters and models</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Classes that inherit from this class are:</dt><dd><ul class="simple">
+<li><p>SklearnSupervisedModel</p></li>
+<li><p>DLSupervisedModel</p></li>
+<li><p>BaseAnomalyModel</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.aggregate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.aggregate" title="Permalink to this definition"></a></dt>
+<dd><p>Aggregate predictions with the selected method.
+Currently, ‘MEAN’, ‘MAX, ‘MIN’ and ‘SUM’ are supported.
+If a different method is selected, None is returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>predictions (np.ndarray): ML model predictions
+aggregation (str): aggregation method</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.ndarray: aggregated predictions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.apply_cols_mask">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply_cols_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.apply_cols_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.apply_cols_mask" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.clean_dataset">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clean_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Series</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.clean_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.clean_dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Clean dataset by standardizing column names and removing columns according to cols_mask.
+Also, separates timestamp column from the rest of the dataset, and returns them separately;
+if no timestamp column is found, None is returned for the timestamp column.</p>
+<dl>
+<dt>Args:</dt><dd><p>dataset (pd.DataFrame): Dataframe with dataset to clean
+cols_mask (Dict[str, bool], optional): Dict with columns names as key and bool as value.</p>
+<blockquote>
+<div><p>determines if each column should be dropped. if cols_mask is None, all are kept.
+Defaults to None.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[pd.Series, pd.DataFrame]: Tuple with timestamp column and cleaned dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.fit">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures to fit their internal model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>X_train (np.ndarray): Input training data
+y_train (np.ndarray): Label training data
+X_valid (np.ndarray): Input validation data
+y_valid (np.ndarray): Label validation data
+train_params (Dict[str, Any]): Dictionary with parameters necessary for training
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.init_arch">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures to initialize their internal ML model.</p>
+<p>Initialize model by loading it from a checkpoint file, or by
+creating a new one with the parameters specified in arch_params</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.init_preprocess">
+<span class="sig-name descname"><span class="pre">init_preprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.init_preprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.init_preprocess" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize preprocessing method by loading it from a checkpoint file, or by
+creating a new one with the parameters specified in arch_params[“preprocess_method”].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.parse_dataset">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.parse_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.parse_dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Parse dataset by standardizing column names and removing columns according to cols_mask,
+also removes timestamp and target columns. Returns the rest of the dataset as a numpy array.</p>
+<dl>
+<dt>Args:</dt><dd><p>dataset (pd.DataFrame): Dataframe with dataset to clean
+cols_mask (Dict[str, bool]): Dictionary with columns names as key and bool as value.</p>
+<blockquote>
+<div><p>determines if each column should be dropped. if cols_mask is None, all are kept.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>np.ndarray: parsed dataset as numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.parse_fit_logging">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.parse_predict_logging">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.predict">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures use their internal model to predict on data.
+Returns the predicted values and the result of their aggregation (using ‘aggregate’ method).
+Timestamps are only used while logging.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (np.ndarray): Input data
+timestamps (pd.Series): Timestamps of the input data
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log prediction progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted values and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.preprocess_from_csv">
+<span class="sig-name descname"><span class="pre">preprocess_from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_csv_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_periods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Series</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.preprocess_from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.preprocess_from_csv" title="Permalink to this definition"></a></dt>
+<dd><p>Loads dataset from csv file, then calls preprocess_from_dataset method.</p>
+<dl>
+<dt>Args:</dt><dd><p>dataset_csv_path (str): Path to the csv file with dataset
+cols_mask (Dict[str, bool]): Dictionary with columns names as key and bool as value.</p>
+<blockquote>
+<div><p>determines if each column should be dropped. if cols_mask is None, all are kept.</p>
+</div></blockquote>
+<p>out_chckpt_filepath (str): Path to file where preprocess method params will be saved
+log_filepath (str): Path to the log file used to log preprocessing progress
+phase (str): Phase of the preprocessing, either ‘train’ or ‘test’</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[pd.Series, np.ndarray, np.ndarray]: Tuple with timestamps and preprocessed x and y</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.preprocess_from_dataset">
+<span class="sig-name descname"><span class="pre">preprocess_from_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_periods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Series</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.preprocess_from_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.preprocess_from_dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Preprocess input dataset by calling clean_dataset method, then extracting x and y from
+the dataset using the ‘target’ column (if phase == ‘test’, then it is assumed that ‘target’
+column is not in the dataset, and y set to None), then calling preprocess method on x and y.
+Returns the timestamps together with the preprocessed x and y.</p>
+<dl>
+<dt>Args:</dt><dd><p>dataset (pd.DataFrame): Dataset to preprocess
+cols_mask (Dict[str, bool]): Dictionary with columns names as key and bool as value.</p>
+<blockquote>
+<div><p>determines if each column should be dropped. if cols_mask is None, all are kept.</p>
+</div></blockquote>
+<p>out_chckpt_filepath (str): Path to file where preprocess method params will be saved
+log_filepath (str): Path to the log file used to log preprocessing progress
+phase (str): Phase of the preprocessing, either ‘train’ or ‘test’</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[pd.Series, np.ndarray, np.ndarray]: Tuple with timestamps and preprocessed x and y</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.BaseArch.split_windows">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">split_windows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Series</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#BaseArch.split_windows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.BaseArch.split_windows" title="Permalink to this definition"></a></dt>
+<dd><p>Preprocess timeseries data of size (time, n_features) by splitting
+it into windows (matrices), takes ‘window_size’ parameter to define the size
+of the windows, and ‘overlap’ parameter to define the overlap between windows.
+Returns an array of size (n_windows, ‘window_size’, n_features)</p>
+<p>Note: if the input data is not perfectly divisible by amount of windows,
+data at the beginning that is not included in the windows will be dropped.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (pd.DataFrame): Timeseries data
+y (pd.Series): Timeseries labels
+window_size (int): Size of the windows to be split into
+overlap (int): Overlap size to use when splitting the data set into windows</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Tuple[pd.DataFrame, pd.Series, np.ndarray]: Tuple containing arrays with windows,</dt><dd><p>labels and timestamps</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.DLSupervisedModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">DLSupervisedModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#DLSupervisedModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.DLSupervisedModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.ml.base_arch.BaseArch" title="moncon.ml.base_arch.BaseArch"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArch</span></code></a></p>
+<p>Base class for all supervised Deep Learning architectures.
+Inherits from BaseArch. Classes  that inherit from this class are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>MLP</p></li>
+<li><p>CNN</p></li>
+<li><p>RNN</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Defines the methods that are common to all supervised ML architectures, which are:</dt><dd><ul class="simple">
+<li><p>fit</p></li>
+<li><p>predict</p></li>
+</ul>
+</dd>
+<dt>Introduces the following necessary values in train_params:</dt><dd><ul class="simple">
+<li><p>train_params[“batch_size”] (int): Batch size for training</p></li>
+<li><p>train_params[“epochs”] (int): Number of epochs for training</p></li>
+</ul>
+</dd>
+<dt>Introduces the following instance attributes to be filled by the child classes:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>self.use_split_windows (bool): Whether to use the method split windows or not,</dt><dd><p>used to split the data set into an array of windows (matrices) before entering
+the model; used by the child classes CNN and RNN</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>self.windows_size (int): Size of the windows to be split into</dt><dd><p>(only used if use_split_windows is True)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>self.overlap (int): Overlap size to use when splitting the data set into windows</dt><dd><p>(only used if use_split_windows is True)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.DLSupervisedModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#DLSupervisedModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.DLSupervisedModel.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit method for supervised Deep Learning architectures.
+Fits the internal model with the given data and parameters,
+and saves the model to the given checkpoint file.</p>
+<dl class="simple">
+<dt>train_params must contain the following values:</dt><dd><ul class="simple">
+<li><p>train_params[“batch_size”] (int): Batch size for training</p></li>
+<li><p>train_params[“epochs”] (int): Number of epochs for training</p></li>
+</ul>
+</dd>
+<dt>Args:</dt><dd><p>X_train (pd.DataFrame): Training data
+y_train (pd.Series): Training labels
+X_valid (pd.DataFrame): Validation data
+y_valid (pd.Series): Validation labels
+train_params (Dict[str, Any]): Dictionary with parameters necessary for training
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+<p><a href="#id3"><span class="problematic" id="id4">*</span></a>Note: Right now the metrics are not used for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.DLSupervisedModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#DLSupervisedModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.DLSupervisedModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.DLSupervisedModel.parse_predict_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#DLSupervisedModel.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.DLSupervisedModel.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.DLSupervisedModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#DLSupervisedModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.DLSupervisedModel.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict method for supervised Deep Learning architectures.
+Uses the internal model to predict on the given data and aggregates the results.
+Timestamps are only used while logging.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (pd.DataFrame): Input data
+timestamps (pd.Series): Timestamps of the input data. Deprecated.
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log prediction progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted values and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">SklearnAnomalyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.ml.base_arch.BaseAnomalyModel" title="moncon.ml.base_arch.BaseAnomalyModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAnomalyModel</span></code></a></p>
+<p>Base class for all Sklearn Anomaly (or Novelty) detection models.
+Inherits from BaseAnomalyModel. Classes that inherit from this class are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IsolationForestAnomalyModel</p></li>
+<li><p>EllipticEnvelopeAnomalyModel</p></li>
+<li><p>LocalOutlierFactorAnomalyModel</p></li>
+<li><p>OneClassSVMAnomalyModel</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Defines the methods that are common to all Sklearn Anomaly ML architectures, which are:</dt><dd><ul class="simple">
+<li><p>load_model</p></li>
+<li><p>save_model</p></li>
+<li><p>fit</p></li>
+<li><p>predict</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit method for Sklearn Anomaly models.
+Fits the internal model with the given data, and saves the model on the defined file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>X_train (pd.DataFrame): Input data
+y_train (pd.Series): Ignored for sklearn anomaly models.
+X_valid (pd.DataFrame): Ignored for unsupervised models.
+y_valid (pd.Series): Ignored for unsupervised models.
+train_params (Dict[str, Any]): Ignored for Sklearn Anomaly models.
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+<p><a href="#id5"><span class="problematic" id="id6">*</span></a>Note: Right now the metrics and log_filepath are not used for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.load_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.load_model" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the sklearn model from the checkpoint file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.parse_predict_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.plot_validation">
+<span class="sig-name descname"><span class="pre">plot_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.plot_validation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.plot_validation" title="Permalink to this definition"></a></dt>
+<dd><p>Fit method for Sklearn Anomaly models.
+Fits the internal model with the given data, and saves the model on the defined file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>X_train (pd.DataFrame): Input data
+y_train (pd.Series): Ignored for sklearn anomaly models.
+X_valid (pd.DataFrame): Ignored for unsupervised models.
+y_valid (pd.Series): Ignored for unsupervised models.
+train_params (Dict[str, Any]): Ignored for Sklearn Anomaly models.
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+<p><a href="#id7"><span class="problematic" id="id8">*</span></a>Note: Right now the metrics and log_filepath are not used for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict method for Sklearn Anomaly models.
+Uses the internal model’s decision_function to get a distance metric score for
+the input data, and returns a calculated KPI between 0 and 1 using this score.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (pd.DataFrame): Input data
+timestamps (pd.Series): Timestamps for the input data. Deprecated, not used
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log training progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted KPI values and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.predict_kpi">
+<span class="sig-name descname"><span class="pre">predict_kpi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.predict_kpi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.predict_kpi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnAnomalyModel.save_model">
+<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnAnomalyModel.save_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnAnomalyModel.save_model" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the sklearn model on the defined checkpoint file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.base_arch.</span></span><span class="sig-name descname"><span class="pre">SklearnSupervisedModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#moncon.ml.base_arch.BaseArch" title="moncon.ml.base_arch.BaseArch"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArch</span></code></a></p>
+<p>Base class for all Sklearn supervised models.
+Inherits from BaseAnomalyModel. Classes that inherit from this class are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>RandomForestCls</p></li>
+<li><p>XGBoostCls</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Defines the methods that are common to all Sklearn supervised architectures, which are:</dt><dd><ul class="simple">
+<li><p>load_model</p></li>
+<li><p>save_model</p></li>
+<li><p>fit</p></li>
+<li><p>predict</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fit method for Sklearn Supervised models.
+Fits the internal model with the given data, and saves the model on the defined file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>X_train (pd.DataFrame): Input training data
+y_train (pd.Series): Label training data
+X_valid (pd.DataFrame): Input validation data
+y_valid (pd.Series): Label validation data
+train_params (Dict[str, Any]): Ignored for Sklearn Supervised models.
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+<p><a href="#id9"><span class="problematic" id="id10">*</span></a>Note: Right now the metrics and log_filepath are not used for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.load_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.load_model" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the sklearn model from the checkpoint file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.parse_predict_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predict method for Sklearn Supervised models.
+Uses the internal model’s predict to get a predicted class.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (pd.DataFrame): Input data
+timestamps (pd.Series): Timestamps for the input data. Deprecated, not used.
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted label and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.random_search_opt">
+<span class="sig-name descname"><span class="pre">random_search_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_csv_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_search_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'accuracy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.random_search_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.random_search_opt" title="Permalink to this definition"></a></dt>
+<dd><p>Random search method for Sklearn Supervised models.
+Currently loads the data from the given csv file, loads standard parameters if not given,
+and performs a random searchCV for the given parameters.</p>
+<p>Note: As it uses CV, it may not make sense to use this method for time series data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_csv_path (str): Path to the csv file containing the data to be used for training
+grid_search_params (Dict[str, Any]): Parameters to be used for the random search
+scoring (str): Scoring method to be used for the random search
+grid_params (Dict[str, Any]): Parameters to be used for the random search</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.base_arch.SklearnSupervisedModel.save_model">
+<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/base_arch.html#SklearnSupervisedModel.save_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.base_arch.SklearnSupervisedModel.save_model" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the sklearn model on the defined checkpoint file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml.keras_wrapper">
+<span id="moncon-ml-keras-wrapper-module"></span><h2>moncon.ml.keras_wrapper module<a class="headerlink" href="#module-moncon.ml.keras_wrapper" title="Permalink to this heading"></a></h2>
+<p>Defines util architechtures for models based on keras layers</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.CnnBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.keras_wrapper.</span></span><span class="sig-name descname"><span class="pre">CnnBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#CnnBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.CnnBlock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.CnnBlock.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#CnnBlock.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.CnnBlock.call" title="Permalink to this definition"></a></dt>
+<dd><p>This is where the layer’s logic lives.</p>
+<p>The <cite>call()</cite> method may not create state (except in its first
+invocation, wrapping the creation of variables or other resources in
+<cite>tf.init_scope()</cite>).  It is recommended to create state in <cite>__init__()</cite>,
+or the <cite>build()</cite> method that is called automatically before <cite>call()</cite>
+executes the first time.</p>
+<dl>
+<dt>Args:</dt><dd><dl>
+<dt>inputs: Input tensor, or dict/list/tuple of input tensors.</dt><dd><p>The first positional <cite>inputs</cite> argument is subject to special rules:
+- <cite>inputs</cite> must be explicitly passed. A layer cannot have zero</p>
+<blockquote>
+<div><p>arguments, and <cite>inputs</cite> cannot be provided via the default value
+of a keyword argument.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>NumPy array or Python scalar values in <cite>inputs</cite> get cast as
+tensors.</p></li>
+<li><p>Keras mask metadata is only collected from <cite>inputs</cite>.</p></li>
+<li><p>Layers are built (<cite>build(input_shape)</cite> method)
+using shape info from <cite>inputs</cite> only.</p></li>
+<li><p><cite>input_spec</cite> compatibility is only checked against <cite>inputs</cite>.</p></li>
+<li><p>Mixed precision input casting is only applied to <cite>inputs</cite>.
+If a layer has tensor arguments in <cite>*args</cite> or <cite>**kwargs</cite>, their
+casting behavior in mixed precision should be handled manually.</p></li>
+<li><p>The SavedModel input specification is generated using <cite>inputs</cite>
+only.</p></li>
+<li><p>Integration with various ecosystem packages like TFMOT, TFLite,
+TF.js, etc is only supported for <cite>inputs</cite> and not for tensors in
+positional and keyword arguments.</p></li>
+</ul>
+</dd>
+<dt><a href="#id11"><span class="problematic" id="id12">*</span></a>args: Additional positional arguments. May contain tensors, although</dt><dd><p>this is not recommended, for the reasons above.</p>
+</dd>
+<dt><a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs: Additional keyword arguments. May contain tensors, although</dt><dd><p>this is not recommended, for the reasons above.
+The following optional keyword arguments are reserved:
+- <cite>training</cite>: Boolean scalar tensor of Python boolean indicating</p>
+<blockquote>
+<div><p>whether the <cite>call</cite> is meant for training or inference.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><cite>mask</cite>: Boolean input mask. If the layer’s <cite>call()</cite> method takes a
+<cite>mask</cite> argument, its default value will be set to the mask
+generated for <cite>inputs</cite> by the previous layer (if <cite>input</cite> did come
+from a layer that generated a corresponding mask, i.e. if it came
+from a Keras layer with masking support).</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor or list/tuple of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.keras_wrapper.</span></span><span class="sig-name descname"><span class="pre">KerasNet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compile_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#KerasNet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#KerasNet.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet.keras_compile_options">
+<span class="sig-name descname"><span class="pre">keras_compile_options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['optimizer',</span> <span class="pre">'loss',</span> <span class="pre">'metrics',</span> <span class="pre">'loss_weights',</span> <span class="pre">'weighted_metrics']</span></em><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet.keras_compile_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet.keras_layer_map">
+<span class="sig-name descname"><span class="pre">keras_layer_map</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'activation':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.core.activation.Activation'&gt;,</span> <span class="pre">'avg_pooling':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.pooling.average_pooling2d.AveragePooling2D'&gt;,</span> <span class="pre">'batch_norm':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.normalization.batch_normalization.BatchNormalization'&gt;,</span> <span class="pre">'conv':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.convolutional.conv2d.Conv2D'&gt;,</span> <span class="pre">'conv_block':</span> <span class="pre">&lt;class</span> <span class="pre">'moncon.ml.keras_wrapper.CnnBlock'&gt;,</span> <span class="pre">'conv_transpose':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.convolutional.conv2d_transpose.Conv2DTranspose'&gt;,</span> <span class="pre">'dense':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.core.dense.Dense'&gt;,</span> <span class="pre">'dropout':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.regularization.dropout.Dropout'&gt;,</span> <span class="pre">'flatten':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.reshaping.flatten.Flatten'&gt;,</span> <span class="pre">'global_avg_pooling':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.pooling.global_average_pooling2d.GlobalAveragePooling2D'&gt;,</span> <span class="pre">'gru':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.rnn.gru.GRU'&gt;,</span> <span class="pre">'input_layer':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.engine.input_layer.InputLayer'&gt;,</span> <span class="pre">'lstm':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.rnn.lstm.LSTM'&gt;,</span> <span class="pre">'max_pool':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.pooling.max_pooling2d.MaxPooling2D'&gt;,</span> <span class="pre">'repeat_vector':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.reshaping.repeat_vector.RepeatVector'&gt;,</span> <span class="pre">'reshape':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.reshaping.reshape.Reshape'&gt;,</span> <span class="pre">'rev_conv_block':</span> <span class="pre">&lt;class</span> <span class="pre">'moncon.ml.keras_wrapper.ReverseCnnBlock'&gt;,</span> <span class="pre">'simple_rnn':</span> <span class="pre">&lt;class</span> <span class="pre">'keras.layers.rnn.simple_rnn.SimpleRNN'&gt;}</span></em><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet.keras_layer_map" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#KerasNet.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet.predict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.KerasNet.sequential_model_creator">
+<span class="sig-name descname"><span class="pre">sequential_model_creator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#KerasNet.sequential_model_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.KerasNet.sequential_model_creator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.ReverseCnnBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.keras_wrapper.</span></span><span class="sig-name descname"><span class="pre">ReverseCnnBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#ReverseCnnBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.ReverseCnnBlock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.keras_wrapper.ReverseCnnBlock.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/keras_wrapper.html#ReverseCnnBlock.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.keras_wrapper.ReverseCnnBlock.call" title="Permalink to this definition"></a></dt>
+<dd><p>This is where the layer’s logic lives.</p>
+<p>The <cite>call()</cite> method may not create state (except in its first
+invocation, wrapping the creation of variables or other resources in
+<cite>tf.init_scope()</cite>).  It is recommended to create state in <cite>__init__()</cite>,
+or the <cite>build()</cite> method that is called automatically before <cite>call()</cite>
+executes the first time.</p>
+<dl>
+<dt>Args:</dt><dd><dl>
+<dt>inputs: Input tensor, or dict/list/tuple of input tensors.</dt><dd><p>The first positional <cite>inputs</cite> argument is subject to special rules:
+- <cite>inputs</cite> must be explicitly passed. A layer cannot have zero</p>
+<blockquote>
+<div><p>arguments, and <cite>inputs</cite> cannot be provided via the default value
+of a keyword argument.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>NumPy array or Python scalar values in <cite>inputs</cite> get cast as
+tensors.</p></li>
+<li><p>Keras mask metadata is only collected from <cite>inputs</cite>.</p></li>
+<li><p>Layers are built (<cite>build(input_shape)</cite> method)
+using shape info from <cite>inputs</cite> only.</p></li>
+<li><p><cite>input_spec</cite> compatibility is only checked against <cite>inputs</cite>.</p></li>
+<li><p>Mixed precision input casting is only applied to <cite>inputs</cite>.
+If a layer has tensor arguments in <cite>*args</cite> or <cite>**kwargs</cite>, their
+casting behavior in mixed precision should be handled manually.</p></li>
+<li><p>The SavedModel input specification is generated using <cite>inputs</cite>
+only.</p></li>
+<li><p>Integration with various ecosystem packages like TFMOT, TFLite,
+TF.js, etc is only supported for <cite>inputs</cite> and not for tensors in
+positional and keyword arguments.</p></li>
+</ul>
+</dd>
+<dt><a href="#id15"><span class="problematic" id="id16">*</span></a>args: Additional positional arguments. May contain tensors, although</dt><dd><p>this is not recommended, for the reasons above.</p>
+</dd>
+<dt><a href="#id17"><span class="problematic" id="id18">**</span></a>kwargs: Additional keyword arguments. May contain tensors, although</dt><dd><p>this is not recommended, for the reasons above.
+The following optional keyword arguments are reserved:
+- <cite>training</cite>: Boolean scalar tensor of Python boolean indicating</p>
+<blockquote>
+<div><p>whether the <cite>call</cite> is meant for training or inference.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><cite>mask</cite>: Boolean input mask. If the layer’s <cite>call()</cite> method takes a
+<cite>mask</cite> argument, its default value will be set to the mask
+generated for <cite>inputs</cite> by the previous layer (if <cite>input</cite> did come
+from a layer that generated a corresponding mask, i.e. if it came
+from a Keras layer with masking support).</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor or list/tuple of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.ml" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

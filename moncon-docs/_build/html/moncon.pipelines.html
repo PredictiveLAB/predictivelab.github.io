@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.pipelines package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.pipelines package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.pipelines.rawdata_process">moncon.pipelines.rawdata_process module</a><ul>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.clean_data"><code class="docutils literal notranslate"><span class="pre">clean_data()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.drop_empty_cols"><code class="docutils literal notranslate"><span class="pre">drop_empty_cols()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.file_name"><code class="docutils literal notranslate"><span class="pre">file_name()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.get_tags"><code class="docutils literal notranslate"><span class="pre">get_tags()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.save_data"><code class="docutils literal notranslate"><span class="pre">save_data()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.set_sensor_names"><code class="docutils literal notranslate"><span class="pre">set_sensor_names()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.pipelines.train_test_funcs">moncon.pipelines.train_test_funcs module</a><ul>
+<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.make_save_path"><code class="docutils literal notranslate"><span class="pre">make_save_path()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.make_sensors_comb_code"><code class="docutils literal notranslate"><span class="pre">make_sensors_comb_code()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.train_test_pipeline"><code class="docutils literal notranslate"><span class="pre">train_test_pipeline()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.pipelines">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.pipelines package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.pipelines.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-pipelines-package">
+<h1>moncon.pipelines package<a class="headerlink" href="#moncon-pipelines-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.pipelines.rawdata_process">
+<span id="moncon-pipelines-rawdata-process-module"></span><h2>moncon.pipelines.rawdata_process module<a class="headerlink" href="#module-moncon.pipelines.rawdata_process" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.clean_data">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_Serie</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timecol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_data_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#clean_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.clean_data" title="Permalink to this definition"></a></dt>
+<dd><section id="cleans-empty-rows-and-columns-and-change-data-s-column-names-as-tags">
+<h3>Cleans empty rows and columns, and change data’s column names as TAGs<a class="headerlink" href="#cleans-empty-rows-and-columns-and-change-data-s-column-names-as-tags" title="Permalink to this heading"></a></h3>
+<p>Parameters</p>
+<p>raw_data</p>
+<p>timecol: (str)</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.drop_empty_cols">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">drop_empty_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#drop_empty_cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.drop_empty_cols" title="Permalink to this definition"></a></dt>
+<dd><section id="drop-all-columns-that-have-greater-than-99-of-nans">
+<h3>Drop all columns that have greater than 99% of NaNs.<a class="headerlink" href="#drop-all-columns-that-have-greater-than-99-of-nans" title="Permalink to this heading"></a></h3>
+<p>Parameters</p>
+</section>
+<section id="raw-data">
+<h3>raw_data:<a class="headerlink" href="#raw-data" title="Permalink to this heading"></a></h3>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.file_name">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">asset_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#file_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.file_name" title="Permalink to this definition"></a></dt>
+<dd><p>Returns preprocessed file name. If “freq” argument is given, includes the
+sample frequency on the name.
+————————————————————————–
+Parameters</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.get_tags">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">get_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timecol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#get_tags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.get_tags" title="Permalink to this definition"></a></dt>
+<dd><section id="returns-as-list-the-file-s-tags">
+<h3>Returns as list the file’s TAGs<a class="headerlink" href="#returns-as-list-the-file-s-tags" title="Permalink to this heading"></a></h3>
+<p>Parameters</p>
+<p>data</p>
+<p>timecol</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.save_data">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">save_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_data_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timecol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.save_data" title="Permalink to this definition"></a></dt>
+<dd><p>Saves new data and check for duplicates on old data if exists. Also moves
+the raw data excel file to another folder.
+————————————————————————–
+Parameters</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.rawdata_process.set_sensor_names">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.rawdata_process.</span></span><span class="sig-name descname"><span class="pre">set_sensor_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_Serie</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/rawdata_process.html#set_sensor_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.rawdata_process.set_sensor_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-moncon.pipelines.train_test_funcs">
+<span id="moncon-pipelines-train-test-funcs-module"></span><h2>moncon.pipelines.train_test_funcs module<a class="headerlink" href="#module-moncon.pipelines.train_test_funcs" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.train_test_funcs.make_save_path">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.train_test_funcs.</span></span><span class="sig-name descname"><span class="pre">make_save_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models_save_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaler_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_sensors_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/train_test_funcs.html#make_save_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.train_test_funcs.make_save_path" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Path object where all files associated to a specific model are
+to be saved.
+————————————————————————–
+Args:</p>
+<blockquote>
+<div><p>models_save_folder (Path):</p>
+<dl class="simple">
+<dt>model_name (str):</dt><dd><p>Name of the model to use. Ej: “AutoCNN”</p>
+</dd>
+<dt>model_params (dict):</dt><dd><p>Parameters of the model.</p>
+</dd>
+<dt>scaler_name (str):</dt><dd><p>Name of the scaler to use.</p>
+</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div><p>Otherwise returns None.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.train_test_funcs.make_sensors_comb_code">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.train_test_funcs.</span></span><span class="sig-name descname"><span class="pre">make_sensors_comb_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_sensors_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/train_test_funcs.html#make_sensors_comb_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.train_test_funcs.make_sensors_comb_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moncon.pipelines.train_test_funcs.train_test_pipeline">
+<span class="sig-prename descclassname"><span class="pre">moncon.pipelines.train_test_funcs.</span></span><span class="sig-name descname"><span class="pre">train_test_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaler_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/train_test_funcs.html#train_test_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.train_test_funcs.train_test_pipeline" title="Permalink to this definition"></a></dt>
+<dd><section id="pipeline-to-train-or-test-a-scaler-and-model">
+<h3>Pipeline to train or test a scaler and model.<a class="headerlink" href="#pipeline-to-train-or-test-a-scaler-and-model" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>x_data (pd.DataFrame): </dt><dd><p>Numeric data to train or test (without timestamps or labels).</p>
+</dd>
+<dt>x_timestamps (pd.Series):</dt><dd><p>Timestamps of the data. Only used for testing</p>
+</dd>
+<dt>model_name (str):</dt><dd><p>Name of the model to use.</p>
+</dd>
+<dt>model_params (dict):</dt><dd><p>Parameters of the model.</p>
+</dd>
+<dt>scaler_name (str):</dt><dd><p>Name of the scaler to use.</p>
+</dd>
+<dt>cols_to_use (list):</dt><dd><p>List of columns to use.</p>
+</dd>
+<dt>mode (str):</dt><dd><p>Pipeline mode, either “train” or “test”.</p>
+</dd>
+<dt>models_save_folder (Path):</dt><dd><p>Path to the folder where to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<blockquote>
+<div><p>Otherwise returns None.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-moncon.pipelines">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.pipelines" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml.unsupervised.anomaly_detection &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>moncon.ml.unsupervised.anomaly_detection</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.ml.unsupervised.anomaly_detection</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
+<span class="kn">from</span> <span class="nn">sklearn.covariance</span> <span class="kn">import</span> <span class="n">EllipticEnvelope</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">OneClassSVM</span>
+
+<span class="kn">from</span> <span class="nn">moncon.ml.base_arch</span> <span class="kn">import</span> <span class="n">SklearnAnomalyModel</span>
+
+
+<div class="viewcode-block" id="IsolationForestAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">IsolationForestAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Anomaly (novelty) detection model based on the Isolation Forest algorithm.</span>
+<span class="sd">    Inherits from SklearnAnomalyModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows. Range is (0, inf).</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">            Range is (0, 0.5].</span>
+<span class="sd">        - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
+<span class="sd">            Range is (1, inf).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;IsolationForest&quot;</span>
+
+<div class="viewcode-block" id="IsolationForestAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the Isolation Forest model.</span>
+
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">                Range is (0, 0.5].</span>
+<span class="sd">            - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
+<span class="sd">                Range is (1, inf).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span>
+            <span class="n">contamination</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;contamination&quot;</span><span class="p">],</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="IsolationForestAnomalyModel.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IsolationForestAnomalyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="IsolationForestAnomalyModel.model_score"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.model_score">[docs]</a>    <span class="k">def</span> <span class="nf">model_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="EllipticEnvelopeAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">EllipticEnvelopeAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on Sklearn&#39;s implementation of EllipticEnvelope()</span>
+<span class="sd">    Inherits from SklearnAnomalyModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows. Range is (0, inf).</span>
+<span class="sd">        - arch_params[&quot;assume_centered&quot;] (bool): Whether to assume the data is centered.</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">            Range is (0, 0.5].</span>
+<span class="sd">        - arch_params[&quot;support_fraction&quot;] (float): The proportion of points to be included in</span>
+<span class="sd">            the support of the ellipsoid. Range is (0, 1).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;EllipticEnvelope&quot;</span>
+
+<div class="viewcode-block" id="EllipticEnvelopeAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the Elliptic Envelope model.</span>
+
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;assume_centered&quot;] (bool): Whether to assume the data is centered.</span>
+<span class="sd">            - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">                Range is (0, 0.5].</span>
+<span class="sd">            - arch_params[&quot;support_fraction&quot;] (float): The proportion of points to be included in</span>
+<span class="sd">                the support of the ellipsoid. Range is (0, 1).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">EllipticEnvelope</span><span class="p">(</span>
+            <span class="n">assume_centered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;assume_centered&quot;</span><span class="p">],</span>
+            <span class="n">contamination</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;contamination&quot;</span><span class="p">],</span>
+            <span class="n">support_fraction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;support_fraction&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="EllipticEnvelopeAnomalyModel.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EllipticEnvelopeAnomalyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="LocalOutlierFactorAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">LocalOutlierFactorAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on the Local Outlier Factor algorithm.</span>
+<span class="sd">    Inherits from SklearnAnomalyModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows. Range is (0, inf).</span>
+<span class="sd">        - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">            Range is (0, 0.5].</span>
+<span class="sd">        - arch_params[&quot;n_neighbors&quot;] (int): The number of neighbors to use by default for</span>
+<span class="sd">            k-nearest neighbors queries. Range is (1, inf).</span>
+<span class="sd">        - arch_params[&quot;algorithm&quot;] (str): The algorithm to use for k-nearest neighbors queries.</span>
+<span class="sd">            Options are &#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39; or &#39;brute&#39;.</span>
+<span class="sd">        - arch_params[&quot;p&quot;] (int): The power of the Minkowski metric to use. Recomended 1 or 2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;LocalOutlierFactor&quot;</span>
+
+<div class="viewcode-block" id="LocalOutlierFactorAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the Local Outlier Factor model.</span>
+
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
+<span class="sd">                Range is (0, 0.5].</span>
+<span class="sd">            - arch_params[&quot;n_neighbors&quot;] (int): The number of neighbors to use by default for</span>
+<span class="sd">                k-nearest neighbors queries. Range is (1, inf).</span>
+<span class="sd">            - arch_params[&quot;algorithm&quot;] (str): The algorithm to use for k-nearest neighbors queries.</span>
+<span class="sd">                Options are &#39;auto&#39;, &#39;ball_tree&#39;, &#39;kd_tree&#39; or &#39;brute&#39;.</span>
+<span class="sd">            - arch_params[&quot;p&quot;] (int): The power of the Minkowski metric to use. Recomended 1 or 2.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span>
+            <span class="n">novelty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">],</span>
+            <span class="n">contamination</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;contamination&quot;</span><span class="p">],</span>
+            <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">],</span>
+            <span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="LocalOutlierFactorAnomalyModel.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">LocalOutlierFactorAnomalyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalOutlierFactorAnomalyModel.model_score"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.model_score">[docs]</a>    <span class="k">def</span> <span class="nf">model_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="OneClassSVMAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">OneClassSVMAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on the One Class SVM algorithm.</span>
+<span class="sd">    Inherits from SklearnAnomalyModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;slope_coef&quot;] (float): Slope (or scale) factor for KPI calculation,</span>
+<span class="sd">            defines how quickly the KPI grows</span>
+<span class="sd">        - arch_params[&quot;gamma&quot;] (str): The kernel coefficient for &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">            Options are &#39;auto&#39; or &#39;scale&#39;</span>
+<span class="sd">        - arch_params[&quot;nu&quot;] (float): The degree of the kernel, only for &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">            Range is (0, 1].</span>
+<span class="sd">        - arch_params[&quot;kernel&quot;]: The kernel to use. Options are &#39;linear&#39;, &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;OneClassSVM&quot;</span>
+
+<div class="viewcode-block" id="OneClassSVMAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the One Class SVM model.</span>
+
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;gamma&quot;] (str): The kernel coefficient for &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">                Options are &#39;auto&#39; or &#39;scale&#39;</span>
+<span class="sd">            - arch_params[&quot;nu&quot;] (float): The degree of the kernel, only for &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">                Range is (0, 1].</span>
+<span class="sd">            - arch_params[&quot;kernel&quot;]: The kernel to use. Options are &#39;linear&#39;, &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">OneClassSVM</span><span class="p">(</span>
+            <span class="n">gamma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">],</span>
+            <span class="n">kernel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;kernel&quot;</span><span class="p">],</span>
+            <span class="n">nu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;nu&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="OneClassSVMAnomalyModel.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">OneClassSVMAnomalyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="OneClassSVMAnomalyModel.model_score"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.model_score">[docs]</a>    <span class="k">def</span> <span class="nf">model_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

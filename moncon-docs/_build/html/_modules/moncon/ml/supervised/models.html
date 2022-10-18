@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml.supervised.models &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>moncon.ml.supervised.models</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.ml.supervised.models</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Defines models based on 2 sklearn&#39;s supervised classifier models:</span>
+<span class="sd">    1) RandomForestClassifier</span>
+<span class="sd">    2) GradientBoostingClassifier</span>
+
+<span class="sd">All models inherits from SklearnSupervisedModel</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="kn">from</span> <span class="nn">moncon.ml.base_arch</span> <span class="kn">import</span> <span class="n">SklearnSupervisedModel</span><span class="p">,</span> <span class="n">DLSupervisedModel</span>
+<span class="kn">from</span> <span class="nn">moncon.ml</span> <span class="kn">import</span> <span class="n">keras_wrapper</span>
+
+
+<div class="viewcode-block" id="RandomForestCls"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls">[docs]</a><span class="k">class</span> <span class="nc">RandomForestCls</span><span class="p">(</span><span class="n">SklearnSupervisedModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Random Forest Classifier model.</span>
+<span class="sd">    Inherits from SklearnSupervisedModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RandomForestCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;RandomForest&quot;</span>
+
+<div class="viewcode-block" id="RandomForestCls.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the Random Forest model.</span>
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
+<span class="sd">                Range is (1, inf).</span>
+<span class="sd">            - arch_params[&quot;max_depth&quot;] (int): The maximum depth of the tree.</span>
+<span class="sd">                Range is (1, inf).</span>
+<span class="sd">            - arch_params[&quot;min_samples_split&quot;] (int): The minimum number of samples required to split an internal node.</span>
+<span class="sd">                Range is (2, inf).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">],</span>
+            <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;max_depth&quot;</span><span class="p">],</span>
+            <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;min_samples_split&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="RandomForestCls.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">RandomForestCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RandomForestCls.model_score"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.model_score">[docs]</a>    <span class="k">def</span> <span class="nf">model_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GradientBoostingCls"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls">[docs]</a><span class="k">class</span> <span class="nc">GradientBoostingCls</span><span class="p">(</span><span class="n">SklearnSupervisedModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;XGBoost Classifier model.</span>
+<span class="sd">    Inherits from SklearnSupervisedModel.</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+<span class="sd">        - model_score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GradientBoostingCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;XGBoost&quot;</span>
+
+<div class="viewcode-block" id="GradientBoostingCls.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the XGBoost model.</span>
+<span class="sd">        Introduces the following values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
+<span class="sd">                Range is (1, inf).</span>
+<span class="sd">            - arch_params[&quot;max_depth&quot;] (int): The maximum depth of the tree.</span>
+<span class="sd">                Range is (1, inf).</span>
+<span class="sd">            - arch_params[&quot;eta&quot;] (float): The learning rate.</span>
+<span class="sd">                Range is (0, 1).</span>
+<span class="sd">            - arch_params[&quot;lambda&quot;] (float): The L2 regularization term.</span>
+<span class="sd">                Range is (0, inf).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">],</span>
+            <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;max_depth&quot;</span><span class="p">],</span>
+            <span class="c1"># eta=self.arch_params[&quot;eta&quot;],</span>
+            <span class="c1"># lambda_=self.arch_params[&quot;lambda&quot;],</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="GradientBoostingCls.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">GradientBoostingCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GradientBoostingCls.model_score"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.model_score">[docs]</a>    <span class="k">def</span> <span class="nf">model_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MLP"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.MLP">[docs]</a><span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification model based on a MLP architecture.</span>
+<span class="sd">    Inherits from DLSupervisedModel</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">        - arch_params[&quot;h_num&quot;] (int): The number of hidden layers.</span>
+<span class="sd">        - arch_params[&quot;h_size&quot;] (int): The number of units in each hidden layer.</span>
+<span class="sd">        - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">        - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs for training</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="MLP.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.MLP.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">            - arch_params[&quot;h_num&quot;] (int): The number of hidden layers.</span>
+<span class="sd">            - arch_params[&quot;h_size&quot;] (int): The number of units in each hidden layer.</span>
+<span class="sd">            - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">            - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">h_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;h_num&quot;</span><span class="p">]</span>
+        <span class="n">h_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;h_size&quot;</span><span class="p">]</span>
+        <span class="n">out_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;out_size&quot;</span><span class="p">]</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">)</span>
+
+        <span class="c1"># define output activation function</span>
+        <span class="k">if</span> <span class="n">out_size</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;softmax&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;sparse_categorical_crossentropy&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if out_size == 2, change it to 1, since it&#39;s a binary problem</span>
+            <span class="n">out_size</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;sigmoid&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;binary_crossentropy&quot;</span>
+
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">feature_size</span><span class="p">,),</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h_num</span><span class="p">):</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">h_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">})</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">out_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">out_activation</span><span class="p">})</span>
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">compile_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">metric</span><span class="p">]})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="MLP.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.MLP.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CNN"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.CNN">[docs]</a><span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification model based on a CNN architecture.</span>
+<span class="sd">    Inherits from DLSupervisedModel</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
+<span class="sd">        - arch_params[&quot;overlap&quot;] (int): Number of time steps to overlap between windows.</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): number of input features.</span>
+<span class="sd">        - arch_params[&quot;filter_num&quot;] (int): number of filters in the first CNN block (it is doubled in each block)</span>
+<span class="sd">        - arch_params[&quot;kernel_v&quot;] (int): vertical kernel size</span>
+<span class="sd">        - arch_params[&quot;kernel_h&quot;] (int): horizontal kernel size</span>
+<span class="sd">        - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">        - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs for training</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="CNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.CNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
+<span class="sd">            - arch_params[&quot;feature_size&quot;] (int): number of input features.</span>
+<span class="sd">            - arch_params[&quot;filter_num&quot;] (int): number of filters in the first CNN block (it is doubled in each block)</span>
+<span class="sd">            - arch_params[&quot;kernel_v&quot;] (int): vertical kernel size</span>
+<span class="sd">            - arch_params[&quot;kernel_h&quot;] (int): horizontal kernel size</span>
+<span class="sd">            - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">            - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="n">h_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">filter_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;filter_num&quot;</span><span class="p">]</span>
+        <span class="n">kernel_v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;kernel_v&quot;</span><span class="p">]</span>
+        <span class="n">kernel_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;kernel_h&quot;</span><span class="p">]</span>
+        <span class="n">out_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;out_size&quot;</span><span class="p">]</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">)</span>
+
+        <span class="c1"># define output activation function</span>
+        <span class="k">if</span> <span class="n">out_size</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;softmax&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;sparse_categorical_crossentropy&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if out_size == 2, change it to 1, since it&#39;s a binary problem</span>
+            <span class="n">out_size</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;sigmoid&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;binary_crossentropy&quot;</span>
+
+        <span class="c1"># calculate how many times the input can be divided by 2</span>
+        <span class="n">block_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">([</span><span class="n">v_size</span><span class="p">,</span> <span class="n">h_size</span><span class="p">])))</span>
+
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">v_size</span><span class="p">,</span> <span class="n">h_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">block_num</span><span class="p">):</span>
+            <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;conv_block&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="n">filter_num</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">,</span>
+                    <span class="s2">&quot;kernel_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">kernel_v</span><span class="p">,</span> <span class="n">kernel_h</span><span class="p">),</span>
+                    <span class="s2">&quot;downsample&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;global_avg_pooling&quot;</span><span class="p">})</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flatten&quot;</span><span class="p">})</span>
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">out_size</span><span class="p">,</span>
+                <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">out_activation</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">compile_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">metric</span><span class="p">]})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="CNN.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.CNN.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="RNN"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RNN">[docs]</a><span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Classification model based on a RNN architecture.</span>
+<span class="sd">    Inherits from DLSupervisedModel</span>
+
+<span class="sd">    Redefines the following methods:</span>
+<span class="sd">        - init_arch</span>
+<span class="sd">        - parse_fit_logging</span>
+<span class="sd">        - parse_predict_logging</span>
+
+<span class="sd">    Requires the following values in arch_params:</span>
+<span class="sd">        - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
+<span class="sd">        - arch_params[&quot;overlap&quot;] (int): Number of time steps to overlap between windows.</span>
+<span class="sd">        - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">        - arch_params[&quot;h_size&quot;] (int): The number of units in lstm layer.</span>
+<span class="sd">        - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">        - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+
+<span class="sd">    Requires the following values in train_params (for fit method):</span>
+<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training</span>
+<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs for training</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;time_size&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="RNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+
+<span class="sd">        Introduces the following necessary values in arch_params:</span>
+<span class="sd">            - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
+<span class="sd">            - arch_params[&quot;h_size&quot;] (int): The number of units in lstm layer.</span>
+<span class="sd">            - arch_params[&quot;out_size&quot;] (int): The number of output classes.</span>
+<span class="sd">            - arch_params[&quot;metric&quot;] (str): The metric to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">feature_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;feature_size&quot;</span><span class="p">]</span>
+        <span class="n">h_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;h_size&quot;</span><span class="p">]</span>
+        <span class="n">out_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;out_size&quot;</span><span class="p">]</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">)</span>
+
+        <span class="c1"># define output activation function</span>
+        <span class="k">if</span> <span class="n">out_size</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;softmax&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;sparse_categorical_crossentropy&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if out_size == 2, change it to 1, since it&#39;s a binary problem</span>
+            <span class="n">out_size</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">out_activation</span> <span class="o">=</span> <span class="s2">&quot;sigmoid&quot;</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;binary_crossentropy&quot;</span>
+
+        <span class="n">layers_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;input_layer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;input_shape&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">feature_size</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;lstm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">h_size</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">layers_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">out_size</span><span class="p">,</span> <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">out_activation</span><span class="p">})</span>
+        <span class="n">compile_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">compile_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">metric</span><span class="p">]})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras_wrapper</span><span class="o">.</span><span class="n">KerasNet</span><span class="p">(</span><span class="n">layers_list</span><span class="p">,</span> <span class="n">compile_kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chckpt_filepath</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="RNN.parse_fit_logging"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RNN.parse_fit_logging">[docs]</a>    <span class="k">def</span> <span class="nf">parse_fit_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_fit_logging</span><span class="p">(</span><span class="n">log_filepath</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

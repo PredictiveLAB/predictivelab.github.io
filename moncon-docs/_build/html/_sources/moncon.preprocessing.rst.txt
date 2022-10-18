@@ -1,0 +1,62 @@
+moncon.preprocessing package
+============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   moncon.preprocessing.nan
+   moncon.preprocessing.parameter_extraction
+
+Submodules
+----------
+
+moncon.preprocessing.base\_preprocess module
+--------------------------------------------
+
+.. automodule:: moncon.preprocessing.base_preprocess
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.preprocessing.filters module
+-----------------------------------
+
+.. automodule:: moncon.preprocessing.filters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.preprocessing.methods module
+-----------------------------------
+
+.. automodule:: moncon.preprocessing.methods
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.preprocessing.parameter\_reduction module
+------------------------------------------------
+
+.. automodule:: moncon.preprocessing.parameter_reduction
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+moncon.preprocessing.scaling module
+-----------------------------------
+
+.. automodule:: moncon.preprocessing.scaling
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: moncon.preprocessing
+   :members:
+   :undoc-members:
+   :show-inheritance:

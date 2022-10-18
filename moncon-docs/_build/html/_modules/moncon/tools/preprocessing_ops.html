@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.tools.preprocessing_ops &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>moncon.tools.preprocessing_ops</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for moncon.tools.preprocessing_ops</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">moncon.errors</span> <span class="kn">import</span> <span class="n">Errors</span>
+
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.nan.fill_nan</span> <span class="kn">import</span> <span class="n">FillNan</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.nan.drop_nan</span> <span class="kn">import</span> <span class="n">DropNan</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.parameter_reduction</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AutoPCA</span><span class="p">,</span>
+    <span class="n">AutoKernelPCA</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.scaling</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MinMaxScaling</span><span class="p">,</span> 
+    <span class="n">StandardScaling</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.filters</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">OutlierRemoval</span><span class="p">,</span>
+    <span class="n">DeleteTransient</span><span class="p">,</span>
+    <span class="n">DeleteInterpolated</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.parameter_extraction.combined_extraction</span> <span class="kn">import</span> <span class="n">CombinedExtraction</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.parameter_extraction.temporary_domain</span> <span class="kn">import</span> <span class="n">TemporaryDomain</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.parameter_extraction.fourier_transform</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BandFourier</span><span class="p">,</span>
+    <span class="n">SimpleFourier</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">moncon.preprocessing.methods</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Correlation</span><span class="p">,</span>
+    <span class="n">HeatMap</span><span class="p">,</span>
+    <span class="n">MovingAverage</span><span class="p">,</span>
+    <span class="n">StopFilterMov</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="init_preprocess"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.init_preprocess">[docs]</a><span class="k">def</span> <span class="nf">init_preprocess</span><span class="p">(</span><span class="n">preprocess_name</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">p_name</span> <span class="o">=</span> <span class="n">preprocess_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">preprocess_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">preprocess_params</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;drop nans&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">DropNan</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;fill nans&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">FillNan</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;auto pca&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">AutoPCA</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;auto-kernel pca&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">AutoKernelPCA</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;temporary domain&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">TemporaryDomain</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;band fourier&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">BandFourier</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;combined extraction&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">CombinedExtraction</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;simple fourier&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">SimpleFourier</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;correlation&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">Correlation</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;heat-map&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">HeatMap</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;delete transient&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">DeleteTransient</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;delete interpolated&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">DeleteInterpolated</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;moving average&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">MovingAverage</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;stop filter mov&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">StopFilterMov</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;minmax scaling&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">MinMaxScaling</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;standard scaling&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">StandardScaling</span>
+    <span class="k">elif</span> <span class="n">p_name</span> <span class="o">==</span> <span class="s2">&quot;outlier removal&quot;</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">OutlierRemoval</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Errors</span><span class="o">.</span><span class="n">WRONG_PREPROCESS</span><span class="si">}</span><span class="s2"> (preprocess_name=&#39;</span><span class="si">{</span><span class="n">preprocess_name</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">preprocess</span><span class="p">(</span>
+        <span class="n">preprocess_params</span><span class="o">=</span><span class="n">preprocess_params</span><span class="p">,</span>
+        <span class="n">chckpt_filepath</span><span class="o">=</span><span class="n">chckpt_filepath</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_prerprocess_path"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.get_prerprocess_path">[docs]</a><span class="k">def</span> <span class="nf">get_prerprocess_path</span><span class="p">(</span><span class="n">model_chckpt_filepath</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">model_chckpt_filepath</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;preprocess-</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="analyze"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.analyze">[docs]</a><span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="n">preprocess_names</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">cls_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">cls_results</span><span class="p">:</span>
+        <span class="n">class_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classes</span>
+        <span class="p">}</span>
+
+    <span class="n">results</span><span class="p">,</span> <span class="n">class_results</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">prep_name</span> <span class="ow">in</span> <span class="n">preprocess_names</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">init_preprocess</span><span class="p">(</span><span class="n">preprocess_name</span><span class="o">=</span><span class="n">prep_name</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="o">=</span><span class="n">preprocess_params</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">prep_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span> <span class="n">y_labels</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cls_results</span><span class="p">:</span>
+            <span class="n">class_results</span><span class="p">[</span><span class="n">prep_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">preprocess</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">class_data</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classes</span>
+            <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">classes</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">class_results</span></div>
+
+
+<div class="viewcode-block" id="analyze_tsreport"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.analyze_tsreport">[docs]</a><span class="k">def</span> <span class="nf">analyze_tsreport</span><span class="p">(</span><span class="n">preprocess_names</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="p">,</span> <span class="n">datareport</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">datareport</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">prep_name</span> <span class="ow">in</span> <span class="n">preprocess_names</span><span class="p">:</span>
+        <span class="n">preprocess</span> <span class="o">=</span> <span class="n">init_preprocess</span><span class="p">(</span>
+            <span class="n">preprocess_name</span><span class="o">=</span><span class="n">prep_name</span><span class="p">,</span> <span class="n">preprocess_params</span><span class="o">=</span><span class="n">preprocess_params</span>
+        <span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">prep_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="fit_transform"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.fit_transform">[docs]</a><span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">prep_idx</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">model_chckpt_filepath</span><span class="p">,</span> <span class="n">txt_log</span><span class="p">):</span>
+    <span class="n">txt_log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Training the Preprocess Method...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">txt_log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Preprocessing Data...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">preprocess</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">get_prerprocess_path</span><span class="p">(</span><span class="n">model_chckpt_filepath</span><span class="p">,</span> <span class="n">prep_idx</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">txt_log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Data Preprocessed</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span></div>
+
+
+<div class="viewcode-block" id="valid_transform"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.valid_transform">[docs]</a><span class="k">def</span> <span class="nf">valid_transform</span><span class="p">(</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">log_file</span><span class="p">):</span>
+    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Preprocessing Data...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">preprocess</span><span class="o">.</span><span class="n">transform_xy</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Data Preprocessed</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span></div>
+
+
+<div class="viewcode-block" id="test_transform"><a class="viewcode-back" href="../../../moncon.tools.html#moncon.tools.preprocessing_ops.test_transform">[docs]</a><span class="k">def</span> <span class="nf">test_transform</span><span class="p">(</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">log_file</span><span class="p">):</span>
+    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Preprocessing Data...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">preprocess</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Data Preprocessed</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

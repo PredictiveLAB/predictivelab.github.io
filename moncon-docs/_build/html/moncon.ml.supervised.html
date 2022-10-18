@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moncon.ml.supervised package &mdash; PredictiveLab 0.9.38 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PredictiveLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">moncon.ml.supervised package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-moncon.ml.supervised.mlp">moncon.ml.supervised.mlp module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP.fit"><code class="docutils literal notranslate"><span class="pre">MLP.fit()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP.init_arch"><code class="docutils literal notranslate"><span class="pre">MLP.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_fit_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP.parse_predict_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_predict_logging()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.mlp.MLP.predict"><code class="docutils literal notranslate"><span class="pre">MLP.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml.supervised.models">moncon.ml.supervised.models module</a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.CNN"><code class="docutils literal notranslate"><span class="pre">CNN</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.CNN.init_arch"><code class="docutils literal notranslate"><span class="pre">CNN.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.CNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">CNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.GradientBoostingCls"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.GradientBoostingCls.init_arch"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.GradientBoostingCls.model_score"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.model_score()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.GradientBoostingCls.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">GradientBoostingCls.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.MLP.init_arch"><code class="docutils literal notranslate"><span class="pre">MLP.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.MLP.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">MLP.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RNN"><code class="docutils literal notranslate"><span class="pre">RNN</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RNN.init_arch"><code class="docutils literal notranslate"><span class="pre">RNN.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RNN.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">RNN.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RandomForestCls"><code class="docutils literal notranslate"><span class="pre">RandomForestCls</span></code></a><ul>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RandomForestCls.init_arch"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.init_arch()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RandomForestCls.model_score"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.model_score()</span></code></a></li>
+<li><a class="reference internal" href="#moncon.ml.supervised.models.RandomForestCls.parse_fit_logging"><code class="docutils literal notranslate"><span class="pre">RandomForestCls.parse_fit_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-moncon.ml.supervised">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PredictiveLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>moncon.ml.supervised package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/moncon.ml.supervised.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="moncon-ml-supervised-package">
+<h1>moncon.ml.supervised package<a class="headerlink" href="#moncon-ml-supervised-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-moncon.ml.supervised.mlp">
+<span id="moncon-ml-supervised-mlp-module"></span><h2>moncon.ml.supervised.mlp module<a class="headerlink" href="#module-moncon.ml.supervised.mlp" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.mlp.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.BaseArch" title="moncon.ml.base_arch.BaseArch"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArch</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_chckpt_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures to fit their internal model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>X_train (np.ndarray): Input training data
+y_train (np.ndarray): Label training data
+X_valid (np.ndarray): Input validation data
+y_valid (np.ndarray): Label validation data
+train_params (Dict[str, Any]): Dictionary with parameters necessary for training
+out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved
+log_filepath (str): Path to the log file used to log training progress
+metrics (List[str]): List of metrics to be used for training</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures to initialize their internal ML model.</p>
+<p>Initialize model by loading it from a checkpoint file, or by
+creating a new one with the parameters specified in arch_params</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP.parse_predict_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_predict_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP.parse_predict_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP.parse_predict_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.mlp.MLP.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/mlp.html#MLP.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.mlp.MLP.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method for all ML architectures use their internal model to predict on data.
+Returns the predicted values and the result of their aggregation (using ‘aggregate’ method).
+Timestamps are only used while logging.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (np.ndarray): Input data
+timestamps (pd.Series): Timestamps of the input data
+aggregation (str): Aggregation method to be used for prediction
+log_filepath (str): Path to the log file used to log prediction progress</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[np.ndarray, np.ndarray]: Tuple with predicted values and aggregated values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml.supervised.models">
+<span id="moncon-ml-supervised-models-module"></span><h2>moncon.ml.supervised.models module<a class="headerlink" href="#module-moncon.ml.supervised.models" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Defines models based on 2 sklearn’s supervised classifier models:</dt><dd><ol class="arabic simple">
+<li><p>RandomForestClassifier</p></li>
+<li><p>GradientBoostingClassifier</p></li>
+</ol>
+</dd>
+</dl>
+<p>All models inherits from SklearnSupervisedModel</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.CNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.models.</span></span><span class="sig-name descname"><span class="pre">CNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#CNN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.CNN" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel" title="moncon.ml.base_arch.DLSupervisedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DLSupervisedModel</span></code></a></p>
+<p>Classification model based on a CNN architecture.
+Inherits from DLSupervisedModel</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“time_size”] (int): Number of time steps in the input to use in each window.</p></li>
+<li><p>arch_params[“overlap”] (int): Number of time steps to overlap between windows.</p></li>
+<li><p>arch_params[“feature_size”] (int): number of input features.</p></li>
+<li><p>arch_params[“filter_num”] (int): number of filters in the first CNN block (it is doubled in each block)</p></li>
+<li><p>arch_params[“kernel_v”] (int): vertical kernel size</p></li>
+<li><p>arch_params[“kernel_h”] (int): horizontal kernel size</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“batch_size”] (int): Batch size for training</p></li>
+<li><p>train_params[“epochs”] (int): Number of epochs for training</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.CNN.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#CNN.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.CNN.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“time_size”] (int): Number of time steps in the input to use in each window.</p></li>
+<li><p>arch_params[“feature_size”] (int): number of input features.</p></li>
+<li><p>arch_params[“filter_num”] (int): number of filters in the first CNN block (it is doubled in each block)</p></li>
+<li><p>arch_params[“kernel_v”] (int): vertical kernel size</p></li>
+<li><p>arch_params[“kernel_h”] (int): horizontal kernel size</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.CNN.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#CNN.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.CNN.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.GradientBoostingCls">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.models.</span></span><span class="sig-name descname"><span class="pre">GradientBoostingCls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#GradientBoostingCls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.GradientBoostingCls" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel" title="moncon.ml.base_arch.SklearnSupervisedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnSupervisedModel</span></code></a></p>
+<p>XGBoost Classifier model.
+Inherits from SklearnSupervisedModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.GradientBoostingCls.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#GradientBoostingCls.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.GradientBoostingCls.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the XGBoost model.
+Introduces the following values in arch_params:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“n_estimators”] (int): The number of trees in the forest.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“max_depth”] (int): The maximum depth of the tree.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“eta”] (float): The learning rate.</dt><dd><p>Range is (0, 1).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“lambda”] (float): The L2 regularization term.</dt><dd><p>Range is (0, inf).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.GradientBoostingCls.model_score">
+<span class="sig-name descname"><span class="pre">model_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#GradientBoostingCls.model_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.GradientBoostingCls.model_score" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.GradientBoostingCls.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#GradientBoostingCls.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.GradientBoostingCls.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.MLP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.models.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#MLP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.MLP" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel" title="moncon.ml.base_arch.DLSupervisedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DLSupervisedModel</span></code></a></p>
+<p>Classification model based on a MLP architecture.
+Inherits from DLSupervisedModel</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“h_num”] (int): The number of hidden layers.</p></li>
+<li><p>arch_params[“h_size”] (int): The number of units in each hidden layer.</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“batch_size”] (int): Batch size for training</p></li>
+<li><p>train_params[“epochs”] (int): Number of epochs for training</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.MLP.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#MLP.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.MLP.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“h_num”] (int): The number of hidden layers.</p></li>
+<li><p>arch_params[“h_size”] (int): The number of units in each hidden layer.</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.MLP.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#MLP.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.MLP.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RNN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.models.</span></span><span class="sig-name descname"><span class="pre">RNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RNN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RNN" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel" title="moncon.ml.base_arch.DLSupervisedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DLSupervisedModel</span></code></a></p>
+<p>Classification model based on a RNN architecture.
+Inherits from DLSupervisedModel</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“time_size”] (int): Number of time steps in the input to use in each window.</p></li>
+<li><p>arch_params[“overlap”] (int): Number of time steps to overlap between windows.</p></li>
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“h_size”] (int): The number of units in lstm layer.</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+<dt>Requires the following values in train_params (for fit method):</dt><dd><ul class="simple">
+<li><p>train_params[“batch_size”] (int): Batch size for training</p></li>
+<li><p>train_params[“epochs”] (int): Number of epochs for training</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RNN.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RNN.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RNN.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the model architecture.</p>
+<dl class="simple">
+<dt>Introduces the following necessary values in arch_params:</dt><dd><ul class="simple">
+<li><p>arch_params[“feature_size”] (int): The number of input features.</p></li>
+<li><p>arch_params[“h_size”] (int): The number of units in lstm layer.</p></li>
+<li><p>arch_params[“out_size”] (int): The number of output classes.</p></li>
+<li><p>arch_params[“metric”] (str): The metric to use.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RNN.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RNN.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RNN.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RandomForestCls">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.ml.supervised.models.</span></span><span class="sig-name descname"><span class="pre">RandomForestCls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RandomForestCls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RandomForestCls" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel" title="moncon.ml.base_arch.SklearnSupervisedModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnSupervisedModel</span></code></a></p>
+<p>Random Forest Classifier model.
+Inherits from SklearnSupervisedModel.</p>
+<dl class="simple">
+<dt>Redefines the following methods:</dt><dd><ul class="simple">
+<li><p>init_arch</p></li>
+<li><p>parse_fit_logging</p></li>
+<li><p>parse_predict_logging</p></li>
+<li><p>model_score</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RandomForestCls.init_arch">
+<span class="sig-name descname"><span class="pre">init_arch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RandomForestCls.init_arch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RandomForestCls.init_arch" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the Random Forest model.
+Introduces the following values in arch_params:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>arch_params[“n_estimators”] (int): The number of trees in the forest.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“max_depth”] (int): The maximum depth of the tree.</dt><dd><p>Range is (1, inf).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arch_params[“min_samples_split”] (int): The minimum number of samples required to split an internal node.</dt><dd><p>Range is (2, inf).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RandomForestCls.model_score">
+<span class="sig-name descname"><span class="pre">model_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RandomForestCls.model_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RandomForestCls.model_score" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moncon.ml.supervised.models.RandomForestCls.parse_fit_logging">
+<span class="sig-name descname"><span class="pre">parse_fit_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/ml/supervised/models.html#RandomForestCls.parse_fit_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.ml.supervised.models.RandomForestCls.parse_fit_logging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-moncon.ml.supervised">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-moncon.ml.supervised" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, PredictiveLab Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
