@@ -104,9 +104,9 @@
 
 <span class="sd">    Classes that inherit from this class are:</span>
 <span class="sd">    </span>
-<span class="sd">    - :class:`moncon.ml.base_arch.SklearnSupervisedModel`</span>
-<span class="sd">    - :class:`moncon.ml.base_arch.DLSupervisedModel`</span>
-<span class="sd">    - :class:`moncon.ml.base_arch.BaseAnomalyModel`</span>
+<span class="sd">    :class:`moncon.ml.base_arch.SklearnSupervisedModel`</span>
+<span class="sd">    :class:`moncon.ml.base_arch.DLSupervisedModel`</span>
+<span class="sd">    :class:`moncon.ml.base_arch.BaseAnomalyModel`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -440,8 +440,8 @@
 <span class="sd">    </span>
 <span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    - :class:`moncon.ml.supervised.models.RandomForestCls`</span>
-<span class="sd">    - :class:`moncon.ml.supervised.models.GradientBoostingCls`</span>
+<span class="sd">    :class:`moncon.ml.supervised.models.RandomForestCls`</span>
+<span class="sd">    :class:`moncon.ml.supervised.models.GradientBoostingCls`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -680,9 +680,9 @@
 
 <span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    - :class:`moncon.ml.supervised.models.MLP`</span>
-<span class="sd">    - :class:`moncon.ml.supervised.models.CNN`</span>
-<span class="sd">    - :class:`moncon.ml.supervised.models.RNN`</span>
+<span class="sd">    :class:`moncon.ml.supervised.models.MLP`</span>
+<span class="sd">    :class:`moncon.ml.supervised.models.CNN`</span>
+<span class="sd">    :class:`moncon.ml.supervised.models.RNN`</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        use_split_windows (bool): Whether to use the method split windows or not,</span>
@@ -834,8 +834,8 @@
 
 <span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    - :class:`moncon.ml.base_arch.AutoEncoderModel`</span>
-<span class="sd">    - :class:`moncon.ml.base_arch.SklearnAnomalyModel`</span>
+<span class="sd">    :class:`moncon.ml.base_arch.AutoEncoderModel`</span>
+<span class="sd">    :class:`moncon.ml.base_arch.SklearnAnomalyModel`</span>
 
 <span class="sd">    Anomaly detection models output a KPI from 0 to 1 similar to a</span>
 <span class="sd">    probability of a sample being an anomaly, this is determined by a</span>
@@ -972,9 +972,9 @@
 <span class="sd">    </span>
 <span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoMLP`</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoCNN`</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoRNN`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.autoencoder.AutoMLP`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.autoencoder.AutoCNN`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.autoencoder.AutoRNN`</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        arch_params (Dict[str, Any]): Dictionary with parameters necessary for initialize the architecture.</span>
@@ -1176,10 +1176,11 @@
     <span class="sd">&quot;&quot;&quot;Base class for all Sklearn Anomaly (or Novelty) detection models.</span>
 <span class="sd">    </span>
 <span class="sd">    Classes that inherit from this class are:</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.IsolationForestAnomalyModel`</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.EllipticEnvelopeAnomalyModel`</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.LocalOutlierFactorAnomalyModel`</span>
-<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.OneClassSVMAnomalyModel`</span>
+<span class="sd">    </span>
+<span class="sd">    :class:`moncon.ml.unsupervised.anomaly_model.IsolationForestAnomalyModel`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.anomaly_model.EllipticEnvelopeAnomalyModel`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.anomaly_model.LocalOutlierFactorAnomalyModel`</span>
+<span class="sd">    :class:`moncon.ml.unsupervised.anomaly_model.OneClassSVMAnomalyModel`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
