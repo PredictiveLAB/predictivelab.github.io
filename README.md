@@ -1,2 +1,3 @@
-# [PredictiveLAB.github.io](https://predictivelab.github.io/)
-PredictiveLAB website
+# PredictiveLAB doc pages:
+- [moncon package](/moncon-docs)
+- [predictive-builder app](/predictive-builder-docs)
