@@ -36,8 +36,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../moncon.html">moncon package</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -100,9 +103,10 @@
 <span class="sd">        - save and load learned parameters and models</span>
 
 <span class="sd">    Classes that inherit from this class are:</span>
-<span class="sd">        - SklearnSupervisedModel</span>
-<span class="sd">        - DLSupervisedModel</span>
-<span class="sd">        - BaseAnomalyModel</span>
+<span class="sd">    </span>
+<span class="sd">    - :class:`moncon.ml.base_arch.SklearnSupervisedModel`</span>
+<span class="sd">    - :class:`moncon.ml.base_arch.DLSupervisedModel`</span>
+<span class="sd">    - :class:`moncon.ml.base_arch.BaseAnomalyModel`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -433,15 +437,11 @@
 
 <div class="viewcode-block" id="SklearnSupervisedModel"><a class="viewcode-back" href="../../../moncon.ml.html#moncon.ml.base_arch.SklearnSupervisedModel">[docs]</a><span class="k">class</span> <span class="nc">SklearnSupervisedModel</span><span class="p">(</span><span class="n">BaseArch</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all Sklearn supervised models.</span>
-<span class="sd">    Inherits from BaseAnomalyModel. Classes that inherit from this class are:</span>
-<span class="sd">        - RandomForestCls</span>
-<span class="sd">        - XGBoostCls</span>
+<span class="sd">    </span>
+<span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    Defines the methods that are common to all Sklearn supervised architectures, which are:</span>
-<span class="sd">        - load_model</span>
-<span class="sd">        - save_model</span>
-<span class="sd">        - fit</span>
-<span class="sd">        - predict</span>
+<span class="sd">    - :class:`moncon.ml.supervised.models.RandomForestCls`</span>
+<span class="sd">    - :class:`moncon.ml.supervised.models.GradientBoostingCls`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -489,8 +489,6 @@
 <span class="sd">            out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved</span>
 <span class="sd">            log_filepath (str): Path to the log file used to log training progress</span>
 <span class="sd">            metrics (List[str]): List of metrics to be used for training</span>
-
-<span class="sd">        *Note: Right now the metrics and log_filepath are not used for training.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Train the model</span>
@@ -581,16 +579,18 @@
         <span class="n">search_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Random search method for Sklearn Supervised models.</span>
+<span class="sd">        </span>
 <span class="sd">        Currently loads the data from the given csv file, loads standard parameters if not given,</span>
 <span class="sd">        and performs a random searchCV for the given parameters.</span>
-
-<span class="sd">        Note: As it uses CV, it may not make sense to use this method for time series data.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data_csv_path (str): Path to the csv file containing the data to be used for training</span>
 <span class="sd">            grid_search_params (Dict[str, Any]): Parameters to be used for the random search</span>
 <span class="sd">            scoring (str): Scoring method to be used for the random search</span>
 <span class="sd">            grid_params (Dict[str, Any]): Parameters to be used for the random search</span>
+<span class="sd">        </span>
+<span class="sd">        Note:</span>
+<span class="sd">            As it uses CV, it may not make sense to use this method for time series data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># load the dataset</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_csv_path</span><span class="p">)</span>
@@ -677,26 +677,20 @@
 
 <div class="viewcode-block" id="DLSupervisedModel"><a class="viewcode-back" href="../../../moncon.ml.html#moncon.ml.base_arch.DLSupervisedModel">[docs]</a><span class="k">class</span> <span class="nc">DLSupervisedModel</span><span class="p">(</span><span class="n">BaseArch</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all supervised Deep Learning architectures.</span>
-<span class="sd">    Inherits from BaseArch. Classes  that inherit from this class are:</span>
-<span class="sd">        - MLP</span>
-<span class="sd">        - CNN</span>
-<span class="sd">        - RNN</span>
 
-<span class="sd">    Defines the methods that are common to all supervised ML architectures, which are:</span>
-<span class="sd">        - fit</span>
-<span class="sd">        - predict</span>
+<span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    Introduces the following necessary values in train_params:</span>
-<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training</span>
-<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs for training</span>
+<span class="sd">    - :class:`moncon.ml.supervised.models.MLP`</span>
+<span class="sd">    - :class:`moncon.ml.supervised.models.CNN`</span>
+<span class="sd">    - :class:`moncon.ml.supervised.models.RNN`</span>
 
-<span class="sd">    Introduces the following instance attributes to be filled by the child classes:</span>
-<span class="sd">        - self.use_split_windows (bool): Whether to use the method split windows or not,</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        use_split_windows (bool): Whether to use the method split windows or not,</span>
 <span class="sd">            used to split the data set into an array of windows (matrices) before entering</span>
 <span class="sd">            the model; used by the child classes CNN and RNN</span>
-<span class="sd">        - self.windows_size (int): Size of the windows to be split into</span>
+<span class="sd">        windows_size (int): Size of the windows to be split into</span>
 <span class="sd">            (only used if use_split_windows is True)</span>
-<span class="sd">        - self.overlap (int): Overlap size to use when splitting the data set into windows</span>
+<span class="sd">        overlap (int): Overlap size to use when splitting the data set into windows</span>
 <span class="sd">            (only used if use_split_windows is True)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -721,12 +715,9 @@
         <span class="n">metrics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit method for supervised Deep Learning architectures.</span>
+<span class="sd">        </span>
 <span class="sd">        Fits the internal model with the given data and parameters,</span>
 <span class="sd">        and saves the model to the given checkpoint file.</span>
-
-<span class="sd">        train_params must contain the following values:</span>
-<span class="sd">            - train_params[&quot;batch_size&quot;] (int): Batch size for training</span>
-<span class="sd">            - train_params[&quot;epochs&quot;] (int): Number of epochs for training</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            X_train (pd.DataFrame): Training data</span>
@@ -734,6 +725,9 @@
 <span class="sd">            X_valid (pd.DataFrame): Validation data</span>
 <span class="sd">            y_valid (pd.Series): Validation labels</span>
 <span class="sd">            train_params (Dict[str, Any]): Dictionary with parameters necessary for training</span>
+<span class="sd">                Following parameters are expected:</span>
+<span class="sd">                    ``train_params[&quot;batch_size&quot;] (int)``: Batch size for training</span>
+<span class="sd">                    ``train_params[&quot;epochs&quot;] (int)``: Number of epochs for training</span>
 <span class="sd">            out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved</span>
 <span class="sd">            log_filepath (str): Path to the log file used to log training progress</span>
 <span class="sd">            metrics (List[str]): List of metrics to be used for training</span>
@@ -837,9 +831,11 @@
 
 <div class="viewcode-block" id="BaseAnomalyModel"><a class="viewcode-back" href="../../../moncon.ml.html#moncon.ml.base_arch.BaseAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">BaseAnomalyModel</span><span class="p">(</span><span class="n">BaseArch</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all anomaly detection (or novelty detection) ML architectures.</span>
-<span class="sd">    Inherits from BaseArch. Classes that inherit from this class are:</span>
-<span class="sd">        - AutoEncoderModel</span>
-<span class="sd">        - SklearnAnomalyModel</span>
+
+<span class="sd">    Classes that inherit from this class are:</span>
+
+<span class="sd">    - :class:`moncon.ml.base_arch.AutoEncoderModel`</span>
+<span class="sd">    - :class:`moncon.ml.base_arch.SklearnAnomalyModel`</span>
 
 <span class="sd">    Anomaly detection models output a KPI from 0 to 1 similar to a</span>
 <span class="sd">    probability of a sample being an anomaly, this is determined by a</span>
@@ -849,24 +845,17 @@
 <span class="sd">    Currently, the KPI is set to be KPI_DIST_0 or more for anomalies, which can be</span>
 <span class="sd">    used to calculate the &quot;b&quot; constant for the lineal transformation.</span>
 
-<span class="sd">    Defines the methods that are common to all anomaly detection ML architectures, which are:</span>
-<span class="sd">        - output_kpi</span>
-<span class="sd">        - set_save_min_max_train_dist</span>
-<span class="sd">        - scale_distance</span>
-<span class="sd">        - save_scale_params</span>
-<span class="sd">        - load_scale_params</span>
+<span class="sd">    Args:</span>
+<span class="sd">        arch_params (Dict[str, Any]): Dictionary with parameters necessary for initialize the architecture.</span>
+<span class="sd">            Following parameters are expected:</span>
+<span class="sd">                ``arch_params[&quot;slope_coef&quot;]``: Slope (or scale) factor for KPI calculation, defines how quickly the KPI grows</span>
+<span class="sd">        chckpt_filepath (str): Path to the pretrained model to be load       </span>
 
-<span class="sd">    Introduces the following necessary values in arch_params:</span>
-<span class="sd">        - arch_params[&quot;slope_coef&quot;]: Slope (or scale) factor for KPI calculation,</span>
-<span class="sd">            defines how quickly the KPI grows</span>
-
-<span class="sd">    Introduces the following class constants:</span>
-<span class="sd">        - KPI_DIST_0 (float): Maximum KPI for a training sample to be considered as normal</span>
-
-<span class="sd">    Introduces the following instance attributes:</span>
-<span class="sd">        - self.slope_coef (float): Slope (or scale) factor for KPI calculation</span>
-<span class="sd">        - self.max_train_dist (float): Maximum model&#39;s distance metric value for training data</span>
-<span class="sd">        - self.min_train_dist (float): Minimum model&#39;s distance metric value for training data</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        KPI_DIST_0 (float): Maximum KPI for a training sample to be considered as normal</span>
+<span class="sd">        slope_coef (float): Slope (or scale) factor for KPI calculation</span>
+<span class="sd">        max_train_dist (float): Maximum model&#39;s distance metric value for training data</span>
+<span class="sd">        min_train_dist (float): Minimum model&#39;s distance metric value for training data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># KPI set to be KPI_DIST_0 or more for anomalies</span>
@@ -980,31 +969,25 @@
 
 <div class="viewcode-block" id="AutoEncoderModel"><a class="viewcode-back" href="../../../moncon.ml.html#moncon.ml.base_arch.AutoEncoderModel">[docs]</a><span class="k">class</span> <span class="nc">AutoEncoderModel</span><span class="p">(</span><span class="n">BaseAnomalyModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all AutoEncoder Deep Learning architectures.</span>
-<span class="sd">    Inherits from BaseAnomalyModel. Classes that inherit from this class are:</span>
-<span class="sd">        - AutoMLP</span>
-<span class="sd">        - AutoCNN</span>
-<span class="sd">        - AutoRNN</span>
+<span class="sd">    </span>
+<span class="sd">    Classes that inherit from this class are:</span>
 
-<span class="sd">    Defines the methods that are common to all AutoEncoder DL architectures, which are:</span>
-<span class="sd">        - mean_squared_error (static method)</span>
-<span class="sd">        - fit</span>
-<span class="sd">        - predict</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoMLP`</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoCNN`</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.autoencoder.AutoRNN`</span>
 
-<span class="sd">    Introduces the following necessary values in arch_params:</span>
-<span class="sd">        - arch_params[&quot;contamination&quot;] (float): Proportion of outliers in the data set</span>
+<span class="sd">    Args:</span>
+<span class="sd">        arch_params (Dict[str, Any]): Dictionary with parameters necessary for initialize the architecture.</span>
+<span class="sd">            Following parameters are expected:</span>
+<span class="sd">                ``arch_params[&quot;contamination&quot;] (float)``: Proportion of outliers in the data set</span>
+<span class="sd">        chckpt_filepath (str): Path to the pretrained model to be load </span>
 
-<span class="sd">    Introduces the following necessary values in train_params:</span>
-<span class="sd">        - train_params[&quot;epochs&quot;] (int): Number of epochs to train the model</span>
-<span class="sd">        - train_params[&quot;batch_size&quot;] (int): Batch size for training the model</span>
-
-<span class="sd">    Introduces the following instance attributes to be filled by the child classes:</span>
-<span class="sd">        - self.use_split_windows (bool): Whether to use the method split windows or not,</span>
-<span class="sd">            used to split the data set into an array of windows (matrices) before entering</span>
-<span class="sd">            the model; used by the child classes AutoCNN and AutoRNN</span>
-<span class="sd">        - self.windows_size (int): Size of the windows to be split into</span>
-<span class="sd">            (only used if use_split_windows is True)</span>
-<span class="sd">        - self.overlap (int): Overlap size to use when splitting the data set into windows</span>
-<span class="sd">            (only used if use_split_windows is True)</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        use_split_windows (bool): Whether to use the method split windows or not,</span>
+<span class="sd">            used to split the data set into an array of windows (matrices) before entering the model;</span>
+<span class="sd">            used by the child classes AutoCNN and AutoRNN</span>
+<span class="sd">        windows_size (int): Size of the windows to be split into (only used if use_split_windows is True)</span>
+<span class="sd">        overlap (int): Overlap size to use when splitting the data set into windows (only used if use_split_windows is True)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1037,21 +1020,21 @@
 <span class="sd">        Fits the internal model with the given data, by using the same input as the output; and</span>
 <span class="sd">        saves the model on the defined checkpoint file.</span>
 
-<span class="sd">        train_params must contain the following values:</span>
-<span class="sd">            - train_params[&quot;epochs&quot;] (int): Number of epochs to train the model</span>
-<span class="sd">            - train_params[&quot;batch_size&quot;] (int): Batch size for training the model</span>
-
 <span class="sd">        Args:</span>
 <span class="sd">            X_train (pd.DataFrame): Input data</span>
 <span class="sd">            y_train (pd.Series): Ignored for autoencoders, as the model is trained with the same input</span>
 <span class="sd">            X_valid (pd.DataFrame): Ignored for unsupervised models</span>
 <span class="sd">            y_valid (pd.Series): Ignored for unsupervised models</span>
-<span class="sd">            train_params (Dict[str, Any]): Dictionary with parameters necessary for training</span>
+<span class="sd">            train_params (Dict[str, Any]): Dictionary with parameters necessary for training.</span>
+<span class="sd">                Following parameters are expected:</span>
+<span class="sd">                    ``train_params[&quot;epochs&quot;] (int)``: Number of epochs to train the model</span>
+<span class="sd">                    ``train_params[&quot;batch_size&quot;] (int)``: Batch size for training the model</span>
 <span class="sd">            out_chckpt_filepath (str): Path to the checkpoint file where the model will be saved</span>
 <span class="sd">            log_filepath (str): Path to the log file used to log training progress</span>
 <span class="sd">            metrics (List[str]): List of metrics to be used for training</span>
 
-<span class="sd">        *Note: Right now the metrics are not used for training.</span>
+<span class="sd">        Note:</span>
+<span class="sd">            Right now the metrics are not used for training.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">epochs</span> <span class="o">=</span> <span class="n">train_params</span><span class="p">[</span><span class="s2">&quot;epochs&quot;</span><span class="p">]</span>
@@ -1060,12 +1043,13 @@
         <span class="c1"># split the data into windows</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span><span class="p">:</span>
             <span class="n">X_train_array</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_windows</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="p">)</span>
-            <span class="n">X_valid_array</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">X_valid_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_windows</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span><span class="p">)</span>
+            <span class="n">X_valid_array</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">X_valid_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_windows</span><span class="p">(</span>
+                <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">X_train_array</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">values</span>
             <span class="n">X_valid_array</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">values</span>
             <span class="n">X_valid_index</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">index</span>
-
 
         <span class="c1"># output (y) is the same x input</span>
         <span class="n">y_train_array</span> <span class="o">=</span> <span class="n">X_train_array</span>
@@ -1181,26 +1165,21 @@
                     <span class="n">parse</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="n">timestamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                     <span class="n">all_kpis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">parse</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="p">)))</span>
-        
+
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log_filepath</span><span class="si">}</span><span class="s2">.kpi.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">kpi_plot</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        
+
         <span class="k">return</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">all_kpis</span><span class="p">,</span> <span class="n">kpi_plot</span></div></div>
 
 
 <div class="viewcode-block" id="SklearnAnomalyModel"><a class="viewcode-back" href="../../../moncon.ml.html#moncon.ml.base_arch.SklearnAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">SklearnAnomalyModel</span><span class="p">(</span><span class="n">BaseAnomalyModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all Sklearn Anomaly (or Novelty) detection models.</span>
-<span class="sd">    Inherits from BaseAnomalyModel. Classes that inherit from this class are:</span>
-<span class="sd">        - IsolationForestAnomalyModel</span>
-<span class="sd">        - EllipticEnvelopeAnomalyModel</span>
-<span class="sd">        - LocalOutlierFactorAnomalyModel</span>
-<span class="sd">        - OneClassSVMAnomalyModel</span>
-
-<span class="sd">    Defines the methods that are common to all Sklearn Anomaly ML architectures, which are:</span>
-<span class="sd">        - load_model</span>
-<span class="sd">        - save_model</span>
-<span class="sd">        - fit</span>
-<span class="sd">        - predict</span>
+<span class="sd">    </span>
+<span class="sd">    Classes that inherit from this class are:</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.IsolationForestAnomalyModel`</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.EllipticEnvelopeAnomalyModel`</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.LocalOutlierFactorAnomalyModel`</span>
+<span class="sd">    - :class:`moncon.ml.unsupervised.anomaly_model.OneClassSVMAnomalyModel`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arch_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chckpt_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1388,7 +1367,7 @@
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log_filepath</span><span class="si">}</span><span class="s2">.kpi.html&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">kpi_plot</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        
+
         <span class="k">return</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">all_kpis</span><span class="p">,</span> <span class="n">kpi_plot</span></div></div>
 </pre></div>
 

@@ -19,7 +19,9 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="moncon.tools package" href="moncon.tools.html" />
+    <link rel="prev" title="moncon.preprocessing.nan package" href="moncon.preprocessing.nan.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,70 +39,34 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">moncon.preprocessing.parameter_extraction package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.combined_extraction">moncon.preprocessing.parameter_extraction.combined_extraction module</a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.analyze"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.fit_transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction.transform"><code class="docutils literal notranslate"><span class="pre">CombinedExtraction.transform()</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="moncon.html">moncon package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="moncon.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html">moncon.ml package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.pipelines.html">moncon.pipelines package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="moncon.preprocessing.html">moncon.preprocessing package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="moncon.preprocessing.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.base_preprocess">moncon.preprocessing.base_preprocess module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.filters">moncon.preprocessing.filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.methods">moncon.preprocessing.methods module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.parameter_reduction">moncon.preprocessing.parameter_reduction module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing.scaling">moncon.preprocessing.scaling module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="moncon.preprocessing.html#module-moncon.preprocessing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html">moncon.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon.errors">moncon.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon.plots">moncon.plots module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.fourier_transform">moncon.preprocessing.parameter_extraction.fourier_transform module</a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier"><code class="docutils literal notranslate"><span class="pre">BandFourier</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.analyze"><code class="docutils literal notranslate"><span class="pre">BandFourier.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.BandFourier.transform"><code class="docutils literal notranslate"><span class="pre">BandFourier.transform()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands"><code class="docutils literal notranslate"><span class="pre">Fourierbands</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.analyze"><code class="docutils literal notranslate"><span class="pre">Fourierbands.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.fit_transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.Fourierbands.transform"><code class="docutils literal notranslate"><span class="pre">Fourierbands.transform()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.analyze"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.fit_transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.HilbertEnvelope.transform"><code class="docutils literal notranslate"><span class="pre">HilbertEnvelope.transform()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier"><code class="docutils literal notranslate"><span class="pre">SimpleFourier</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.analyze"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.fit_transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.fourier_transform.SimpleFourier.transform"><code class="docutils literal notranslate"><span class="pre">SimpleFourier.transform()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction.temporary_domain">moncon.preprocessing.parameter_extraction.temporary_domain module</a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain</span></code></a><ul>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.analyze"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.analyze()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.features()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.fit_transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.fit_transform()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.get_box_plot_data"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.get_box_plot_data()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.output_procesable"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.output_procesable()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.time_features"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.time_features()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.preprocessing.parameter_extraction.temporary_domain.TemporaryDomain.transform"><code class="docutils literal notranslate"><span class="pre">TemporaryDomain.transform()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-moncon.preprocessing.parameter_extraction">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -115,6 +81,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="moncon.html">moncon package</a> &raquo;</li>
+          <li><a href="moncon.preprocessing.html">moncon.preprocessing package</a> &raquo;</li>
       <li>moncon.preprocessing.parameter_extraction package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/moncon.preprocessing.parameter_extraction.rst.txt" rel="nofollow"> View page source</a>
@@ -136,11 +104,11 @@
 <dt class="sig sig-object py" id="moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moncon.preprocessing.parameter_extraction.combined_extraction.</span></span><span class="sig-name descname"><span class="pre">CombinedExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocess_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chckpt_filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/preprocessing/parameter_extraction/combined_extraction.html#CombinedExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.preprocessing.parameter_extraction.combined_extraction.CombinedExtraction" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="moncon.preprocessing.html#moncon.preprocessing.base_preprocess.BasePreprocess" title="moncon.preprocessing.base_preprocess.BasePreprocess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePreprocess</span></code></a></p>
-<p>Preprocessing method that combines TemporaryDomain and BandFourier 
-by using different columns for each, and using the same parameters 
-“segment” and “overlap” for both. Input data is divided into two 
+<p>Preprocessing method that combines TemporaryDomain and BandFourier
+by using different columns for each, and using the same parameters
+“segment” and “overlap” for both. Input data is divided into two
 by using “temporary_sensors_mask” parameter, which defines which
-columns are to be processed by TemporaryDomain and which are to 
+columns are to be processed by TemporaryDomain and which are to
 be processed by BandFourier; they are preprocessed separately,
 and then merged.</p>
 <dl class="py method">
@@ -333,7 +301,10 @@ and then merged.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="moncon.preprocessing.nan.html" class="btn btn-neutral float-left" title="moncon.preprocessing.nan package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="moncon.tools.html" class="btn btn-neutral float-right" title="moncon.tools package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

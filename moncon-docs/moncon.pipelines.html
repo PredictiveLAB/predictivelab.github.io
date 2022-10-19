@@ -19,7 +19,9 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="moncon.preprocessing package" href="moncon.preprocessing.html" />
+    <link rel="prev" title="moncon.ml.unsupervised package" href="moncon.ml.unsupervised.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,30 +39,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">moncon.pipelines package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-moncon.pipelines.rawdata_process">moncon.pipelines.rawdata_process module</a><ul>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.clean_data"><code class="docutils literal notranslate"><span class="pre">clean_data()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.drop_empty_cols"><code class="docutils literal notranslate"><span class="pre">drop_empty_cols()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.file_name"><code class="docutils literal notranslate"><span class="pre">file_name()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.get_tags"><code class="docutils literal notranslate"><span class="pre">get_tags()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.save_data"><code class="docutils literal notranslate"><span class="pre">save_data()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.rawdata_process.set_sensor_names"><code class="docutils literal notranslate"><span class="pre">set_sensor_names()</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="moncon.html">moncon package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="moncon.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="moncon.ml.html">moncon.ml package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">moncon.pipelines package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-moncon.pipelines.rawdata_process">moncon.pipelines.rawdata_process module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-moncon.pipelines.train_test_funcs">moncon.pipelines.train_test_funcs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-moncon.pipelines">Module contents</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-moncon.pipelines.train_test_funcs">moncon.pipelines.train_test_funcs module</a><ul>
-<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.make_save_path"><code class="docutils literal notranslate"><span class="pre">make_save_path()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.make_sensors_comb_code"><code class="docutils literal notranslate"><span class="pre">make_sensors_comb_code()</span></code></a></li>
-<li><a class="reference internal" href="#moncon.pipelines.train_test_funcs.train_test_pipeline"><code class="docutils literal notranslate"><span class="pre">train_test_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.preprocessing.html">moncon.preprocessing package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="moncon.tools.html">moncon.tools package</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-moncon.pipelines">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon.errors">moncon.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon.plots">moncon.plots module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moncon.html#module-moncon">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -75,6 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="moncon.html">moncon package</a> &raquo;</li>
       <li>moncon.pipelines package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/moncon.pipelines.rst.txt" rel="nofollow"> View page source</a>
@@ -158,21 +161,19 @@ Parameters</p>
 <dd><p>Returns a Path object where all files associated to a specific model are
 to be saved.
 ————————————————————————–
-Args:</p>
-<blockquote>
-<div><p>models_save_folder (Path):</p>
-<dl class="simple">
-<dt>model_name (str):</dt><dd><p>Name of the model to use. Ej: “AutoCNN”</p>
-</dd>
-<dt>model_params (dict):</dt><dd><p>Parameters of the model.</p>
-</dd>
-<dt>scaler_name (str):</dt><dd><p>Name of the scaler to use.</p>
+:param models_save_folder:
+:type models_save_folder: Path
+:param model_name: Name of the model to use. Ej: “AutoCNN”
+:type model_name: str
+:param model_params: Parameters of the model.
+:type model_params: dict
+:param scaler_name: Name of the scaler to use.
+:type scaler_name: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series or None</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Otherwise returns None.</p>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -185,30 +186,61 @@ Args:</p>
 <span class="sig-prename descclassname"><span class="pre">moncon.pipelines.train_test_funcs.</span></span><span class="sig-name descname"><span class="pre">train_test_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaler_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_use</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_save_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/moncon/pipelines/train_test_funcs.html#train_test_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moncon.pipelines.train_test_funcs.train_test_pipeline" title="Permalink to this definition"></a></dt>
 <dd><section id="pipeline-to-train-or-test-a-scaler-and-model">
 <h3>Pipeline to train or test a scaler and model.<a class="headerlink" href="#pipeline-to-train-or-test-a-scaler-and-model" title="Permalink to this heading"></a></h3>
-<dl class="simple">
-<dt>Args:</dt><dd><dl class="simple">
-<dt>x_data (pd.DataFrame): </dt><dd><p>Numeric data to train or test (without timestamps or labels).</p>
+<dl class="field-list simple">
+<dt class="field-odd">param x_data</dt>
+<dd class="field-odd"><p>Numeric data to train or test (without timestamps or labels).</p>
 </dd>
-<dt>x_timestamps (pd.Series):</dt><dd><p>Timestamps of the data. Only used for testing</p>
+<dt class="field-even">type x_data</dt>
+<dd class="field-even"><p>pd.DataFrame</p>
 </dd>
-<dt>model_name (str):</dt><dd><p>Name of the model to use.</p>
+<dt class="field-odd">param x_timestamps</dt>
+<dd class="field-odd"><p>Timestamps of the data. Only used for testing</p>
 </dd>
-<dt>model_params (dict):</dt><dd><p>Parameters of the model.</p>
+<dt class="field-even">type x_timestamps</dt>
+<dd class="field-even"><p>pd.Series</p>
 </dd>
-<dt>scaler_name (str):</dt><dd><p>Name of the scaler to use.</p>
+<dt class="field-odd">param model_name</dt>
+<dd class="field-odd"><p>Name of the model to use.</p>
 </dd>
-<dt>cols_to_use (list):</dt><dd><p>List of columns to use.</p>
+<dt class="field-even">type model_name</dt>
+<dd class="field-even"><p>str</p>
 </dd>
-<dt>mode (str):</dt><dd><p>Pipeline mode, either “train” or “test”.</p>
+<dt class="field-odd">param model_params</dt>
+<dd class="field-odd"><p>Parameters of the model.</p>
 </dd>
-<dt>models_save_folder (Path):</dt><dd><p>Path to the folder where to.</p>
+<dt class="field-even">type model_params</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">param scaler_name</dt>
+<dd class="field-odd"><p>Name of the scaler to use.</p>
+</dd>
+<dt class="field-even">type scaler_name</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param cols_to_use</dt>
+<dd class="field-odd"><p>List of columns to use.</p>
+</dd>
+<dt class="field-even">type cols_to_use</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">param mode</dt>
+<dd class="field-odd"><p>Pipeline mode, either “train” or “test”.</p>
+</dd>
+<dt class="field-even">type mode</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param models_save_folder</dt>
+<dd class="field-odd"><p>Path to the folder where to.</p>
+</dd>
+<dt class="field-even">type models_save_folder</dt>
+<dd class="field-even"><p>Path</p>
 </dd>
 </dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p>pd.Series or None</p>
 </dd>
 </dl>
-<blockquote>
-<div><p>Otherwise returns None.</p>
-</div></blockquote>
 </section>
 </dd></dl>
 
@@ -221,7 +253,10 @@ Args:</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="moncon.ml.unsupervised.html" class="btn btn-neutral float-left" title="moncon.ml.unsupervised package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="moncon.preprocessing.html" class="btn btn-neutral float-right" title="moncon.preprocessing package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
