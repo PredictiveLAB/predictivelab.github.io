@@ -128,12 +128,82 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#predictivebuilder-install" class="nav-link">🚀 PredictiveBuilder Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#run-the-app" class="nav-link">Run the App</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#insert-initial-data-in-database" class="nav-link">Insert initial data in database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#create-super-user" class="nav-link">Create super user</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h2 id="predictivebuilder-install">🚀 PredictiveBuilder Install<a class="headerlink" href="#predictivebuilder-install" title="Permanent link"></a></h2>
+<h3 id="downloading-the-app">Downloading the app<a class="headerlink" href="#downloading-the-app" title="Permanent link"></a></h3>
+<p>Choose one of the following ways to download the application, taking into account if you have git or not to use git on your server.</p>
+<h4 id="download-all-source-code-via-git-in-the-same-folder-location">Download all source code via git in the same folder location<a class="headerlink" href="#download-all-source-code-via-git-in-the-same-folder-location" title="Permanent link"></a></h4>
+<pre><code class="language-bash">git clone git@github.com:PredictiveLAB/predictive-builder.git
+git clone git@github.com:PredictiveLAB/predictivelab.git
+</code></pre>
+<h4 id="download-the-following-zip-files-and-extract-them-in-the-same-folder-location">Download the following .zip files, and extract them in the same folder location<a class="headerlink" href="#download-the-following-zip-files-and-extract-them-in-the-same-folder-location" title="Permanent link"></a></h4>
+<p><a href="https://github.com/PredictiveLAB/predictive-builder/archive/refs/heads/main.zip">https://github.com/PredictiveLAB/predictive-builder/archive/refs/heads/main.zip</a>
+<a href="https://github.com/PredictiveLAB/predictivelab/archive/refs/heads/main.zip">https://github.com/PredictiveLAB/predictivelab/archive/refs/heads/main.zip</a></p>
+<h3 id="initialize-the-python-environment">Initialize the Python environment<a class="headerlink" href="#initialize-the-python-environment" title="Permanent link"></a></h3>
+<p>From the folder you saved the files, run following command lines</p>
+<h4 id="on-windows">on Windows<a class="headerlink" href="#on-windows" title="Permanent link"></a></h4>
+<pre><code class="language-bash">cd predictive-builder
+python -m venv .venv
+.venv\Scripts\activate
+</code></pre>
+<h4 id="on-linux">on Linux<a class="headerlink" href="#on-linux" title="Permanent link"></a></h4>
+<pre><code class="language-bash">cd predictive-builder
+python -m venv .venv
+source .venv/bin/activate
+</code></pre>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link"></a></h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+cd ..
+cd predictivelab
+pip install -e .
+cd ..
+cd predictive-builder
+</code></pre>
+<h2 id="run-the-app">Run the App<a class="headerlink" href="#run-the-app" title="Permanent link"></a></h2>
+<p>From the <code>predictive-builder</code> folder run the following command lines</p>
+<pre><code class="language-bash">cd imap01
+python manage.py migrate
+python manage.py runserver
+</code></pre>
+<p>At this point, you can acces the app from the browser using the url http://localhost:8000</p>
+<h2 id="insert-initial-data-in-database">Insert initial data in database<a class="headerlink" href="#insert-initial-data-in-database" title="Permanent link"></a></h2>
+<p>Quit the server with CTRL-BREAK, and execute the following commands in console (from the same location)</p>
+<pre><code class="language-bash">python manage.py create_groups
+python manage.py create_archs_targets
+python manage.py create_factories_eq_sensors
+python manage.py create_hyperparams_options
+</code></pre>
+<h2 id="create-super-user">Create super user<a class="headerlink" href="#create-super-user" title="Permanent link"></a></h2>
+<pre><code class="language-bash">python manage.py createsuperuser
+</code></pre>
+<p>run the server again</p>
+<pre><code class="language-bash">python manage.py runserver
+</code></pre>
+<p>and assign the user roles to the superuser in the url http://localhost:8000/admin/auth/user/1/change/</p></div>
             </div>
         </div>
 
