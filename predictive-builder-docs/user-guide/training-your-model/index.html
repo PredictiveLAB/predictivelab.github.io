@@ -8,7 +8,7 @@
         <meta name="author" content="PredictiveLAB Team">
         <link rel="canonical" href="https://predictivelab.github.io/predictive-builder-docs/user-guide/training-your-model/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Training Your Model - Predictive-Builder Documentation</title>
+        <title>Training Your Model - PredictiveBuilder Documentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Predictive-Builder Documentation</a>
+                <a class="navbar-brand" href="../..">PredictiveBuilder Documentation</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,6 @@
                         <ul class="nav navbar-nav">
                             <li class="navitem">
                                 <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
@@ -141,19 +138,19 @@
 <h1 id="training-testing">Training &amp; Testing<a class="headerlink" href="#training-testing" title="Permanent link"></a></h1>
 <p>En la siguiente figura se puede observar la segunda etapa del proceso, que corresponde al preprocesado de datos, su entrenamiento, y evaluar su desempeño utilizando distintas métricas que aseguren una buena precisión de este.</p>
 <h1 align="center">
-<img src="Figure31.JPG" width="300">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure31.JPG" width="300">
 </h1>
 
 <p>Al momento de clicar sobre la opción “Entrenar modelo” la aplicación predictive Builder entregará diversas opciones que se encuentran en la siguiente figura. En las cuales se deben rellenar las siguientes casillas:</p>
 <h1 align="center">
-<img src="Figure32.JPG" width="600">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure32.JPG" width="600">
 </h1>
 
 <ul>
 <li><strong>Información sobre el modelo</strong>:  Corresponde al nombre que se otorgará al modelo para su posterior identificación. </li>
 <li><strong>Selecciona el Dataset</strong>: Se debe seleccionar el dataset con el cual se va a trabajar, los cuales han sido previamente guardados en la aplicación en la sección “crear dataset”.</li>
 <li><strong>Quitar sensores</strong>: En esta sección se puede elegir si considerar o no ciertos datos entregados por sensores por medio de la eliminación completa de la columna.</li>
-<li><strong>Seleccione la arquitectura del modelo</strong>: Se debe elegir qué tipo de estructura del modelo se va a utilizar, entre los cuales en la actual versión se encuentran 12 que son:<ul>
+<li><strong>Seleccione la arquitectura del modelo</strong>: Se debe elegir qué tipo de estructura del modelo se va a utilizar, entre los cuales en la actual versión se encuentran 12 que son:</li>
 <li><strong>Arquitecturas basadas en AutoEncoder</strong>:<ul>
 <li><strong>AutoCNN</strong>: AutoEncoder basada en redes neuronales convolucionales.</li>
 <li><strong>AutoMLP</strong>: AutoEncoder basada en perceptrones multicapa.</li>
@@ -172,10 +169,8 @@
 <li><strong>IsolationForest</strong>: Basado en la implementación de sklearn de isolationforest.</li>
 </ul>
 </li>
-</ul>
-</li>
 <li><strong>Selecciones un modelo para Reentrenar</strong>: Se puede seleccionar un modelo guardado y entrenado anteriormente para su reentreno.</li>
-<li><strong>Defina la estrategia de preprocesamiento</strong>: En esta sección el usuario puede escoger que pre-procesamiento desea aplicar al dataset, antes de entrenar con los datos disponibles. Entre las posibilidades se encuentra:<ul>
+<li><strong>Defina la estrategia de preprocesamiento</strong>: En esta sección el usuario puede escoger que pre-procesamiento desea aplicar al dataset, antes de entrenar con los datos disponibles. Entre las posibilidades se encuentra:</li>
 <li><strong>Fill_nan</strong>: Rellenar los NaNs con:<ul>
 <li>Mean: Media aritmética</li>
 <li>Std: desviación estándar</li>
@@ -184,11 +179,9 @@
 </li>
 <li><strong>Drop_nan</strong>: Se elige como botar una fila o columna dependiendo de la cantidad de NaNs eligiendo los siguientes parámetros:<ul>
 <li>Dimension: Se debe elegir si se van a eliminar filas (rows) o columnas (columns).</li>
-<li>how:  posee dos opciones:<ul>
+<li>how:  posee dos opciones:</li>
 <li>Any: Eliminará la fila o columna si algún NAN se presenta.</li>
 <li>All: Se eliminará la fila o columna si todos los valores son NAN.</li>
-</ul>
-</li>
 <li>percentage_drop_thresh:  Se quedará con las columnas o filas que tengan un porcentaje de NAN inferior a este valor.</li>
 </ul>
 </li>
@@ -198,8 +191,6 @@
 <li>Raw: Extrae parámetros de suma, media, mediana, máximo y mínimo.</li>
 <li>Features: Extrae los parámetros de RMS, peak, peak-peak, cresta, media, varianza, asimetría y curtosis.
 También se tiene el “overlap”, que corresponde al traslape entre los datos y “segment” que corresponde al largo de cada segmento.</li>
-</ul>
-</li>
 </ul>
 </li>
 <li><strong>Defina los hiperparametros</strong>: Se refiere a los hiperparametros de “la arquitectura del modelo”.</li>

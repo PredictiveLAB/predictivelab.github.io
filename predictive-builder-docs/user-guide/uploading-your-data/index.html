@@ -8,7 +8,7 @@
         <meta name="author" content="PredictiveLAB Team">
         <link rel="canonical" href="https://predictivelab.github.io/predictive-builder-docs/user-guide/uploading-your-data/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Uploading Your Data - Predictive-Builder Documentation</title>
+        <title>Uploading Your Data - PredictiveBuilder Documentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Predictive-Builder Documentation</a>
+                <a class="navbar-brand" href="../..">PredictiveBuilder Documentation</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,6 @@
                         <ul class="nav navbar-nav">
                             <li class="navitem">
                                 <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
@@ -149,49 +146,47 @@
 <h1 id="data-cleaining-labeling">Data cleaining &amp; labeling<a class="headerlink" href="#data-cleaining-labeling" title="Permanent link"></a></h1>
 <p>La opción de cargado y etiquetado de datos da paso al usuario a que elija entre, “Crear reporte” o “Crear Dataset”.  A continuación, se detallan las posibilidades de ambas opciones:</p>
 <h1 align="center">
-<img src="Figure21.JPG" width="600">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure21.JPG" width="600">
 </h1>
 
 <h2 id="create-a-dataset">Create a Dataset<a class="headerlink" href="#create-a-dataset" title="Permanent link"></a></h2>
 <p>La creación de dataset corresponde al proceso de inicializar una nueva base de datos, los cuales debe rellenar las siguientes casillas mostradas en la siguiente figura.</p>
 <h1 align="center">
-<img src="Figure22.JPG" width="600">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure22.JPG" width="600">
 </h1>
 
 <ul>
 <li><strong>Nombre</strong>: Este es el nombre (Los nombres se pueden repetir en la aplicación, por lo tanto, se recomienda tener diferentes nombres al momento de subir cada archivo para no llevar a confusión) por el cual será referido el dataset en aplicación. </li>
-<li><strong>Tipo de equipo</strong>: Despliega una barra deslizante que muestra opciones de equipos a elegir. Esto sirve para 3 acciones principalmente:<ul>
+<li><strong>Tipo de equipo</strong>: Despliega una barra deslizante que muestra opciones de equipos a elegir. Esto sirve para 3 acciones principalmente:</li>
 <li>Para que agregar más información al dataset, incluyendo el tipo de sensores y que miden.</li>
 <li>Al momento de entrenar se puede seleccionar cualquier modelo que haya sido entrenado con ese tipo de equipo.</li>
 <li>Ordena los equipos según el tipo en la sección estadísticas.</li>
-</ul>
-</li>
 <li>
 <p><strong>Es pública</strong>: En caso de que esta casilla sea seleccionada, se accede a que el dataset pueda ser utilizada en otras sesiones de la aplicación, sin al necesitad de solicitar autorización al usuario para ello.</p>
 </li>
 <li>
 <p><strong>Subir datos</strong>: Si se hace clic a esta casilla, se abrirá un explorador de archivos para seleccionar un archivo que obtenga el dataset en estudio, estos podrían tener la extensión “.txt”, “. xlxs” y “.csv, la aplicación lo detectará automáticamente.</p>
-<ul>
-<li>Los archivos subidos a la aplicación deben tener una cierta forma para poder ser admitidos y hacer un correcto análisis del equipo. En síntesis, estos deben poseer una serie de tiempo y un label, los cuales están en las columnas “timestamp” y “target”, respectivamente.</li>
-</ul>
 </li>
+<li>Los archivos subidos a la aplicación deben tener una cierta forma para poder ser admitidos y hacer un correcto análisis del equipo. En síntesis, estos deben poseer una serie de tiempo y un label, los cuales están en las columnas “timestamp” y “target”, respectivamente.</li>
 </ul>
 <p>Al momento subir un nuevo dataset, se abrirá una sección de etiquetado, inmediatamente debajo de subir datos que puede ser observada en la siguiente figura. </p>
 <h1 align="center">
-<img src="Figure23.JPG" width="600">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure23.JPG" width="600">
 </h1>
 
-<p>Lo que esta sección hace es visualizar el etiquetado que se tenga en una serie de tiempo y elegir la correcta etiqueta.  Si el proceso anterior es exitoso, se visualizará:
-- El porcentaje de Nans por columnas.
-- Análisis de correlación entre sensores
-- Posibilidad de hacer la transformada de Fourier, variando los parámetros en tiempo real
-- Análisis de parámetros
-- Eliminar los sensores que sean pertinentes para el usuario
-Todo lo anterior con el propósito de eliminar sensores.</p>
+<p>Lo que esta sección hace es visualizar el etiquetado que se tenga en una serie de tiempo y elegir la correcta etiqueta.  Si el proceso anterior es exitoso, se visualizará:</p>
+<ul>
+<li>El porcentaje de Nans por columnas.</li>
+<li>Análisis de correlación entre sensores</li>
+<li>Posibilidad de hacer la transformada de Fourier, variando los parámetros en tiempo real</li>
+<li>Análisis de parámetros</li>
+<li>Eliminar los sensores que sean pertinentes para el usuario</li>
+</ul>
+<p>Todo lo anterior con el propósito de eliminar sensores.</p>
 <h2 id="create-a-report">Create a Report<a class="headerlink" href="#create-a-report" title="Permanent link"></a></h2>
 <p>La primera opción corresponde a subir un archivo con extensión .csv para ser guardado en la aplicación. El dataset será guardado para poder predecir su estado de salud, es decir este archivo no posee etiqueta. En la siguiente figura se pueden observar los parámetros necesarios que consisten en:</p>
 <h1 align="center">
-<img src="Figure24.JPG" width="600">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure24.JPG" width="600">
 </h1>
 
 <ul>

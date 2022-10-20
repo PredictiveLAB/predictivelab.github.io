@@ -8,7 +8,7 @@
         <meta name="author" content="PredictiveLAB Team">
         <link rel="canonical" href="https://predictivelab.github.io/predictive-builder-docs/user-guide/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Overview - Predictive-Builder Documentation</title>
+        <title>Overview - PredictiveBuilder Documentation</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Predictive-Builder Documentation</a>
+                <a class="navbar-brand" href="..">PredictiveBuilder Documentation</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,6 @@
                         <ul class="nav navbar-nav">
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
@@ -99,7 +96,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../getting-started/" class="nav-link">
+                                <a rel="prev" href=".." class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -128,12 +125,45 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h1>
+<p>El siguiente manual tiene por finalidad especificar los objetivos de Predictive Builder, y detallar las funciones que tiene incorporadas, para realizar las tareas de predicción de estado de salud de equipos, sugeridos por el usuario para el monitoreo continuo o diferido. Esta aplicación está situada en el marco del programa de innovación en manufactura avanzada (IMA+), el cual es un consorcio tecnológico conformado por instituciones académicas y empresariales cuya misión es generar, de forma continua, soluciones de manufactura avanzada personalizadas, asequibles e interoperables para problemas específicos de la industria Chilena, a través de la articulación de las capacidades existentes en las universidad, los centros de investigación y las empresas.
+La aplicación se encuentra disponible en la página web: [https://imap01.herokuapp.com/]. Al momento de abrir la aplicación, el usuario se va a encontrar con una distribución de opciones similar a la presentada en la siguiente figura, la cual posee 4 grandes secciones que cumplen las cuatro opciones principales de la aplicación, que consisten en:</p>
+<h1 align="center">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure11.JPG" width="600">
+</h1>
+
+<ul>
+<li>Cargado y etiquetado de datos: En esta sección tiene por objetivo el subir los datos, para luego proceder con el etiquetado de este. También se puede hacer un análisis preliminar del dataset, para eliminar sensores irrelevantes en el análisis.</li>
+<li>Entrenamiento y testeo: Esta sección cuenta con 3 funciones principales que pueden ser guardadas como “modelo”.<ol>
+<li>Preprocesamiento de datos.</li>
+<li>Selección de la arquitectura de aprendizaje de máquinas.</li>
+<li>Entrenamiento</li>
+</ol>
+</li>
+<li>Evaluación datos nuevos:</li>
+<li>Tablero: En esta sección se pueden ver las estadísticas de la aplicación, que incluyen los equipos monitoreados y características más utilizadas.</li>
+</ul>
+<h1 align="center">
+<img src="https://predictivelab.github.io/predictive-builder-docs/user-guide/Figure12.JPG" width="600">
+</h1>
+
+<p>Además, incluye en el borde derecho un panel que aparecen los En la sección, derecha hay diversas opciones que se pueden visualizar en la siguiente figura, las que incluyen:</p>
+<ul>
+<li>Equipos monitoreados: Se encuentra la lista de los equipos que han sido monitoreados, ya sea ahora o en el pasado.</li>
+<li>Evaluaciones activas: Evaluaciones que se encuentra en proceso actualmente.</li>
+<li>Evaluaciones inactivas: Evaluaciones que estuvieron activas, pero se dejaron de monitorear.</li>
+<li>Datasets Disponibles: Contiene data set subidos por el usuario o públicos subidos por otros usuarios. Estos pueden ser seleccionados por el usuario y puede trabajar con ellos.</li>
+</ul></div>
             </div>
         </div>
 
