@@ -54,9 +54,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>moncon.ml.unsupervised.anomaly_detection</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moncon.ml.unsupervised.anomaly_detection</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -75,7 +75,7 @@
 
 
 <div class="viewcode-block" id="IsolationForestAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">IsolationForestAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Anomaly (novelty) detection model based on the Isolation Forest algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anomaly (novelty) detection model based on the Isolation Forest algorithm.</span>
 <span class="sd">    Inherits from SklearnAnomalyModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -98,7 +98,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;IsolationForest&quot;</span>
 
 <div class="viewcode-block" id="IsolationForestAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.IsolationForestAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the Isolation Forest model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the Isolation Forest model.</span>
 
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
@@ -124,7 +124,7 @@
 
 
 <div class="viewcode-block" id="EllipticEnvelopeAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">EllipticEnvelopeAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on Sklearn&#39;s implementation of EllipticEnvelope()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anomaly detection model based on Sklearn&#39;s implementation of EllipticEnvelope()</span>
 <span class="sd">    Inherits from SklearnAnomalyModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -148,7 +148,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;EllipticEnvelope&quot;</span>
 
 <div class="viewcode-block" id="EllipticEnvelopeAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.EllipticEnvelopeAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the Elliptic Envelope model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the Elliptic Envelope model.</span>
 
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;assume_centered&quot;] (bool): Whether to assume the data is centered.</span>
@@ -173,7 +173,7 @@
 
 
 <div class="viewcode-block" id="LocalOutlierFactorAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">LocalOutlierFactorAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on the Local Outlier Factor algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anomaly detection model based on the Local Outlier Factor algorithm.</span>
 <span class="sd">    Inherits from SklearnAnomalyModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -199,7 +199,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;LocalOutlierFactor&quot;</span>
 
 <div class="viewcode-block" id="LocalOutlierFactorAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.LocalOutlierFactorAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the Local Outlier Factor model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the Local Outlier Factor model.</span>
 
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;contamination&quot;] (float): The proportion of outliers in the data set.</span>
@@ -231,7 +231,7 @@
 
 
 <div class="viewcode-block" id="OneClassSVMAnomalyModel"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel">[docs]</a><span class="k">class</span> <span class="nc">OneClassSVMAnomalyModel</span><span class="p">(</span><span class="n">SklearnAnomalyModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Anomaly detection model based on the One Class SVM algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anomaly detection model based on the One Class SVM algorithm.</span>
 <span class="sd">    Inherits from SklearnAnomalyModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -255,7 +255,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;OneClassSVM&quot;</span>
 
 <div class="viewcode-block" id="OneClassSVMAnomalyModel.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.anomaly_detection.OneClassSVMAnomalyModel.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the One Class SVM model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the One Class SVM model.</span>
 
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;gamma&quot;] (str): The kernel coefficient for &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.</span>

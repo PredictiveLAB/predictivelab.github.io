@@ -54,9 +54,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>moncon.preprocessing.filters</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moncon.preprocessing.filters</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -74,7 +74,7 @@
 
 
 <div class="viewcode-block" id="DeleteTransient"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteTransient">[docs]</a><span class="k">class</span> <span class="nc">DeleteTransient</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;It finds every time the equipment is shut down and deletes that information.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;It finds every time the equipment is shut down and deletes that information.</span>
 <span class="sd">    If the value of a sensor in a specific column called &#39;filter_col&#39; is lower than a value</span>
 <span class="sd">    &#39;min_value&#39;, delete it. It also deletes &#39;n_values&#39; after and before the range of values deleted.</span>
 <span class="sd">    Args:</span>
@@ -141,7 +141,7 @@
 
 
 <div class="viewcode-block" id="DeleteInterpolated"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.DeleteInterpolated">[docs]</a><span class="k">class</span> <span class="nc">DeleteInterpolated</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Filter out interpolated values, by calculating the signal second derivative</span>
 <span class="sd">    and filtering out null values;</span>
 <span class="sd">    i.e. filters out values that have an almost constant slope.</span>
@@ -186,7 +186,7 @@
 
 
 <div class="viewcode-block" id="OutlierRemoval"><a class="viewcode-back" href="../../../moncon.preprocessing.html#moncon.preprocessing.filters.OutlierRemoval">[docs]</a><span class="k">class</span> <span class="nc">OutlierRemoval</span><span class="p">(</span><span class="n">BasePreprocess</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Preprocessing for deleting outliers in a dataset with one class</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Preprocessing for deleting outliers in a dataset with one class</span>
 <span class="sd">    (like healthy machine behavior). Outliers are detected using the</span>
 <span class="sd">    IQR method for each column, using Q25 - 3*IQR as the lower limit, and </span>
 <span class="sd">    Q75 + 3*IQR as the upper limit; then outliers and are deleted.</span>

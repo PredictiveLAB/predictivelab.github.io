@@ -54,9 +54,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>moncon.ml.supervised.models</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moncon.ml.supervised.models</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,7 +82,7 @@
 
 
 <div class="viewcode-block" id="RandomForestCls"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls">[docs]</a><span class="k">class</span> <span class="nc">RandomForestCls</span><span class="p">(</span><span class="n">SklearnSupervisedModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Random Forest Classifier model.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Random Forest Classifier model.</span>
 <span class="sd">    Inherits from SklearnSupervisedModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -97,7 +97,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;RandomForest&quot;</span>
 
 <div class="viewcode-block" id="RandomForestCls.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RandomForestCls.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the Random Forest model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the Random Forest model.</span>
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
 <span class="sd">                Range is (1, inf).</span>
@@ -125,7 +125,7 @@
 
 
 <div class="viewcode-block" id="GradientBoostingCls"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls">[docs]</a><span class="k">class</span> <span class="nc">GradientBoostingCls</span><span class="p">(</span><span class="n">SklearnSupervisedModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;XGBoost Classifier model.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;XGBoost Classifier model.</span>
 <span class="sd">    Inherits from SklearnSupervisedModel.</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -140,7 +140,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;XGBoost&quot;</span>
 
 <div class="viewcode-block" id="GradientBoostingCls.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.GradientBoostingCls.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the XGBoost model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the XGBoost model.</span>
 <span class="sd">        Introduces the following values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;n_estimators&quot;] (int): The number of trees in the forest.</span>
 <span class="sd">                Range is (1, inf).</span>
@@ -172,7 +172,7 @@
 
 
 <div class="viewcode-block" id="MLP"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.MLP">[docs]</a><span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Classification model based on a MLP architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classification model based on a MLP architecture.</span>
 <span class="sd">    Inherits from DLSupervisedModel</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -198,7 +198,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="MLP.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.MLP.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>
@@ -244,7 +244,7 @@
 
 
 <div class="viewcode-block" id="CNN"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.CNN">[docs]</a><span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Classification model based on a CNN architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classification model based on a CNN architecture.</span>
 <span class="sd">    Inherits from DLSupervisedModel</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -274,7 +274,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="CNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.CNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;time_size&quot;] (int): Number of time steps in the input to use in each window.</span>
@@ -342,7 +342,7 @@
 
 
 <div class="viewcode-block" id="RNN"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RNN">[docs]</a><span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">DLSupervisedModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Classification model based on a RNN architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classification model based on a RNN architecture.</span>
 <span class="sd">    Inherits from DLSupervisedModel</span>
 
 <span class="sd">    Redefines the following methods:</span>
@@ -370,7 +370,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.supervised.html#moncon.ml.supervised.models.RNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - arch_params[&quot;feature_size&quot;] (int): The number of input features.</span>

@@ -54,9 +54,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>moncon.preprocessing.nan.smooth_tools</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moncon.preprocessing.nan.smooth_tools</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +99,7 @@
     <span class="n">TolZ</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
     <span class="n">weightstr</span><span class="o">=</span><span class="s2">&quot;bisquare&quot;</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    function [z,s,exitflag,Wtot] = smoothn(varargin)</span>
 
 <span class="sd">    SMOOTHN Robust spline smoothing for 1-D to N-D data.</span>
@@ -536,7 +536,7 @@
 
 
 <div class="viewcode-block" id="peaks"><a class="viewcode-back" href="../../../../moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.peaks">[docs]</a><span class="k">def</span> <span class="nf">peaks</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Mimic basic of matlab peaks fn</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">xp</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -557,12 +557,12 @@
 
 
 <div class="viewcode-block" id="df2matrix"><a class="viewcode-back" href="../../../../moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.df2matrix">[docs]</a><span class="k">def</span> <span class="nf">df2matrix</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Transforms dataframe to a matrix&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transforms dataframe to a matrix&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="smooth_df"><a class="viewcode-back" href="../../../../moncon.preprocessing.nan.html#moncon.preprocessing.nan.smooth_tools.smooth_df">[docs]</a><span class="k">def</span> <span class="nf">smooth_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Apply the smoothn to a dataframe&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply the smoothn to a dataframe&quot;&quot;&quot;</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
     <span class="c1"># Extract the data in a matrix format</span>

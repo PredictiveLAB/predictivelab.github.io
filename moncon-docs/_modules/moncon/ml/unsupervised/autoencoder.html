@@ -54,9 +54,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>moncon.ml.unsupervised.autoencoder</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moncon.ml.unsupervised.autoencoder</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,7 +80,7 @@
 
 
 <div class="viewcode-block" id="AutoMLP"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP">[docs]</a><span class="k">class</span> <span class="nc">AutoMLP</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a MLP architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Autoencoder model based on a MLP architecture.</span>
 <span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
 
 <span class="sd">    AutoMLP is a model that uses a multilayer perceptron (MLP) architecture to encode</span>
@@ -111,7 +111,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">use_split_windows</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="AutoMLP.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoMLP.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the AutoMLP model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the AutoMLP model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - feature_size (int): The number of input features.</span>
@@ -154,7 +154,7 @@
 
 
 <div class="viewcode-block" id="AutoCNN"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN">[docs]</a><span class="k">class</span> <span class="nc">AutoCNN</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a CNN architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Autoencoder model based on a CNN architecture.</span>
 <span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
 
 <span class="sd">    AutoCNN is a model that uses a convolutional neural network (CNN) architecture to encode</span>
@@ -191,7 +191,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="AutoCNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoCNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the AutoCNN model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the AutoCNN model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - time_size (int): vertical size of the input data</span>
@@ -302,7 +302,7 @@
 
 
 <div class="viewcode-block" id="AutoRNN"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN">[docs]</a><span class="k">class</span> <span class="nc">AutoRNN</span><span class="p">(</span><span class="n">AutoEncoderModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Autoencoder model based on a RNN architecture.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Autoencoder model based on a RNN architecture.</span>
 <span class="sd">    Inherits from base_arch.AutoEncoderModel.</span>
 
 <span class="sd">    AutoRNN is a model that uses a recurrent neural network (RNN) architecture to encode and</span>
@@ -336,7 +336,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">overlap</span> <span class="o">=</span> <span class="n">arch_params</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="AutoRNN.init_arch"><a class="viewcode-back" href="../../../../moncon.ml.unsupervised.html#moncon.ml.unsupervised.autoencoder.AutoRNN.init_arch">[docs]</a>    <span class="k">def</span> <span class="nf">init_arch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the AutoRNN model architecture.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the AutoRNN model architecture.</span>
 
 <span class="sd">        Introduces the following necessary values in arch_params:</span>
 <span class="sd">            - feature_size (int): The number of input features.</span>
